@@ -2,10 +2,10 @@
 Knights Mobile Augmented Reality Education
 
 # Points of Contact
-- Frontend Developer: Kenia Castro
-- Backend Developer:  Katelyn Jones
-- Android Developer:  Richard DiBacco
-- iOS Developer:      Matthew Frazier
+- Frontend Developer: Kenia Castro (add email addresses here)
+- Backend Developer: Katelyn Jones (add email addresses here)
+- Android Developer: Richard DiBacco (add email addresses here)
+- iOS Developer: Matthew Frazier (mfrazier@knights.ucf.edu, frazier85@gmail.com)
 
 
 # Useful Links
