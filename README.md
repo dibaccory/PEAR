@@ -1,5 +1,5 @@
-# KnightMARE
-Knights Mobile Augmented Reality Education
+# PEAR
+Portable Education with Augmented Reality
 
 # Points of Contact
 - Frontend Developer: Kenia Castro (add email addresses here)
