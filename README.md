@@ -2,7 +2,7 @@
 Portable Education with Augmented Reality
 
 # Points of Contact
-- Frontend Developer: Kenia Castro (add email addresses here)
+- Frontend Developer: Kenia Castro (k.castro@knights.ucf.edu)
 - Backend Developer: Katelyn Jones (add email addresses here)
 - Android Developer: Richard DiBacco (rdibacco@knights.ucf.edu)
 - iOS Developer: Matthew Frazier (mfrazier@knights.ucf.edu, frazier85@gmail.com)
