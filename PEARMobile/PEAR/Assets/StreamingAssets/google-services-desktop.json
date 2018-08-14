@@ -1,0 +1,37 @@
+{
+  "client": [
+    {
+      "services": {
+        "appinvite_service": {
+          "status": 0
+        }, 
+        "analytics_service": {
+          "status": 0
+        }
+      }, 
+      "oauth_client": [
+        {
+          "client_id": "962088956383-dqvrc5t19m4um2ubdaosolmmqtj5rpc5.apps.googleusercontent.com"
+        }
+      ], 
+      "api_key": [
+        {
+          "current_key": "AIzaSyDBFQvF61tzu3aMhVUN51dJjPEuqlA6Y2U"
+        }
+      ], 
+      "client_info": {
+        "mobilesdk_app_id": "1:962088956383:ios:4180d89cbb93d441", 
+        "android_client_info": {
+          "package_name": "com.PEAR.Mobile"
+        }
+      }
+    }
+  ], 
+  "configuration_version": "1", 
+  "project_info": {
+    "storage_bucket": "pear-f60a2.appspot.com", 
+    "project_id": "pear-f60a2", 
+    "firebase_url": "https://pear-f60a2.firebaseio.com", 
+    "project_number": "962088956383"
+  }
+}
