@@ -66,18 +66,34 @@ public class FormManager : MonoBehaviour
 
     IEnumerator HandleAuthCallback(Task<Firebase.Auth.FirebaseUser> task, string operation)
     {
-        //if (task.IsFaulted || task.IsCanceled)
-        //{
-        //    UpdateStatus("sorry, error! Error: " + task.Exception);
-        //}
-        //else if (task.IsCompleted)
-        //{
-            // Firebase.Auth.FirebaseUser newPlayer = task.Result;
-            UpdateStatus("Loading the game scene");
+        if (task.IsCanceled)
+        {
+            UpdateStatus("Task was canceled");
+        }
+        else if (task.IsFaulted)
+        {
+            UpdateStatus("sorry, error! Error: " + task.Exception);
+            Debug.Log(task.Exception);
+        }
+        else if (task.IsCompleted)
+        {
+
+            if (operation == "sign_up")
+            {
+                Firebase.Auth.FirebaseUser newUser = task.Result;
+                Debug.LogFormat("welcome to firequest {0}", newUser.Email);
+
+                User user = new User(newUser.Email, 0, 1);
+                DatabaseManager.sharedInstance.CreateNewUser(user, newUser.UserId);
+            }
+
+            Firebase.Auth.FirebaseUser player = task.Result;
+            UpdateStatus("User: " + player.Email);
+            // UpdateStatus("Loading the game scene");
 
             yield return new WaitForSeconds(1.5f);
-            SceneManager.LoadScene("VuforiaTesting");
-        //}
+            // SceneManager.LoadScene("VuforiaTesting");
+        }
     }
 
     void OnDestroy()

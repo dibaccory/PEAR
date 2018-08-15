@@ -4,6 +4,7 @@ using UnityEngine;
 using Firebase;
 using Firebase.Database;
 using Firebase.Unity.Editor;
+using System;
 
 public class DatabaseManager : MonoBehaviour
 {
@@ -26,7 +27,7 @@ public class DatabaseManager : MonoBehaviour
 
         DontDestroyOnLoad(gameObject);
 
-        // FirebaseApp.DefaultInstance.SetEditorDatabaseUrl("https://pear-f60a2.firebaseio.com/");
+        FirebaseApp.DefaultInstance.SetEditorDatabaseUrl("https://pear-f60a2.firebaseio.com/");
 
         Debug.Log(Router.Users());
     }
@@ -35,5 +36,22 @@ public class DatabaseManager : MonoBehaviour
     {
         string userJSON = JsonUtility.ToJson(user);
         Router.UserWithUID(uid).SetRawJsonValueAsync(userJSON);
+    }
+
+    public void GetUsers(Action<List<User>> completionBlock)
+    {
+        List<User> tempList = new List<User>();
+
+        Router.Users().GetValueAsync().ContinueWith(task =>
+        {
+            DataSnapshot users = task.Result;
+            foreach(DataSnapshot usernode in users.Children) 
+            {
+                var userDict = (IDictionary<string,object>) usernode.Value;
+                User newUser = new User(userDict);
+                tempList.Add(newUser);
+            }
+            completionBlock(tempList);
+        });
     }
 }

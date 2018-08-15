@@ -1,10 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
-public class User : MonoBehaviour
+public class User
 {
-
     public string email;
     public int score;
     public int level;
@@ -16,4 +16,10 @@ public class User : MonoBehaviour
         this.level = level;
     }
 
+    public User(IDictionary<string, object> dict) 
+    {
+        this.email = dict["email"].ToString();
+        this.score = Convert.ToInt32(dict["score"]);
+        this.level = Convert.ToInt32(dict["level"]);
+    }
 }

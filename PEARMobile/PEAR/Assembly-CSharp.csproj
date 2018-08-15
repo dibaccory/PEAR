@@ -330,6 +330,30 @@
     <Reference Include="Vuforia.UnityExtensions">
       <HintPath>/Applications/Unity/PlaybackEngines/VuforiaSupport/Managed/Runtime/Vuforia.UnityExtensions.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Compat">
+      <HintPath>/Users/mfrazier/Programming/PEAR/PEARMobile/PEAR/Assets/Parse/Plugins/Unity.Compat.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Tasks">
+      <HintPath>/Users/mfrazier/Programming/PEAR/PEARMobile/PEAR/Assets/Parse/Plugins/Unity.Tasks.dll</HintPath>
+    </Reference>
+    <Reference Include="Firebase.Auth">
+      <HintPath>/Users/mfrazier/Programming/PEAR/PEARMobile/PEAR/Assets/Firebase/Plugins/Firebase.Auth.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.MiniJson">
+      <HintPath>/Users/mfrazier/Programming/PEAR/PEARMobile/PEAR/Assets/Firebase/Plugins/Google.MiniJson.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Sharpen">
+      <HintPath>/Users/mfrazier/Programming/PEAR/PEARMobile/PEAR/Assets/Firebase/Plugins/Google.Sharpen.dll</HintPath>
+    </Reference>
+    <Reference Include="Firebase.App">
+      <HintPath>/Users/mfrazier/Programming/PEAR/PEARMobile/PEAR/Assets/Firebase/Plugins/Firebase.App.dll</HintPath>
+    </Reference>
+    <Reference Include="Firebase.Platform">
+      <HintPath>/Users/mfrazier/Programming/PEAR/PEARMobile/PEAR/Assets/Firebase/Plugins/Firebase.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="Firebase.Database">
+      <HintPath>/Users/mfrazier/Programming/PEAR/PEARMobile/PEAR/Assets/Firebase/Plugins/Mono/Firebase.Database.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.Analytics">
       <HintPath>/Users/mfrazier/Library/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.16/UnityEngine.Analytics.dll</HintPath>
     </Reference>
@@ -338,30 +362,6 @@
     </Reference>
     <Reference Include="UnityEngine.StandardEvents">
       <HintPath>/Users/mfrazier/Library/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.13/UnityEngine.StandardEvents.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Compat">
-      <HintPath>/Users/mfrazier/Programming/PEAR/PEARMobile/PEAR/Assets/Parse/Plugins/Unity.Compat.dll</HintPath>
-    </Reference>
-    <Reference Include="Google.MiniJson">
-      <HintPath>/Users/mfrazier/Programming/PEAR/PEARMobile/PEAR/Assets/Firebase/Plugins/Google.MiniJson.dll</HintPath>
-    </Reference>
-    <Reference Include="Firebase.Platform">
-      <HintPath>/Users/mfrazier/Programming/PEAR/PEARMobile/PEAR/Assets/Firebase/Plugins/Firebase.Platform.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Tasks">
-      <HintPath>/Users/mfrazier/Programming/PEAR/PEARMobile/PEAR/Assets/Parse/Plugins/Unity.Tasks.dll</HintPath>
-    </Reference>
-    <Reference Include="Firebase.Auth">
-      <HintPath>/Users/mfrazier/Programming/PEAR/PEARMobile/PEAR/Assets/Firebase/Plugins/Firebase.Auth.dll</HintPath>
-    </Reference>
-    <Reference Include="Firebase.App">
-      <HintPath>/Users/mfrazier/Programming/PEAR/PEARMobile/PEAR/Assets/Firebase/Plugins/Firebase.App.dll</HintPath>
-    </Reference>
-    <Reference Include="Google.Sharpen">
-      <HintPath>/Users/mfrazier/Programming/PEAR/PEARMobile/PEAR/Assets/Firebase/Plugins/Google.Sharpen.dll</HintPath>
-    </Reference>
-    <Reference Include="Firebase.Database">
-      <HintPath>/Users/mfrazier/Programming/PEAR/PEARMobile/PEAR/Assets/Firebase/Plugins/Mono/Firebase.Database.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>/Applications/Unity/Unity.app/Contents/MonoBleedingEdge/lib/mono/2.0-api/mscorlib.dll</HintPath>
