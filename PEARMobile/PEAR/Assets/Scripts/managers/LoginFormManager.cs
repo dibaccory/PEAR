@@ -58,14 +58,6 @@ public class LoginFormManager : MonoBehaviour {
         Debug.Log("Loading Signup Screen");
     }
 
-    public void OnSignUp()
-    {
-        // TODO: Move this to somewhere the signup page can access
-        //       Maybe another form manager for that page is needed... probably
-        authManager.SignUpNewUser(emailInput.text, passwordInput.text);
-        Debug.Log("Sign Up");
-    }
-
     public void OnLogin()
     {
         authManager.LoginExistingUser(emailInput.text, passwordInput.text);
