@@ -44,4 +44,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/VuforiaTesting.unity
     guid: 181836dfe8fce42588ee1fb31588462b
+  - enabled: 1
+    path: Assets/Scenes/SignupScreen.unity
+    guid: ab53fa983fa1144c0a86ec77c50fdd49
   m_configObjects: {}

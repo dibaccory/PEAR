@@ -9,8 +9,7 @@ using Firebase;
 using Firebase.Auth;
 using UnityEngine.SceneManagement;
 
-public class FormManager : MonoBehaviour
-{
+public class LoginFormManager : MonoBehaviour {
 
     // UI objects linked from the inspector
     public InputField emailInput;

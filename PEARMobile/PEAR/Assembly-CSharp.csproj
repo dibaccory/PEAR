@@ -107,7 +107,9 @@
     <Compile Include="Assets\Scripts\managers\AuthManager.cs" />
     <Compile Include="Assets\Scripts\managers\DatabaseManager.cs" />
     <Compile Include="Assets\Scripts\managers\FormManager.cs" />
+    <Compile Include="Assets\Scripts\managers\LoginFormManager.cs" />
     <Compile Include="Assets\Scripts\managers\PlayerBoardManager.cs" />
+    <Compile Include="Assets\Scripts\managers\SignupFormManager.cs" />
     <Compile Include="Assets\Scripts\models\Users.cs" />
     <Compile Include="Assets\Scripts\utilities\PasswordScript.cs" />
     <Compile Include="Assets\Scripts\utilities\Router.cs" />

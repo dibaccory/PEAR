@@ -350,7 +350,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 239298496}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8eceac9837d054438aa4e9f323884b20, type: 3}
+  m_Script: {fileID: 11500000, guid: 5d192e580fd7648ec8dc847895478149, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   emailInput: {fileID: 938275344}
@@ -816,7 +816,7 @@ MonoBehaviour:
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 239298497}
+      - m_Target: {fileID: 0}
         m_MethodName: ValidateEmail
         m_Mode: 1
         m_Arguments:
@@ -832,7 +832,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 239298497}
+      - m_Target: {fileID: 0}
         m_MethodName: ValidateEmail
         m_Mode: 1
         m_Arguments:
@@ -1347,7 +1347,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 239298497}
-        m_MethodName: OnSignUp
+        m_MethodName: LoadSignUpScreen
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
