@@ -1,15 +1,18 @@
 ﻿<Properties StartupConfiguration="{6C485CD2-384F-E21E-93E6-BA6DD1EC10F5}|">
   <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/managers/LoginFormManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/almanac/AlmanacEditor.cs">
     <Files>
       <File FileName="Assets/Scripts/managers/AuthManager.cs" Line="18" Column="6" />
-      <File FileName="Assets/Scripts/managers/DatabaseManager.cs" Line="44" Column="1" />
+      <File FileName="Assets/Scripts/managers/DatabaseManager.cs" Line="35" Column="40" />
       <File FileName="Assets/Scripts/managers/PlayerBoardManager.cs" Line="15" Column="42" />
-      <File FileName="Assets/Scripts/utilities/Router.cs" Line="11" Column="95" />
-      <File FileName="Assets/Scripts/models/Users.cs" Line="23" Column="53" />
+      <File FileName="Assets/Scripts/utilities/Router.cs" Line="20" Column="48" />
+      <File FileName="Assets/Scripts/models/Users.cs" Line="19" Column="28" />
       <File FileName="Assets/Scripts/utilities/PasswordScript.cs" Line="18" Column="1" />
-      <File FileName="Assets/Scripts/managers/LoginFormManager.cs" Line="123" Column="1" />
-      <File FileName="Assets/Scripts/managers/SignupFormManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/managers/LoginFormManager.cs" Line="61" Column="26" />
+      <File FileName="Assets/Scripts/managers/SignupFormManager.cs" Line="68" Column="61" />
+      <File FileName="Assets/Scripts/almanac/Item.cs" Line="3" Column="1" />
+      <File FileName="Assets/Scripts/almanac/Almanac.cs" Line="35" Column="46" />
+      <File FileName="Assets/Scripts/almanac/AlmanacEditor.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
