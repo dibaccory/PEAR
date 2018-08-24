@@ -6,20 +6,20 @@ using System;
 public class User
 {
     public string email;
-    public int score;
-    public int level;
+    public string name;
+    //public int level;
 
-    public User(string email, int score, int level)
+    public User(string email, string name)
     {
         this.email = email;
-        this.score = score;
-        this.level = level;
+        this.name = name;
+        //this.level = level;
     }
 
     public User(IDictionary<string, object> dict) 
     {
         this.email = dict["email"].ToString();
-        this.score = Convert.ToInt32(dict["score"]);
-        this.level = Convert.ToInt32(dict["level"]);
+        this.name = dict["name"].ToString();
+        //this.level = Convert.ToInt32(dict["level"]);
     }
 }

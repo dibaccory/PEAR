@@ -32,12 +32,16 @@ public class DatabaseManager : MonoBehaviour
         Debug.Log(Router.Users());
     }
 
-    public void CreateNewUser(User user, string uid)
+    public void CreateNewUser(User user, string uid, Classroom classroom)
     {
         string userJSON = JsonUtility.ToJson(user);
         Router.UserWithUID(uid).SetRawJsonValueAsync(userJSON);
-    }
 
+    
+        //string classJSON = JsonUtility.ToJson(classroom);
+        //Router.AddUserClassroom(uid, classroom);
+    }
+ 
     public void GetUsers(Action<List<User>> completionBlock)
     {
         List<User> tempList = new List<User>();

@@ -78,15 +78,6 @@ public class LoginFormManager : MonoBehaviour {
         else if (task.IsCompleted)
         {
 
-            if (operation == "sign_up")
-            {
-                Firebase.Auth.FirebaseUser newUser = task.Result;
-                Debug.LogFormat("welcome to firequest {0}", newUser.Email);
-
-                User user = new User(newUser.Email, 0, 1);
-                DatabaseManager.sharedInstance.CreateNewUser(user, newUser.UserId);
-            }
-
             Firebase.Auth.FirebaseUser player = task.Result;
             UpdateStatus("User: " + player.Email);
             // UpdateStatus("Loading the game scene");
