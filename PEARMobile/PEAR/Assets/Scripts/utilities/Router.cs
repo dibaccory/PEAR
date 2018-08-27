@@ -20,9 +20,13 @@ public class Router : MonoBehaviour
         return baseRef.Child("classrooms");
     }
 
+    public static DatabaseReference UserWithClass(string uid, string classCode)
+    {
+        return baseRef.Child("users").Child(uid).Child("classrooms").Child(classCode);
+    }
+
     public static DatabaseReference UserWithUID(string uid)
     {
-
         return baseRef.Child("users").Child(uid);
     }
 
@@ -30,7 +34,5 @@ public class Router : MonoBehaviour
     //{
     //    return baseRef.SetTaskAsync(uid + "/" + classroom.classCode, classroom)
     //}
-
-
 
 }

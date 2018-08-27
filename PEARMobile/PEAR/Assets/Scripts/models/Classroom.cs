@@ -3,22 +3,32 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class Classroom : MonoBehaviour {
-
+public class Classroom
+{
     public string classCode;
     public string status;
+    //public int level;
 
-    public Classroom(string classCode, string status)
+    public Classroom(string classCode)
     {
         this.classCode = classCode;
-        this.status = status;
+        //this.status = status;
+        //this.string2 = string2;
+        //this.level = level;
     }
 
-    public Dictionary<string, string> ToDictionary()
+    public Classroom(IDictionary<string, object> dict)
     {
-        Dictionary<string, string> result = new Dictionary<string, string>();
-        result["classroom"] = classCode;
-        result["status"] = status;
+        this.classCode = dict["classCode"].ToString();
+        //this.status = dict["status"].ToString();
+        //this.level = Convert.ToInt32(dict["level"]);
+    }
+
+    public Dictionary<string, object> ToDictionary()
+    {
+        Dictionary<string, object> result = new Dictionary<string, object>();
+        result["clasCode"] = classCode;
+        //result["status"] = status;
 
         return result;
     }

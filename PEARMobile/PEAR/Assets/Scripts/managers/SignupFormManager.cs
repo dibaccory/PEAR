@@ -78,7 +78,7 @@ public class SignupFormManager : MonoBehaviour {
                 Debug.LogFormat("welcome to PEAR {0}", firstNameInput.text);
                 
                 User user = new User(newUser.Email, combinedName);
-                Classroom classroom = new Classroom(classroomInput.text, "true");
+                Classroom classroom = new Classroom(classroomInput.text);
 
                 DatabaseManager.sharedInstance.CreateNewUser(user, newUser.UserId, classroom);
 
