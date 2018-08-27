@@ -3,48 +3,52 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor (typeof(Almanac))]
-public class AlmanacEditor : Editor {
 
-    private SerializedProperty itemImagesProperty;
-    private SerializedProperty itemsProperty;
+// This class came from a UI/Inventory tutorial. Only for making interacting
+// with the GUI elements from within the Unity editor easier. 
+// TODO: Make it work with the inventory system we're implementing
+// [CustomEditor (typeof(Almanac))]
+// public class AlmanacEditor : Editor {
 
-    private bool[] showItemSlots = new bool[Almanac.numItemSlots];
+    //SerializedProperty itemImagesProperty;
+    //SerializedProperty itemsProperty;
 
-    private const string almanacPropItemImagesName = "itemImages";
-    private const string almanacPropItemsName = "items";
+    //bool[] showItemSlots = new bool[Almanac.numItemSlots];
 
-    private void OnEnable()
-    {
-        itemImagesProperty = serializedObject.FindProperty(almanacPropItemImagesName);
-        itemsProperty = serializedObject.FindProperty(almanacPropItemsName);
-    }
+    //const string almanacPropItemImagesName = "itemImages";
+    //const string almanacPropItemsName = "items";
 
-    public override void OnInspectorGUI()
-    {
-        serializedObject.Update();
-        for (int i = 0; i < Almanac.numItemSlots; i++)
-        {
-            ItemSlotGUI(i);
-        }
-        serializedObject.ApplyModifiedProperties();
-    }
+    //void OnEnable()
+    //{
+    //    itemImagesProperty = serializedObject.FindProperty(almanacPropItemImagesName);
+    //    itemsProperty = serializedObject.FindProperty(almanacPropItemsName);
+    //}
 
-    private void ItemSlotGUI(int index)
-    {
-        EditorGUILayout.BeginVertical(GUI.skin.box);
-        EditorGUI.indentLevel++;
+    //public override void OnInspectorGUI()
+    //{
+    //    serializedObject.Update();
+    //    for (int i = 0; i < Almanac.numItemSlots; i++)
+    //    {
+    //        ItemSlotGUI(i);
+    //    }
+    //    serializedObject.ApplyModifiedProperties();
+    //}
 
-        showItemSlots[index] = EditorGUILayout.Foldout(showItemSlots[index], "Item slot " + index);
+    //void ItemSlotGUI(int index)
+    //{
+    //    EditorGUILayout.BeginVertical(GUI.skin.box);
+    //    EditorGUI.indentLevel++;
 
-        if(showItemSlots[index])
-        {
-            EditorGUILayout.PropertyField(itemImagesProperty.GetArrayElementAtIndex(index));
-            EditorGUILayout.PropertyField(itemsProperty.GetArrayElementAtIndex(index));
+    //    showItemSlots[index] = EditorGUILayout.Foldout(showItemSlots[index], "Item slot " + index);
 
-        }
+    //    if(showItemSlots[index])
+    //    {
+    //        EditorGUILayout.PropertyField(itemImagesProperty.GetArrayElementAtIndex(index));
+    //        EditorGUILayout.PropertyField(itemsProperty.GetArrayElementAtIndex(index));
 
-        EditorGUI.indentLevel--;
-        EditorGUILayout.EndVertical();
-    }
-}
+    //    }
+
+    //    EditorGUI.indentLevel--;
+    //    EditorGUILayout.EndVertical();
+    //}
+// }

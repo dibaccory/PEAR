@@ -107,8 +107,10 @@
     <Compile Include="Assets\Scripts\almanac\Almanac.cs" />
     <Compile Include="Assets\Scripts\almanac\AlmanacEditor.cs" />
     <Compile Include="Assets\Scripts\almanac\Item.cs" />
+    <Compile Include="Assets\Scripts\managers\AlmanacFormManager.cs" />
     <Compile Include="Assets\Scripts\managers\AuthManager.cs" />
     <Compile Include="Assets\Scripts\managers\DatabaseManager.cs" />
+    <Compile Include="Assets\Scripts\managers\InventorySlotManager.cs" />
     <Compile Include="Assets\Scripts\managers\LoginFormManager.cs" />
     <Compile Include="Assets\Scripts\managers\PlayerBoardManager.cs" />
     <Compile Include="Assets\Scripts\managers\SignupFormManager.cs" />
