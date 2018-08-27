@@ -40,15 +40,9 @@ public class DatabaseManager : MonoBehaviour
         string classJSON = JsonUtility.ToJson(classroom);
         Router.UserWithClass(uid, classroom.classCode).SetValueAsync("true");
 
+        Router.ClassWithUser(uid, classroom.classCode, user.name).SetValueAsync("true");
 
-        //string key = Router.UserWithClass(uid, classroom.classCode).Push().Key;
-        //Classroom entry = new Classroom(classroom.classCode);
-        //Dictionary<string, object> entryValues = entry.ToDictionary();
-        //Dictionary<string, object> childUpdates = new Dictionary<string, object>();
 
-        //childUpdates["/classrooms/" + classroom.classCode + "/" + key] = entryValues;
-
-        //Router.UserWithClass(uid, classroom.classCode).UpdateChildrenAsync(childUpdates);
     }
 
     public void GetUsers(Action<List<User>> completionBlock)

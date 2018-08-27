@@ -6,7 +6,7 @@ using System;
 public class Classroom
 {
     public string classCode;
-    public string status;
+    //public string status;
     //public int level;
 
     public Classroom(string classCode)
