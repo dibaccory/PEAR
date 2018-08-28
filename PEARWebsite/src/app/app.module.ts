@@ -7,6 +7,7 @@ import { AngularFireStorageModule } from 'angularfire2/storage';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { environment } from '../environments/environment';
+import { AppNavbarComponent } from './app-navbar/app-navbar.component';
 
 
 @NgModule({
@@ -17,7 +18,7 @@ import { environment } from '../environments/environment';
     // AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
     // AngularFireStorageModule // imports firebase/storage only needed for storage features
   ],
-  declarations: [AppComponent],
+  declarations: [AppComponent, AppNavbarComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
