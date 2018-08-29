@@ -104,8 +104,13 @@
     <Compile Include="Assets\SamplesResources\VuforiaSamplesUI\Scripts\SamplesMainMenu.cs" />
     <Compile Include="Assets\SamplesResources\VuforiaSamplesUI\Scripts\SamplesNavigationHandler.cs" />
     <Compile Include="Assets\SamplesResources\VuforiaSamplesUI\Scripts\SamplesTapHandler.cs" />
+    <Compile Include="Assets\Scripts\almanac\Almanac.cs" />
+    <Compile Include="Assets\Scripts\almanac\AlmanacEditor.cs" />
+    <Compile Include="Assets\Scripts\item\Item.cs" />
+    <Compile Include="Assets\Scripts\managers\AlmanacFormManager.cs" />
     <Compile Include="Assets\Scripts\managers\AuthManager.cs" />
     <Compile Include="Assets\Scripts\managers\DatabaseManager.cs" />
+    <Compile Include="Assets\Scripts\managers\InventorySlotManager.cs" />
     <Compile Include="Assets\Scripts\managers\LoginFormManager.cs" />
     <Compile Include="Assets\Scripts\managers\PlayerBoardManager.cs" />
     <Compile Include="Assets\Scripts\managers\SignupFormManager.cs" />
@@ -123,6 +128,7 @@
     <None Include="Assets\Firebase\m2repository\com\google\firebase\firebase-auth-unity\maven-metadata.xml" />
     <None Include="Assets\Firebase\Plugins\link.xml" />
     <None Include="Assets\Vuforia\Shaders\OutlineOpaque.shader" />
+    <None Include="Assets\StreamingAssets\Vuforia\PEAR.xml" />
     <None Include="Assets\StreamingAssets\Vuforia\VuforiaMars_Object_OT.xml" />
     <None Include="Assets\Firebase\m2repository\com\google\firebase\firebase-database-unity\maven-metadata.xml" />
     <None Include="Assets\Vuforia\Shaders\DepthMask.shader" />
