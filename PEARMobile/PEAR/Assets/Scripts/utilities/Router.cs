@@ -30,6 +30,11 @@ public class Router : MonoBehaviour
         return baseRef.Child("classrooms").Child(classCode).Child("users").Child(uid);
     }
 
+    public static DatabaseReference ClassWithUser2(string uid, string classCode)
+    {
+        return baseRef.Child("classrooms").Child(classCode).Child("users").Child(uid).Child("email");
+    }
+
     public static DatabaseReference UserWithUID(string uid)
     {
         return baseRef.Child("users").Child(uid);

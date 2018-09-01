@@ -40,7 +40,7 @@ public class DatabaseManager : MonoBehaviour
         Router.UserWithUID(uid).SetRawJsonValueAsync(userJSON);
         string classJSON = JsonUtility.ToJson(classroom);
         Router.UserWithClass(uid, classroom.classCode).SetRawJsonValueAsync(classJSON);
-        Router.ClassWithUser(uid, classroom.classCode).SetRawJsonValueAsync(userJSON);
+        Router.ClassWithUser(uid, classroom.classCode).SetValueAsync(user.email);
 
 
         //Router.UserWithClass(uid, classroom.classCode).SetValueAsync(classJSON);
@@ -58,7 +58,7 @@ public class DatabaseManager : MonoBehaviour
         Debug.Log("add class class info" + classJSON);
 
         Router.UserWithClass(user.UserId, classroom.classCode).SetRawJsonValueAsync(classJSON);
-        Router.ClassWithUser(user.UserId, classroom.classCode).SetRawJsonValueAsync(userJSON);
+        Router.ClassWithUser2(user.UserId, classroom.classCode).SetValueAsync(user.Email);
 
     }
 

@@ -76,7 +76,7 @@ public class UserClassManager : MonoBehaviour {
 
     public void OnAddClass()
     {
-        FirebaseUser fireUser = GetUser();
+        FirebaseUser user = GetUser();
         Classroom classroom = new Classroom(classCodeInput.text);
 
         DatabaseManager.sharedInstance.AddClass(classCodeInput.text, classroom, user);
