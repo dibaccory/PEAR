@@ -15,7 +15,6 @@ public class LoginFormManager : MonoBehaviour {
     public InputField emailInput;
     public InputField passwordInput;
 
-    public Button signUpButton;
     public Button loginButton;
 
     public Text statusText;
@@ -83,6 +82,8 @@ public class LoginFormManager : MonoBehaviour {
             // UpdateStatus("Loading the game scene");
 
             yield return new WaitForSeconds(1.5f);
+            SceneManager.LoadScene("UserProfile");
+
             // SceneManager.LoadScene("VuforiaTesting");
         }
     }

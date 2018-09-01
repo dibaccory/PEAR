@@ -46,7 +46,7 @@ public class SignupFormManager : MonoBehaviour {
     // TODO: Validate all text fields. Ensure appropriate values are entered 
     // for all fields. 
 
-            public void OnSignUp()
+    public void OnSignUp()
     {
         if(passwordInput.text != confirmPasswordInput.text)
         {
@@ -86,9 +86,12 @@ public class SignupFormManager : MonoBehaviour {
 
             FirebaseUser player = task.Result;
             UpdateStatus("User: " + player.Email);
+
             // UpdateStatus("Loading the game scene");
 
             yield return new WaitForSeconds(1.5f);
+            SceneManager.LoadScene("UserProfile");
+
             // SceneManager.LoadScene("VuforiaTesting");
         }
     }

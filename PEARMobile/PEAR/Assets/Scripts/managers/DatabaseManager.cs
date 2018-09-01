@@ -29,7 +29,7 @@ public class DatabaseManager : MonoBehaviour
 
         FirebaseApp.DefaultInstance.SetEditorDatabaseUrl("https://pear-f60a2.firebaseio.com/");
 
-        Debug.Log(Router.Users());
+        //Debug.Log(Router.Users());
     }
 
     public void CreateNewUser(User user, string uid, Classroom classroom)
@@ -37,7 +37,6 @@ public class DatabaseManager : MonoBehaviour
         string userJSON = JsonUtility.ToJson(user);
         Router.UserWithUID(uid).SetRawJsonValueAsync(userJSON);
 
-        string classJSON = JsonUtility.ToJson(classroom);
         Router.UserWithClass(uid, classroom.classCode).SetValueAsync("true");
 
         Router.ClassWithUser(uid, classroom.classCode, user.name).SetValueAsync("true");
@@ -45,19 +44,22 @@ public class DatabaseManager : MonoBehaviour
 
     }
 
-    public void GetUsers(Action<List<User>> completionBlock)
+    public void GetClasses(Action<List<User>> completionBlock)
     {
         List<User> tempList = new List<User>();
 
         Router.Users().GetValueAsync().ContinueWith(task =>
         {
-            DataSnapshot users = task.Result;
-            foreach(DataSnapshot usernode in users.Children) 
+            DataSnapshot classesSnapshot = task.Result;
+
+            foreach (DataSnapshot classnode in classesSnapshot.Children)
             {
-                var userDict = (IDictionary<string,object>) usernode.Value;
-                User newUser = new User(userDict);
-                tempList.Add(newUser);
+                Debug.Log("for each ran!");
+                var classDict = (IDictionary<string, object>)classnode.Value;
+                User newClassroom = new User(classDict);
+                tempList.Add(newClassroom);
             }
+            Debug.Log("temp list");
             completionBlock(tempList);
         });
     }

@@ -18,6 +18,8 @@ public class User
 
     public User(IDictionary<string, object> dict) 
     {
+        Debug.Log("user Idictionary called");
+
         this.email = dict["email"].ToString();
         this.name = dict["name"].ToString();
         //this.level = Convert.ToInt32(dict["level"]);
