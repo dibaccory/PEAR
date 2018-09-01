@@ -4,10 +4,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using Firebase;
 using Firebase.Auth;
+using System;
 
 public class UserClassManager : MonoBehaviour {
 
-    public List<User> classroomList = new List<User>();
+    public InputField classCodeInput;
+    public Button submitButton;
+
+    public List<Classroom> classroomList = new List<Classroom>();
     Firebase.Auth.FirebaseAuth auth;
 
     public GameObject rowPrefab;
@@ -15,15 +19,16 @@ public class UserClassManager : MonoBehaviour {
 
     private void Awake()
     {
-        auth = Firebase.Auth.FirebaseAuth.DefaultInstance;
-        Firebase.Auth.FirebaseUser user = auth.CurrentUser;
-        string uid = user.UserId;
+        submitButton.interactable = false;
+
+        string uid = GetUser().UserId;
 
         classroomList.Clear();
 
-        DatabaseManager.sharedInstance.GetClasses( result =>
+        DatabaseManager.sharedInstance.GetClasses(uid, (result) =>
         {
             Debug.Log("result returned");
+
             classroomList = result;
 
             InitalizeUI();
@@ -31,20 +36,50 @@ public class UserClassManager : MonoBehaviour {
         });
     }
 
+    private FirebaseUser GetUser()
+    {
+        auth = Firebase.Auth.FirebaseAuth.DefaultInstance;
+        Firebase.Auth.FirebaseUser user = auth.CurrentUser;
+        return user;
+    }
+
     void InitalizeUI()
     {
         Debug.Log("initalize UI called");
-        foreach(User classroom in classroomList)
+        foreach(Classroom classroom in classroomList)
         {
             CreateRow(classroom);
         }
     }
 
-    void CreateRow(User classroom)
+    void CreateRow(Classroom classroom)
     {
-        Debug.Log("create row classroom called with " + classroom.email);
+        Debug.Log("create row classroom called with " + classroom.classCode);
         GameObject newRow = Instantiate(rowPrefab) as GameObject;
         newRow.GetComponent<RowConfig>().Initalize(classroom);
         newRow.transform.SetParent(scrollContainer.transform, false);
+    }
+
+    public void ValidateClassCode()
+    {
+        string classCode = classCodeInput.text;
+
+        if (!(string.IsNullOrEmpty(classCode)) )
+        {
+            submitButton.interactable = true;
+        }
+        else
+        {
+            submitButton.interactable = false;
+        }
+    }
+
+    public void OnAddClass()
+    {
+        FirebaseUser fireUser = GetUser();
+        Classroom classroom = new Classroom(classCodeInput.text);
+
+        DatabaseManager.sharedInstance.AddClass(classCodeInput.text, classroom, user);
+        Debug.Log("On Add Class Click");
     }
 }
