@@ -237,6 +237,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af4ba4b8fd0054726876e438b344a960, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  orb: {fileID: 0}
 --- !u!1 &407091943
 GameObject:
   m_ObjectHideFlags: 0
@@ -740,7 +741,7 @@ GameObject:
   - component: {fileID: 1712985141}
   - component: {fileID: 1712985142}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: spaceship
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
