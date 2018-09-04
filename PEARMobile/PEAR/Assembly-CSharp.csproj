@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <LangVersion>4</LangVersion>
@@ -104,8 +104,13 @@
     <Compile Include="Assets\SamplesResources\VuforiaSamplesUI\Scripts\SamplesMainMenu.cs" />
     <Compile Include="Assets\SamplesResources\VuforiaSamplesUI\Scripts\SamplesNavigationHandler.cs" />
     <Compile Include="Assets\SamplesResources\VuforiaSamplesUI\Scripts\SamplesTapHandler.cs" />
+    <Compile Include="Assets\Scripts\almanac\Almanac.cs" />
+    <Compile Include="Assets\Scripts\almanac\AlmanacEditor.cs" />
+    <Compile Include="Assets\Scripts\item\Item.cs" />
+    <Compile Include="Assets\Scripts\managers\AlmanacFormManager.cs" />
     <Compile Include="Assets\Scripts\managers\AuthManager.cs" />
     <Compile Include="Assets\Scripts\managers\DatabaseManager.cs" />
+    <Compile Include="Assets\Scripts\managers\InventorySlotManager.cs" />
     <Compile Include="Assets\Scripts\managers\LoginFormManager.cs" />
     <Compile Include="Assets\Scripts\managers\SignupFormManager.cs" />
     <Compile Include="Assets\Scripts\managers\UserClassManager.cs" />
@@ -125,6 +130,7 @@
     <None Include="Assets\Firebase\m2repository\com\google\firebase\firebase-auth-unity\maven-metadata.xml" />
     <None Include="Assets\Firebase\Plugins\link.xml" />
     <None Include="Assets\Vuforia\Shaders\OutlineOpaque.shader" />
+    <None Include="Assets\StreamingAssets\Vuforia\PEAR.xml" />
     <None Include="Assets\StreamingAssets\Vuforia\VuforiaMars_Object_OT.xml" />
     <None Include="Assets\Firebase\m2repository\com\google\firebase\firebase-database-unity\maven-metadata.xml" />
     <None Include="Assets\Vuforia\Shaders\DepthMask.shader" />
@@ -402,7 +408,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
-
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
