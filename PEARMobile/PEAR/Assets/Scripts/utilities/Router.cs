@@ -8,7 +8,7 @@ using Firebase.Unity.Editor;
 public class Router : MonoBehaviour
 {
 
-    private static DatabaseReference baseRef = FirebaseDatabase.DefaultInstance.RootReference;
+    static DatabaseReference baseRef = FirebaseDatabase.DefaultInstance.RootReference;
 
     public static DatabaseReference Users()
     {
