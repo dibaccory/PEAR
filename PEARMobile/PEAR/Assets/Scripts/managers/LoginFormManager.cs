@@ -15,7 +15,6 @@ public class LoginFormManager : MonoBehaviour {
     public InputField emailInput;
     public InputField passwordInput;
 
-    public Button signUpButton;
     public Button loginButton;
 
     public Text statusText;
@@ -78,20 +77,13 @@ public class LoginFormManager : MonoBehaviour {
         else if (task.IsCompleted)
         {
 
-            if (operation == "sign_up")
-            {
-                Firebase.Auth.FirebaseUser newUser = task.Result;
-                Debug.LogFormat("welcome to firequest {0}", newUser.Email);
-
-                User user = new User(newUser.Email, 0, 1);
-                DatabaseManager.sharedInstance.CreateNewUser(user, newUser.UserId);
-            }
-
             Firebase.Auth.FirebaseUser player = task.Result;
             UpdateStatus("User: " + player.Email);
             // UpdateStatus("Loading the game scene");
 
             yield return new WaitForSeconds(1.5f);
+            SceneManager.LoadScene("UserProfile");
+
             // SceneManager.LoadScene("VuforiaTesting");
         }
     }
