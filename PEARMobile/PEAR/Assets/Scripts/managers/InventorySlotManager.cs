@@ -19,6 +19,7 @@ public class InventorySlotManager : MonoBehaviour {
     {
         Text displayText = transform.Find("Text").GetComponent<Text>();
         Image displayImage = transform.Find("ItemImage").GetComponent<Image>();
+
         if(item)
         {
             displayText.text = item.itemName;

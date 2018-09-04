@@ -30,5 +30,4 @@ public class ItemSceneManager : MonoBehaviour {
         videoQuad.SetActive(value);
         questionsQuad.SetActive(!value);
     }
-
 }
