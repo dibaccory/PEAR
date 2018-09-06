@@ -65,8 +65,11 @@ public class CustomVideoPlayer : MonoBehaviour {
 
     private void ShowPlayButton(bool enable)
     {
-        playButton.enabled = enable;
-        playButton.GetComponent<Image>().enabled = enable;
+        if(playButton != null)
+        {
+            playButton.enabled = enable;
+            playButton.GetComponent<Image>().enabled = enable;
+        }
     }
 
     private void PauseAudio(bool pause)

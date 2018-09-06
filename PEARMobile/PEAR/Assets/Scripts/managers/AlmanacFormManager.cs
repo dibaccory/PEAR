@@ -5,32 +5,29 @@ using UnityEngine.UI;
 
 public class AlmanacFormManager : MonoBehaviour {
 
-    public Button InterfaceButton;
-    public GridLayoutGroup Inventory;
-
-
-    public void InterfaceButtonClick()
-    {
-
-        GameObject almanacPanel = Almanac.instance.almanacPanel;
-
-        if(!almanacPanel.activeSelf)
-        {
-            almanacPanel.SetActive(true);
-        }
-        else
-        {
-            almanacPanel.SetActive(false);
-        }
-    }
+    public Text inventoryLabel;
+    public GameObject almanacPanel;
 
     public void Awake()
     {
-        
+        EnableGUIElements(false);
+    }
+    public void InterfaceButtonClick()
+    {
+        if(!almanacPanel.activeSelf)
+        {
+            EnableGUIElements(true);
+        }
+        else
+        {
+            EnableGUIElements(false);
+        }
     }
 
-    public void Start()
+    private void EnableGUIElements(bool setEnabled)
     {
-        
+        almanacPanel.SetActive(setEnabled);
+        inventoryLabel.enabled = setEnabled;
+
     }
 }
