@@ -1,6 +1,10 @@
   <h1>
     Welcome to {{ title }}!
   </h1>
-  <!-- To display the loggedIn Component (teachers.component.html), 
-    you must add it to the template of the shell AppComponent: -->
-  <app-teachers></app-teachers>
+  <nav>
+    <a routerLink="/dashboard">Dashboard</a>
+    <a routerLink="/teachers">Teachers</a>
+    <a routerLink="/login">Login</a>
+  </nav>
+  <router-outlet></router-outlet>
+  
