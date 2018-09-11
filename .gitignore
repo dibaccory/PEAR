@@ -1,8 +1,33 @@
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
 /PEARMobile/PEAR/Builds
 /PEARMobile/PEAR/obj
+/PEARMobile/PEAR/ExportedObj
 /PEARMobile/PEAR/Library
 /PEARMobile/PEAR/Temp
-/Unity with minor Database Functionality/Library
-/Unity with minor Database Functionality/obj
-/Unity with minor Database Functionality/
+/PEARMobile/PEAR/Assets/Plugins/
+/PEARMobile/PEAR/ProjectSettings/
+/PEARMobile/PEAR/.vs/PEAR/
+
+PEARMobile/PEAR/.vs/PEAR/v15/.suo
+PEARMobile/PEAR/.vs/PEAR/v15/Server/sqlite3/db.lock
+PEARMobile/PEAR/.vs/PEAR/v15/Server/sqlite3/storage.ide
+PEARMobile/PEAR/.vs/PEAR/v15/Server/sqlite3/storage.ide-shm
+PEARMobile/PEAR/.vs/PEAR/v15/Server/sqlite3/storage.ide-wal
+PEARMobile/PEAR/PEAR.sln
+
+*.svd
+*.userprefs
+*.suo
+*.user
+*.unityproj
+*.booproj
+
+PEARMobile/PEAR/*.sln
+PEARMobile/PEAR/*.csproj
