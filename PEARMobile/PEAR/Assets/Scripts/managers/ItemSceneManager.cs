@@ -18,7 +18,6 @@ public class ItemSceneManager : MonoBehaviour {
     private void Awake()
     {
         ToggleVideo(true);
-        SceneManager.LoadScene("Almanac", LoadSceneMode.Additive);
     }
     
     public void OnAddItemButtonClick()
