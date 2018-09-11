@@ -102,8 +102,10 @@
      <Compile Include="Assets\Scripts\managers\PlayerBoardManager.cs" />
      <Compile Include="Assets\Scripts\managers\SignupFormManager.cs" />
      <Compile Include="Assets\Scripts\models\Users.cs" />
+     <Compile Include="Assets\Scripts\utilities\AugmentedScript.cs" />
      <Compile Include="Assets\Scripts\utilities\cam_gyro.cs" />
      <Compile Include="Assets\Scripts\utilities\init_orb.cs" />
+     <Compile Include="Assets\Scripts\utilities\NewBehaviourScript.cs" />
      <Compile Include="Assets\Scripts\utilities\PasswordScript.cs" />
      <Compile Include="Assets\Scripts\utilities\Router.cs" />
      <Compile Include="Assets\Scripts\utilities\skipLogin.cs" />

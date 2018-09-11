@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class init_orb : MonoBehaviour {
 
-	int count = 10; //Should get this from the database; i.e. How many things do we need to collect for this module
-
+	int count = 9; //Should get this from the database; i.e. How many things do we need to collect for this module
+// [{tag: }]
 	public GameObject orb;
 	// Use this for initialization
 	void Start () {
