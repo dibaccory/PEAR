@@ -14,7 +14,6 @@ public class Classroom
 
     public Classroom(IDictionary<string, object> dict)
     {
-        Debug.Log("Classroom Idictionary called");
         this.classCode = dict["classCode"].ToString();
     }
 

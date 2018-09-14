@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using Firebase;
 using Firebase.Auth;
 using System;
+using Firebase.Database;
 
 public class UserClassManager : MonoBehaviour {
 
@@ -27,16 +28,53 @@ public class UserClassManager : MonoBehaviour {
 
         DatabaseManager.sharedInstance.GetClasses(uid, (result) =>
         {
-            Debug.Log("result returned");
-
             classroomList = result;
-
             InitalizeUI();
-
         });
+
+        //some test code on how to pull up and store some database info
+        string classCode = "test class";
+        string moduleName = "solar system";
+        string item = "earth";
+
+        Router.GetClassroomInfo(classCode, moduleName, item).GetValueAsync().ContinueWith((task) =>
+        {
+            DataSnapshot snapshot = task.Result;
+
+            foreach (DataSnapshot classnode in snapshot.Children)
+            {
+                Debug.Log(classnode.Key.ToString());
+
+                Router.GetClassroomInfo(classCode, moduleName, item, classnode.Key.ToString()).GetValueAsync().ContinueWith((task2) =>
+                {
+                    DataSnapshot snapshot2 = task2.Result;
+
+                    foreach (DataSnapshot questionNode in snapshot2.Children)
+                    {
+                        Router.GetClassroomInfo(classCode, moduleName, item, classnode.Key.ToString(), questionNode.Key.ToString()).GetValueAsync().ContinueWith((task3) =>
+                        {
+                            DataSnapshot snapshot3 = task3.Result;
+                            Debug.Log(snapshot3.Child(questionNode.Key.ToString()).Child("question").GetRawJsonValue());
+                            Debug.Log(snapshot3.Child(questionNode.Key.ToString()).Child("answers").ChildrenCount);
+
+                            Debug.Log(snapshot3.Child(questionNode.Key.ToString()).Child("answers").GetRawJsonValue());
+
+
+                        });
+                    }
+
+                });
+                //var classDict = (IDictionary<string, object>)classnode.Value;
+                //Debug.Log(classDict);
+                //Classroom newClassroom = new Classroom(classDict);
+                //tempList.Add(newClassroom);
+            }
+        });
+
+
     }
 
-    private FirebaseUser GetUser()
+private FirebaseUser GetUser()
     {
         auth = Firebase.Auth.FirebaseAuth.DefaultInstance;
         Firebase.Auth.FirebaseUser user = auth.CurrentUser;
@@ -45,7 +83,6 @@ public class UserClassManager : MonoBehaviour {
 
     void InitalizeUI()
     {
-        Debug.Log("initalize UI called");
         foreach(Classroom classroom in classroomList)
         {
             CreateRow(classroom);
@@ -54,7 +91,6 @@ public class UserClassManager : MonoBehaviour {
 
     void CreateRow(Classroom classroom)
     {
-        Debug.Log("create row classroom called with " + classroom.classCode);
         GameObject newRow = Instantiate(rowPrefab) as GameObject;
         newRow.GetComponent<RowConfig>().Initalize(classroom);
         newRow.transform.SetParent(scrollContainer.transform, false);
@@ -78,8 +114,15 @@ public class UserClassManager : MonoBehaviour {
     {
         FirebaseUser user = GetUser();
         Classroom classroom = new Classroom(classCodeInput.text);
-
         DatabaseManager.sharedInstance.AddClass(classCodeInput.text, classroom, user);
-        Debug.Log("On Add Class Click");
+        classroomList.Clear();
+
+        DatabaseManager.sharedInstance.GetClasses(user.UserId, (result) =>
+        {
+
+            classroomList = result;
+            InitalizeUI();
+
+        });
     }
 }

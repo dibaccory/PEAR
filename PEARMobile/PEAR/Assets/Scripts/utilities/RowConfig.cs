@@ -9,7 +9,6 @@ public class RowConfig : MonoBehaviour {
    
     public void Initalize(Classroom classroom)
     {
-        Debug.Log("initalize in row config called with " + classroom.classCode);
         this.classCode.text = classroom.classCode;
     }
 }

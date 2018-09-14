@@ -69,20 +69,13 @@ public class DatabaseManager : MonoBehaviour
         Router.UsersClasses(uid).GetValueAsync().ContinueWith((task) =>
         {
             DataSnapshot classesSnapshot = task.Result;
-            string print = classesSnapshot.GetRawJsonValue();
-            Debug.Log("this is the datasnapshot " + classesSnapshot);
-            //Debug.Log(print[0]);
-
 
             foreach (DataSnapshot classnode in classesSnapshot.Children)
             {
-                Debug.Log("for each ran!");
                 var classDict = (IDictionary<string, object>)classnode.Value;
-                Debug.Log(classDict);
                 Classroom newClassroom = new Classroom(classDict);
                 tempList.Add(newClassroom);
             }
-            Debug.Log("temp list");
             completionBlock(tempList);
         });
     }
