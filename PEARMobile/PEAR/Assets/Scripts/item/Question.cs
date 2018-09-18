@@ -4,33 +4,9 @@ using UnityEngine;
 
 public class Question : MonoBehaviour {
 
-    private string mQuestion;
-    string correctAnswer;
-    private List<string> otherAnswers;
+    public string QuestionText { get; set; }
 
-    public string MQuestion
-    {
-        get
-        {
-            return mQuestion;
-        }
+    public string CorrectAnswer { get; set; }
 
-        set
-        {
-            mQuestion = value;
-        }
-    }
-
-    public List<string> MAnswers
-    {
-        get
-        {
-            return mAnswers;
-        }
-
-        set
-        {
-            mAnswers = value;
-        }
-    }
+    public List<string> OtherAnswers { get; set; }
 }

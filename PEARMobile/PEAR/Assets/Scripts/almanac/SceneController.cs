@@ -43,6 +43,7 @@ public class SceneController : MonoBehaviour
 
         // Once the scene is finished loading, start fading in.
         StartCoroutine(Fade(0f));
+
     }
 
 

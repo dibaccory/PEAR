@@ -11,5 +11,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcbab50924ea846888d97698a29387b4, type: 3}
   m_Name: EarthItem
   m_EditorClassIdentifier: 
-  itemName: Earth
+  itemName: earth
   sprite: {fileID: 21300000, guid: a1f45638869784945a36c4aff278e9b3, type: 3}

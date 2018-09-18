@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -219,7 +219,7 @@ GameObject:
   - component: {fileID: 187877228}
   - component: {fileID: 187877227}
   m_Layer: 5
-  m_Name: Text
+  m_Name: QuestionText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -275,14 +275,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc a vehicula
-    quam. Nullam faucibus sed dui ac volutpat. Sed pellentesque libero eu arcu dignissim
-    facilisis. Aenean bibendum rutrum mauris, quis iaculis elit imperdiet sit amet.
-    Integer aliquet hendrerit maximus. Cras posuere, libero efficitur suscipit consectetur,
-    elit arcu convallis nibh, eu vestibulum eros tortor vel velit. Praesent ultrices
-    a orci vel venenatis. Aenean vestibulum lacus lectus, vehicula feugiat dolor fermentum
-    at. Sed sed venenatis nibh. Aliquam sodales vel lacus vitae gravida. Nulla porta
-    diam mauris, eu porta augue bibendum non. Sed eu turpis ligula.
+  m_Text: 
 --- !u!222 &187877228
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -411,7 +404,7 @@ GameObject:
   - component: {fileID: 235456475}
   - component: {fileID: 235456474}
   m_Layer: 5
-  m_Name: Text
+  m_Name: AnswerCText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -506,6 +499,11 @@ MonoBehaviour:
   videoQuad: {fileID: 449034770}
   questionsQuad: {fileID: 853499302}
   midAirPositioner: {fileID: 1533272333}
+  questionText: {fileID: 187877227}
+  answerAButton: {fileID: 623335087}
+  answerBButton: {fileID: 613899968}
+  answerCButton: {fileID: 700188534}
+  answerDButton: {fileID: 191491697}
   currentItem: {fileID: 11400000, guid: 896cc9953ecfd6a4cbefc08b0230dba8, type: 2}
 --- !u!4 &293593329
 Transform:
@@ -1733,7 +1731,7 @@ GameObject:
   - component: {fileID: 830412912}
   - component: {fileID: 830412911}
   m_Layer: 5
-  m_Name: Text
+  m_Name: AnswerDText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2666,7 +2664,7 @@ GameObject:
   - component: {fileID: 1623838305}
   - component: {fileID: 1623838304}
   m_Layer: 5
-  m_Name: Text
+  m_Name: AnswerBText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2835,7 +2833,7 @@ GameObject:
   - component: {fileID: 1818852342}
   - component: {fileID: 1818852341}
   m_Layer: 5
-  m_Name: Text
+  m_Name: AnswerAText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

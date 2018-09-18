@@ -4,7 +4,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class ItemSceneManager : MonoBehaviour {
+using Firebase.Database;
+
+public class ItemSceneManager : MonoBehaviour 
+{
 
     public Button goToQuestionsButton;
     public Button goToVideoButton;
@@ -12,10 +15,16 @@ public class ItemSceneManager : MonoBehaviour {
     public GameObject questionsQuad;
     public GameObject midAirPositioner;
 
-    public Item currentItem;
-    private Almanac almanac;
+    public Text questionText;
+    public Button answerAButton;
+    public Button answerBButton;
+    public Button answerCButton;
+    public Button answerDButton;
 
-    private void Awake()
+    public Item currentItem;
+    Almanac almanac;
+
+    void Awake()
     {
         ToggleVideo(true);
     }
@@ -42,7 +51,7 @@ public class ItemSceneManager : MonoBehaviour {
         midAirPositioner.SetActive(false);
     }
 
-    private void ToggleVideo(bool value)
+    void ToggleVideo(bool value)
     {
         videoQuad.SetActive(value);
         questionsQuad.SetActive(!value);
