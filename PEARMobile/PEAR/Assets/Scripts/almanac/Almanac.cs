@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Almanac : MonoBehaviour {
+public class Almanac : MonoBehaviour
+{
 
     public List<Item> items = new List<Item>();
 
@@ -14,10 +15,10 @@ public class Almanac : MonoBehaviour {
     void UpdatePanelSlots()
     {
         int index = 0;
-        foreach(Transform child in almanacPanel.transform)
+        foreach (Transform child in almanacPanel.transform)
         {
             InventorySlotManager slot = child.GetComponent<InventorySlotManager>();
-            if(index < items.Count)
+            if (index < items.Count)
             {
                 slot.item = items[index];
             }
@@ -32,7 +33,7 @@ public class Almanac : MonoBehaviour {
 
     public void AddItem(Item itemToAdd)
     {
-        if(items.Count > 9)
+        if (items.Count < 9)
         {
             items.Add(itemToAdd);
         }
@@ -45,7 +46,7 @@ public class Almanac : MonoBehaviour {
 
     public void RemoveItem(Item itemToRemove)
     {
-        if(items.Contains(itemToRemove))
+        if (items.Contains(itemToRemove))
         {
             items.Remove(itemToRemove);
 

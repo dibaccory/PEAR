@@ -32,6 +32,7 @@ public class DatabaseManager : MonoBehaviour
         FirebaseApp.DefaultInstance.SetEditorDatabaseUrl("https://pear-f60a2.firebaseio.com/");
 
         //Debug.Log(Router.Users());
+
     }
 
     public void CreateNewUser(User user, string uid, Classroom classroom)
