@@ -54,13 +54,11 @@ public class LoginFormManager : MonoBehaviour {
     public void LoadSignUpScreen()
     {
         SceneManager.LoadScene("SignupScreen");
-        Debug.Log("Loading Signup Screen");
     }
 
     public void OnLogin()
     {
         authManager.LoginExistingUser(emailInput.text, passwordInput.text);
-        Debug.Log("Login");
     }
 
     IEnumerator HandleAuthCallback(Task<Firebase.Auth.FirebaseUser> task, string operation)
@@ -71,8 +69,8 @@ public class LoginFormManager : MonoBehaviour {
         }
         else if (task.IsFaulted)
         {
-            UpdateStatus("sorry, error! Error: " + task.Exception);
-            Debug.Log(task.Exception);
+            UpdateStatus("sorry, error! Error: " + task.Exception.ToString().Substring(task.Exception.ToString().IndexOf("Firebase.FirebaseException:") + "Firebase.FirebaseException:".Length));
+            //Debug.Log(task.Exception);
         }
         else if (task.IsCompleted)
         {
@@ -83,8 +81,6 @@ public class LoginFormManager : MonoBehaviour {
 
             yield return new WaitForSeconds(1.5f);
             SceneManager.LoadScene("UserProfile");
-
-            // SceneManager.LoadScene("VuforiaTesting");
         }
     }
 

@@ -40,9 +40,19 @@ public class Router : MonoBehaviour
         return baseRef.Child("users").Child(uid);
     }
 
-    //public static DatabaseReference AddUserClassroom(string uid, Classroom classroom)
-    //{
-    //    return baseRef.SetTaskAsync(uid + "/" + classroom.classCode, classroom)
-    //}
+    public static DatabaseReference GetClassroomInfo(string classCode, string moduleName, string item)
+    {
+        return baseRef.Child("classrooms").Child(classCode).Child("modules").Child(moduleName).Child(item);
+    }
+
+    public static DatabaseReference GetClassroomInfo(string classCode, string moduleName, string item, string buildOrCollect)
+    {
+        return baseRef.Child("classrooms").Child(classCode).Child("modules").Child(moduleName).Child(item).Child(buildOrCollect);
+    }
+
+    public static DatabaseReference GetClassroomInfo(string classCode, string moduleName, string item, string buildOrCollect, string questionNumber)
+    {
+        return baseRef.Child("classrooms").Child(classCode).Child("modules").Child(moduleName).Child(item).Child(buildOrCollect);
+    }
 
 }

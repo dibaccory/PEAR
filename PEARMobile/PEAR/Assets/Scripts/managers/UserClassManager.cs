@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using Firebase;
 using Firebase.Auth;
 using System;
+using Firebase.Database;
 
 public class UserClassManager : MonoBehaviour {
 
@@ -12,6 +13,8 @@ public class UserClassManager : MonoBehaviour {
     public Button submitButton;
 
     public List<Classroom> classroomList = new List<Classroom>();
+    public List<Question> questionList = new List<Question>();
+
     Firebase.Auth.FirebaseAuth auth;
 
     public GameObject rowPrefab;
@@ -27,12 +30,19 @@ public class UserClassManager : MonoBehaviour {
 
         DatabaseManager.sharedInstance.GetClasses(uid, (result) =>
         {
-            Debug.Log("result returned");
-
             classroomList = result;
-
             InitalizeUI();
+        });
 
+        //some test code on how to pull up and store some database info
+        string classCode = "test class";
+        string moduleName = "solar system";
+        string item = "earth";
+        string buildOrCollect = "build";
+
+        DatabaseManager.sharedInstance.getQnA(classCode, moduleName, item, buildOrCollect, (result) =>
+        {
+            questionList = result;
         });
     }
 
@@ -45,7 +55,6 @@ public class UserClassManager : MonoBehaviour {
 
     void InitalizeUI()
     {
-        Debug.Log("initalize UI called");
         foreach(Classroom classroom in classroomList)
         {
             CreateRow(classroom);
@@ -54,7 +63,6 @@ public class UserClassManager : MonoBehaviour {
 
     void CreateRow(Classroom classroom)
     {
-        Debug.Log("create row classroom called with " + classroom.classCode);
         GameObject newRow = Instantiate(rowPrefab) as GameObject;
         newRow.GetComponent<RowConfig>().Initalize(classroom);
         newRow.transform.SetParent(scrollContainer.transform, false);
@@ -78,8 +86,15 @@ public class UserClassManager : MonoBehaviour {
     {
         FirebaseUser user = GetUser();
         Classroom classroom = new Classroom(classCodeInput.text);
-
         DatabaseManager.sharedInstance.AddClass(classCodeInput.text, classroom, user);
-        Debug.Log("On Add Class Click");
+        classroomList.Clear();
+
+        DatabaseManager.sharedInstance.GetClasses(user.UserId, (result) =>
+        {
+
+            classroomList = result;
+            InitalizeUI();
+
+        });
     }
 }
