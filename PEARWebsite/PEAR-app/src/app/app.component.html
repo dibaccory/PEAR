@@ -16,9 +16,13 @@
 </nav>
 
 
+<ul>
+  <li *ngFor="let item of items | async">
+     {{ item | json }}
+  </li>
+</ul>
+
 <div>
   <router-outlet></router-outlet>
 </div>
-
-<!-- <h1>{{ (item | async)?.name }}</h1> -->
   

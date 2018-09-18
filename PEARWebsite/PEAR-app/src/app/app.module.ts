@@ -27,7 +27,7 @@ import { SidenavComponent } from './sidenav/sidenav.component';
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase, 'PEAR'),
     AngularFireDatabaseModule,
-    AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
+    AngularFireAuthModule, 
   ],
   declarations: [
     AppComponent,

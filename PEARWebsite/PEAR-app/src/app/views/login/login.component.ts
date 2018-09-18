@@ -25,19 +25,11 @@ export class LoginComponent implements OnInit {
           console.log(res);
           this.router.navigate(['dashboard'])
         })
-        .catch((err) => console.log('error: ' + err));
-
-    // this.afAuth.auth.signInWithEmailAndPassword(this.user.email, this.user.password).catch(function(error) {
-    //   // Handle Errors here.
-    //   var errorCode = error.code;
-    //   var errorMessage = error.message;
-
-    //   if (errorCode === 'auth/wrong-password') {
-    //     alert('Wrong password.');
-    //   } else {
-    //     alert(errorMessage);
-    //   }
-    //   console.log(error);
+        .catch((err) => {
+          console.log('error: ' + err);
+          alert('Wrong password.');
+          // this.router.navigate(['teachers'])
+        })
     };
 
   logout() {
