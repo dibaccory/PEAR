@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Teacher } from '../teacher';
-import { Admin } from '../user';
+import { Teacher } from '../../teacher';
+import { Admin } from '../../user';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,6 +8,7 @@ import { Admin } from '../user';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+  title = 'PEAR';
   teachers: Teacher[] = [];
   login: Admin[] = [];
 

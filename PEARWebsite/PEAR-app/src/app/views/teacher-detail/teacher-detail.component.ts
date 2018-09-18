@@ -3,7 +3,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 // The TeacherDetailComponent template binds to the component's teacher property
 // which is of type Teacher.
-import { Teacher } from '../teacher';
+import { Teacher } from '../../teacher';
 
 @Component({
   selector: 'app-teacher-detail',

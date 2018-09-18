@@ -12,11 +12,12 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 
-import { TeachersComponent } from './teachers/teachers.component';
-import { TeacherDetailComponent } from './teacher-detail/teacher-detail.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { LoginComponent } from './login/login.component';
+import { TeachersComponent } from '../app/views/teachers/teachers.component';
+import { TeacherDetailComponent } from '../app/views/teacher-detail/teacher-detail.component';
+import { DashboardComponent } from '../app/views/dashboard/dashboard.component';
+import { LoginComponent } from '../app/views/login/login.component';
 import { AuthService } from './services/auth.service';
+import { SidenavComponent } from './sidenav/sidenav.component';
 
 @NgModule({
   imports: [
@@ -34,7 +35,8 @@ import { AuthService } from './services/auth.service';
     TeachersComponent,
     TeacherDetailComponent,
     DashboardComponent,
-    LoginComponent
+    LoginComponent,
+    SidenavComponent
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

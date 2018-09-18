@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthService } from '../app/services/auth.service';
 
-import { TeachersComponent } from './teachers/teachers.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { TeacherDetailComponent } from './teacher-detail/teacher-detail.component';
-import { LoginComponent } from './login/login.component';
+import { TeachersComponent } from './views/teachers/teachers.component';
+import { DashboardComponent } from './views/dashboard/dashboard.component';
+import { TeacherDetailComponent } from './views/teacher-detail/teacher-detail.component';
+import { LoginComponent } from './views/login/login.component';
 
 const routes: Routes = [
   { path: 'teachers', component: TeachersComponent },
