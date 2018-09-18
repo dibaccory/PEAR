@@ -13,6 +13,8 @@ public class UserClassManager : MonoBehaviour {
     public Button submitButton;
 
     public List<Classroom> classroomList = new List<Classroom>();
+    public List<Question> questionList = new List<Question>();
+
     Firebase.Auth.FirebaseAuth auth;
 
     public GameObject rowPrefab;
@@ -36,45 +38,15 @@ public class UserClassManager : MonoBehaviour {
         string classCode = "test class";
         string moduleName = "solar system";
         string item = "earth";
+        string buildOrCollect = "build";
 
-        Router.GetClassroomInfo(classCode, moduleName, item).GetValueAsync().ContinueWith((task) =>
+        DatabaseManager.sharedInstance.getQnA(classCode, moduleName, item, buildOrCollect, (result) =>
         {
-            DataSnapshot snapshot = task.Result;
-
-            foreach (DataSnapshot classnode in snapshot.Children)
-            {
-                Debug.Log(classnode.Key.ToString());
-
-                Router.GetClassroomInfo(classCode, moduleName, item, classnode.Key.ToString()).GetValueAsync().ContinueWith((task2) =>
-                {
-                    DataSnapshot snapshot2 = task2.Result;
-
-                    foreach (DataSnapshot questionNode in snapshot2.Children)
-                    {
-                        Router.GetClassroomInfo(classCode, moduleName, item, classnode.Key.ToString(), questionNode.Key.ToString()).GetValueAsync().ContinueWith((task3) =>
-                        {
-                            DataSnapshot snapshot3 = task3.Result;
-                            Debug.Log(snapshot3.Child(questionNode.Key.ToString()).Child("question").GetRawJsonValue());
-                            Debug.Log(snapshot3.Child(questionNode.Key.ToString()).Child("answers").ChildrenCount);
-
-                            Debug.Log(snapshot3.Child(questionNode.Key.ToString()).Child("answers").GetRawJsonValue());
-
-
-                        });
-                    }
-
-                });
-                //var classDict = (IDictionary<string, object>)classnode.Value;
-                //Debug.Log(classDict);
-                //Classroom newClassroom = new Classroom(classDict);
-                //tempList.Add(newClassroom);
-            }
+            questionList = result;
         });
-
-
     }
 
-private FirebaseUser GetUser()
+    private FirebaseUser GetUser()
     {
         auth = Firebase.Auth.FirebaseAuth.DefaultInstance;
         Firebase.Auth.FirebaseUser user = auth.CurrentUser;

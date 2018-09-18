@@ -51,11 +51,8 @@ public class DatabaseManager : MonoBehaviour
 
     public void AddClass(string classCode, Classroom classroom, FirebaseUser user)
     {
-        //User userInfo = new User(user.UserId.email, user.name);
         string userJSON = JsonUtility.ToJson(user);
-        Debug.Log("add class user info" + userJSON);
         string classJSON = JsonUtility.ToJson(classroom);
-        Debug.Log("add class class info" + classJSON);
 
         Router.UserWithClass(user.UserId, classroom.classCode).SetRawJsonValueAsync(classJSON);
         Router.ClassWithUser2(user.UserId, classroom.classCode).SetValueAsync(user.Email);
@@ -77,6 +74,39 @@ public class DatabaseManager : MonoBehaviour
                 tempList.Add(newClassroom);
             }
             completionBlock(tempList);
+        });
+    }
+
+    public void getQnA(string classCode, string moduleName, string item, string buildOrCollect, Action<List<Question>> completionBlock)
+    {
+        List<Question> questionAndAnswerList = new List<Question>();
+
+        Router.GetClassroomInfo(classCode, moduleName, item, buildOrCollect).GetValueAsync().ContinueWith((task) =>
+        {
+            DataSnapshot snapshot = task.Result;
+
+            foreach (DataSnapshot question in snapshot.Children)
+            {
+                Question currentQuestion = new Question();
+                
+                currentQuestion.QuestionText = snapshot.Child(question.Key.ToString()).Child("question").Value.ToString();
+                long loop = snapshot.Child(question.Key.ToString()).Child("answers").ChildrenCount;
+
+                for (int i = 1; i <= loop; i++)
+                {
+                    string answer = "A" + i.ToString();
+                    if (i == 1)
+                    {
+                        currentQuestion.CorrectAnswer = snapshot.Child(question.Key.ToString()).Child("answers").Child(answer).Value.ToString();
+                    }
+                    else
+                    {
+                        currentQuestion.otherAnswers.Add(snapshot.Child(question.Key.ToString()).Child("answers").Child(answer).Value.ToString());
+                    }
+                }
+                questionAndAnswerList.Add(currentQuestion);              
+            }
+            completionBlock(questionAndAnswerList);
         });
     }
 }
