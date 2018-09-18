@@ -15,9 +15,34 @@ public class Router : MonoBehaviour
         return baseRef.Child("users");
     }
 
+    public static DatabaseReference UsersClasses(string uid)
+    {
+        return baseRef.Child("users").Child(uid).Child("classrooms");
+    }
+
+    public static DatabaseReference UserWithClass(string uid, string classCode)
+    {
+        return baseRef.Child("users").Child(uid).Child("classrooms").Child(classCode);
+    }
+
+    public static DatabaseReference ClassWithUser(string uid, string classCode)
+    {
+        return baseRef.Child("classrooms").Child(classCode).Child("users").Child(uid);
+    }
+
+    public static DatabaseReference ClassWithUser2(string uid, string classCode)
+    {
+        return baseRef.Child("classrooms").Child(classCode).Child("users").Child(uid).Child("email");
+    }
+
     public static DatabaseReference UserWithUID(string uid)
     {
         return baseRef.Child("users").Child(uid);
     }
+
+    //public static DatabaseReference AddUserClassroom(string uid, Classroom classroom)
+    //{
+    //    return baseRef.SetTaskAsync(uid + "/" + classroom.classCode, classroom)
+    //}
 
 }

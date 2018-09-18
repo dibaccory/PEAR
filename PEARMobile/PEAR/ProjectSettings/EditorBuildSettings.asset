@@ -38,7 +38,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/SamplesResources/Scenes/3-VuMark.unity
     guid: d9b53b25a285640cf8ac170a80603e34
-  - enabled: 0
+  - enabled: 1
+    path: Assets/Scenes/UserProfile.unity
+    guid: 4ba385db39c12444fb197407be6b6962
+  - enabled: 1
     path: Assets/Scenes/LoginScreen.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 0
@@ -50,7 +53,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ItemDisplay.unity
     guid: 03a2b4af1f0584adabb816047bfabc6a
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Almanac.unity
     guid: 73a0917cdce8e4eac9c67fda878fde4e
   m_configObjects: {}

@@ -13,6 +13,7 @@ public class SignupFormManager : MonoBehaviour {
 
     public InputField firstNameInput, lastNameInput, emailInput, passwordInput,
                       confirmPasswordInput;
+    public InputField classroomInput;
 
     public Button signUpButton;
     public AuthManager authManager;
@@ -45,6 +46,18 @@ public class SignupFormManager : MonoBehaviour {
     // TODO: Validate all text fields. Ensure appropriate values are entered 
     // for all fields. 
 
+    public void OnSignUp()
+    {
+        if(passwordInput.text != confirmPasswordInput.text)
+        {
+            // TODO: Handle this a bit better eventually
+            Debug.Log("Error. Passwords do not match");
+        }
+        // TODO: Setup the database to handle more than just a username and password
+        authManager.SignUpNewUser(emailInput.text, passwordInput.text);
+        Debug.Log("Sign Up");
+    }
+
     IEnumerator HandleAuthCallback(Task<Firebase.Auth.FirebaseUser> task, string operation)
     {
         if (task.IsCanceled)
@@ -58,35 +71,29 @@ public class SignupFormManager : MonoBehaviour {
         }
         else if (task.IsCompleted)
         {
-
             if (operation == "sign_up")
             {
+                string combinedName = firstNameInput.text + " " + lastNameInput.text;
                 Firebase.Auth.FirebaseUser newUser = task.Result;
-                Debug.LogFormat("welcome to firequest {0}", newUser.Email);
+                Debug.LogFormat("welcome to PEAR {0}", firstNameInput.text);
+                
+                User user = new User(newUser.Email, combinedName);
+                Classroom classroom = new Classroom(classroomInput.text);
 
-                User user = new User(newUser.Email, 0, 1);
-                DatabaseManager.sharedInstance.CreateNewUser(user, newUser.UserId);
+                DatabaseManager.sharedInstance.CreateNewUser(user, newUser.UserId, classroom);
+
             }
 
-            Firebase.Auth.FirebaseUser player = task.Result;
+            FirebaseUser player = task.Result;
             UpdateStatus("User: " + player.Email);
+
             // UpdateStatus("Loading the game scene");
 
             yield return new WaitForSeconds(1.5f);
+            SceneManager.LoadScene("UserProfile");
+
             // SceneManager.LoadScene("VuforiaTesting");
         }
-    }
-
-    public void OnSignUp()
-    {
-        if(passwordInput.text != confirmPasswordInput.text)
-        {
-            // TODO: Handle this a bit better eventually
-            Debug.Log("Error. Passwords do not match");
-        }
-        // TODO: Setup the database to handle more than just a username and password
-        // authManager.SignUpNewUser(emailInput.text, passwordInput.text);
-        Debug.Log("Sign Up");
     }
 
     void OnDestroy()
