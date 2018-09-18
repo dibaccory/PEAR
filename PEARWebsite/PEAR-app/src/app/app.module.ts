@@ -7,10 +7,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './/app-routing.module';
 
-import { AngularFireModule } from 'angularfire2';
-import { AngularFirestoreModule } from 'angularfire2/firestore';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
-import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 
 import { TeachersComponent } from '../app/views/teachers/teachers.component';
 import { TeacherDetailComponent } from '../app/views/teacher-detail/teacher-detail.component';
@@ -27,7 +26,7 @@ import { SidenavComponent } from './sidenav/sidenav.component';
     HttpClientModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase, 'PEAR'),
-    AngularFirestoreModule, // imports firebase/firestore, only needed for database features
+    AngularFireDatabaseModule,
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
   ],
   declarations: [
