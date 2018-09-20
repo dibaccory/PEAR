@@ -16,10 +16,6 @@ public class ItemSceneManager : MonoBehaviour
     public GameObject midAirPositioner;
 
     public Text questionText;
-    public Button answerAButton;
-    public Button answerBButton;
-    public Button answerCButton;
-    public Button answerDButton;
 
     public Item currentItem;
     Almanac almanac;
@@ -27,8 +23,8 @@ public class ItemSceneManager : MonoBehaviour
     void Awake()
     {
         ToggleVideo(true);
+        
     }
-    
     public void OnAddItemButtonClick()
     {
         Debug.Log("Item: " + currentItem.name);

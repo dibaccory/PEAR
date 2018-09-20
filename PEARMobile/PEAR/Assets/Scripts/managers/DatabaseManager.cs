@@ -78,7 +78,7 @@ public class DatabaseManager : MonoBehaviour
         });
     }
 
-    public void getQnA(string classCode, string moduleName, string item, string buildOrCollect, Action<List<Question>> completionBlock)
+    public List<Question> getQnA(string classCode, string moduleName, string item, string buildOrCollect, Action<List<Question>> completionBlock)
     {
         List<Question> questionAndAnswerList = new List<Question>();
 
@@ -98,16 +98,19 @@ public class DatabaseManager : MonoBehaviour
                     string answer = "A" + i.ToString();
                     if (i == 1)
                     {
-                        currentQuestion.CorrectAnswer = snapshot.Child(question.Key.ToString()).Child("answers").Child(answer).Value.ToString();
+                        string answerText = snapshot.Child(question.Key.ToString()).Child("answers").Child(answer).Value.ToString();
+                        currentQuestion.answers.Add(new Answer(answerText, true));
                     }
                     else
                     {
-                        currentQuestion.otherAnswers.Add(snapshot.Child(question.Key.ToString()).Child("answers").Child(answer).Value.ToString());
+                        string answerText = snapshot.Child(question.Key.ToString()).Child("answers").Child(answer).Value.ToString();
+                        currentQuestion.answers.Add(new Answer(answerText, false));
                     }
                 }
                 questionAndAnswerList.Add(currentQuestion);              
             }
             completionBlock(questionAndAnswerList);
         });
+        return questionAndAnswerList;
     }
 }
