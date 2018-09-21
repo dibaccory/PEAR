@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <LangVersion>4</LangVersion>
@@ -111,12 +111,14 @@
     <Compile Include="Assets\Scripts\managers\AuthManager.cs" />
     <Compile Include="Assets\Scripts\managers\DatabaseManager.cs" />
     <Compile Include="Assets\Scripts\managers\InventorySlotManager.cs" />
+    <Compile Include="Assets\Scripts\managers\ItemSceneManager.cs" />
     <Compile Include="Assets\Scripts\managers\LoginFormManager.cs" />
     <Compile Include="Assets\Scripts\managers\SignupFormManager.cs" />
     <Compile Include="Assets\Scripts\managers\UserClassManager.cs" />
     <Compile Include="Assets\Scripts\models\Classroom.cs" />
     <Compile Include="Assets\Scripts\models\Question.cs" />
     <Compile Include="Assets\Scripts\models\User.cs" />
+    <Compile Include="Assets\Scripts\utilities\CustomVideoPlayer.cs" />
     <Compile Include="Assets\Scripts\utilities\PasswordScript.cs" />
     <Compile Include="Assets\Scripts\utilities\Router.cs" />
     <Compile Include="Assets\Scripts\utilities\RowConfig.cs" />

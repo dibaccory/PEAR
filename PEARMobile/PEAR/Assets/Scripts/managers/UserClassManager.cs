@@ -43,7 +43,9 @@ public class UserClassManager : MonoBehaviour {
         DatabaseManager.sharedInstance.getQnA(classCode, moduleName, item, buildOrCollect, (result) =>
         {
             questionList = result;
+            Debug.Log(questionList);
         });
+
     }
 
     private FirebaseUser GetUser()
