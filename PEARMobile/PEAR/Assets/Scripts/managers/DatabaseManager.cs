@@ -5,6 +5,7 @@ using Firebase;
 using Firebase.Database;
 using Firebase.Unity.Editor;
 using System;
+using System.Threading.Tasks;
 using Firebase.Auth;
 
 
@@ -78,39 +79,51 @@ public class DatabaseManager : MonoBehaviour
         });
     }
 
-    public List<Question> getQnA(string classCode, string moduleName, string item, string buildOrCollect, Action<List<Question>> completionBlock)
+    public void getQnA(string classCode, string moduleName, string item, string buildOrCollect, Action<List<Question>> completionBlock)
     {
         List<Question> questionAndAnswerList = new List<Question>();
 
         Router.GetClassroomInfo(classCode, moduleName, item, buildOrCollect).GetValueAsync().ContinueWith((task) =>
         {
-            DataSnapshot snapshot = task.Result;
-
-            foreach (DataSnapshot question in snapshot.Children)
+            Debug.Log("Has " + task.Result.ChildrenCount.ToString() + " children");
+            foreach (var question in task.Result.Children)
             {
-                Question currentQuestion = new Question();
-                
-                currentQuestion.QuestionText = snapshot.Child(question.Key.ToString()).Child("question").Value.ToString();
-                long loop = snapshot.Child(question.Key.ToString()).Child("answers").ChildrenCount;
+                string questionText = task.Result.Child(question.Key.ToString()).Child("question").Value.ToString();
 
-                for (int i = 1; i <= loop; i++)
+                Debug.Log("Question text");
+                Debug.Log(questionText);
+
+                int loop = (int)task.Result.Child(question.Key.ToString()).Child("answers").ChildrenCount;
+
+                Debug.Log("Inner loop count: " + loop.ToString());
+
+                List<Answer> currentAnswerList = new List<Answer>();
+
+                for (int i = 0; i < loop; i++)
                 {
-                    string answer = "A" + i.ToString();
-                    if (i == 1)
+                    string answer = "A" + (i + 1).ToString();
+                    
+                    string answerText = task.Result.Child(question.Key.ToString()).Child("answers").Child(answer).Value.ToString();
+
+                    Debug.Log("Answer Text: ");
+                    Debug.Log(answerText);
+
+                    Answer currentAnswer = new Answer(answerText, true);
+                    if (i == 0)
                     {
-                        string answerText = snapshot.Child(question.Key.ToString()).Child("answers").Child(answer).Value.ToString();
-                        currentQuestion.answers.Add(new Answer(answerText, true));
+                        currentAnswer = new Answer(answerText, true);
                     }
                     else
                     {
-                        string answerText = snapshot.Child(question.Key.ToString()).Child("answers").Child(answer).Value.ToString();
-                        currentQuestion.answers.Add(new Answer(answerText, false));
+                        currentAnswer = new Answer(answerText, false);
                     }
+                    currentAnswerList.Add(currentAnswer);
                 }
-                questionAndAnswerList.Add(currentQuestion);              
+                Debug.Log("Adding question " + questionText);
+                questionAndAnswerList.Add(new Question(questionText, currentAnswerList));
             }
+            Debug.Log("Question list size: " + questionAndAnswerList.Count);
             completionBlock(questionAndAnswerList);
         });
-        return questionAndAnswerList;
     }
 }

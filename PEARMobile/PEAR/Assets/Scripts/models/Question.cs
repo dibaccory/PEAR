@@ -5,7 +5,7 @@ using UnityEngine;
 public class Question
 {
     public string QuestionText { get; set; }
-    public List<Answer> answers = new List<Answer>();
+    public List<Answer> answers;
 
     public Question(string questionText, List<Answer> answers)
     {
@@ -15,7 +15,7 @@ public class Question
 
     public Question()
     {
-        answers = null;
+        answers = new List<Answer>();
         QuestionText = null;
     }
 }
