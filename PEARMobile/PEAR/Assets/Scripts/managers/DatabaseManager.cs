@@ -89,8 +89,9 @@ public class DatabaseManager : MonoBehaviour
             foreach (DataSnapshot question in snapshot.Children)
             {
                 Question currentQuestion = new Question();
-                
+
                 currentQuestion.QuestionText = snapshot.Child(question.Key.ToString()).Child("question").Value.ToString();
+                //Debug.Log(currentQuestion.QuestionText);
                 long loop = snapshot.Child(question.Key.ToString()).Child("answers").ChildrenCount;
 
                 for (int i = 1; i <= loop; i++)
@@ -99,13 +100,17 @@ public class DatabaseManager : MonoBehaviour
                     if (i == 1)
                     {
                         currentQuestion.CorrectAnswer = snapshot.Child(question.Key.ToString()).Child("answers").Child(answer).Value.ToString();
+                        //Debug.Log(currentQuestion.CorrectAnswer);
+
                     }
                     else
                     {
                         currentQuestion.otherAnswers.Add(snapshot.Child(question.Key.ToString()).Child("answers").Child(answer).Value.ToString());
+                        //Debug.Log(snapshot.Child(question.Key.ToString()).Child("answers").Child(answer).Value.ToString());
+
                     }
                 }
-                questionAndAnswerList.Add(currentQuestion);              
+                questionAndAnswerList.Add(currentQuestion);
             }
             completionBlock(questionAndAnswerList);
         });

@@ -14,6 +14,8 @@ public class UserClassManager : MonoBehaviour {
 
     public List<Classroom> classroomList = new List<Classroom>();
     public List<Question> questionList = new List<Question>();
+    public List<Question> tempList = new List<Question>();
+
 
     Firebase.Auth.FirebaseAuth auth;
 
@@ -33,7 +35,7 @@ public class UserClassManager : MonoBehaviour {
             classroomList = result;
             InitalizeUI();
         });
-
+        
         //some test code on how to pull up and store some database info
         string classCode = "test class";
         string moduleName = "solar system";
@@ -43,9 +45,27 @@ public class UserClassManager : MonoBehaviour {
         DatabaseManager.sharedInstance.getQnA(classCode, moduleName, item, buildOrCollect, (result) =>
         {
             questionList = result;
+            test();
         });
+
+
+        foreach(Question thing in tempList)
+        {
+            Debug.Log(thing.QuestionText + " " + thing.CorrectAnswer);
+        }
+
+        Debug.Log("slkdfjlasdf");
     }
 
+    private void test()
+
+    {
+        foreach (Question thing in questionList)
+        {
+            Debug.Log(thing.QuestionText + " " + thing.CorrectAnswer);
+        }
+        tempList = questionList;
+    }
     private FirebaseUser GetUser()
     {
         auth = Firebase.Auth.FirebaseAuth.DefaultInstance;
