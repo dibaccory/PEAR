@@ -8,9 +8,11 @@ public class QandAController : MonoBehaviour {
 
     public GameObjectPool answerButtonObjectPool;
     public Text questionText;
+    public Text correctAnswerTextForIncorrectAnswer;
     public Transform answerButtonParent;
     public GameObject questionPanel;
     public GameObject roundEndPanel;
+    public GameObject incorrectAnswerPanel;
 
     private List<Question> questionPool = new List<Question>();
     private int questionIndex;
@@ -23,7 +25,7 @@ public class QandAController : MonoBehaviour {
     {
         // Values hardcoded for testing right now
         // TODO: Do this dynamically 
-        string classCode = "test class";
+        string classCode = "astronomy";
         string moduleName = "solar system";
         string item = "earth";
         string buildOrCollect = "build";
@@ -58,6 +60,7 @@ public class QandAController : MonoBehaviour {
     {
         RemoveAnswerButtons();
         Question currentQuestion = questionPool[questionIndex];
+        SetCorrectAnswerText(currentQuestion);
         questionText.text = currentQuestion.QuestionText;
         
         for(int i = 0; i < currentQuestion.answers.Count; i++)
@@ -87,7 +90,7 @@ public class QandAController : MonoBehaviour {
         }
         else
         {
-            Debug.Log("Incorrect answer clicked");
+            IncorrectAnswerClicked();
         }
 
         if(questionPool.Count > questionIndex + 1)
@@ -101,10 +104,44 @@ public class QandAController : MonoBehaviour {
         }
     }
 
+    public void ContinueButtonClick()
+    {
+        incorrectAnswerPanel.SetActive(false);
+        questionText.enabled = true;
+        questionPanel.SetActive(true);
+    }
+
+    private void SetCorrectAnswerText(Question currentQ)
+    {
+        List<Answer> answers = currentQ.answers;
+        foreach(Answer ans in answers)
+        {
+            if(ans.isCorrect)
+            {
+                correctAnswerTextForIncorrectAnswer.text = ans.answerText;
+                return;
+            }
+        }
+
+
+    }
+
+    private void IncorrectAnswerClicked()
+    {
+        Debug.Log("Incorrect answer clicked");
+        questionPanel.SetActive(false);
+        questionText.enabled = false;
+        incorrectAnswerPanel.SetActive(true);
+
+
+    }
+
     public void EndRound()
     {
         isRoundActive = false;
         questionPanel.SetActive(false);
+        incorrectAnswerPanel.SetActive(false);
+        questionText.enabled = false;
         roundEndPanel.SetActive(true);
 
     }
