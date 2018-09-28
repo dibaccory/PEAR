@@ -8,11 +8,11 @@ public class QandAController : MonoBehaviour {
 
     public GameObjectPool answerButtonObjectPool;
     public Text questionText;
-    public Text correctAnswerTextForIncorrectAnswer;
+    public Text correctAnswerTextBox;
     public Transform answerButtonParent;
     public GameObject questionPanel;
     public GameObject roundEndPanel;
-    public GameObject incorrectAnswerPanel;
+    public GameObject questionAnsweredPanel;
 
     private List<Question> questionPool = new List<Question>();
     private int questionIndex;
@@ -38,29 +38,10 @@ public class QandAController : MonoBehaviour {
         });
     }
 
-    /* Used for testing purposes only
-    private void SetupQuestions()
-    {
-        // Hard coded questions for testing
-        List<Answer> questionAnswers = new List<Answer>
-        {
-            new Answer("This is a wrong answer", false),
-            new Answer("This is another wrong answer", false),
-            new Answer("This is a third wrong answer", false),
-            new Answer("This is a correct answer", true)
-        };
-
-        questionPool.Add(new Question("This is a question you must answer", questionAnswers));
-        questionPool.Add(new Question("This is another question for you", questionAnswers));
-        questionPool.Add(new Question("And one more. Answer correctly", questionAnswers));
-    }
-    */
-
     private void ShowQuestion()
     {
         RemoveAnswerButtons();
         Question currentQuestion = questionPool[questionIndex];
-        SetCorrectAnswerText(currentQuestion);
         questionText.text = currentQuestion.QuestionText;
         
         for(int i = 0; i < currentQuestion.answers.Count; i++)
@@ -84,17 +65,35 @@ public class QandAController : MonoBehaviour {
 
     public void AnswerButtonClick(bool isCorrect)
     {
+        string message = "";
+        string correctAnswer = GetCorrectAnswerText(questionPool[questionIndex]);
+        Debug.Log(correctAnswer);
         if(isCorrect)
         {
             Debug.Log("Correct answer clicked");
+            message = "You're right! The correct answer was "
+                            + correctAnswer;
         }
         else
         {
-            IncorrectAnswerClicked();
-        }
+            Debug.Log("Incorrect answer clicked");
 
-        if(questionPool.Count > questionIndex + 1)
+            message = "Sorry, the correct answer was "
+                            + correctAnswer;
+        }
+        correctAnswerTextBox.text = message;
+        questionPanel.SetActive(false);
+        questionText.enabled = false;
+        questionAnsweredPanel.SetActive(true);
+    }
+
+    public void ContinueButtonClick()
+    {
+        if (questionPool.Count > questionIndex + 1)
         {
+            questionAnsweredPanel.SetActive(false);
+            questionText.enabled = true;
+            questionPanel.SetActive(true);
             questionIndex++;
             ShowQuestion();
         }
@@ -104,46 +103,26 @@ public class QandAController : MonoBehaviour {
         }
     }
 
-    public void ContinueButtonClick()
-    {
-        incorrectAnswerPanel.SetActive(false);
-        questionText.enabled = true;
-        questionPanel.SetActive(true);
-    }
-
-    private void SetCorrectAnswerText(Question currentQ)
+    private string GetCorrectAnswerText(Question currentQ)
     {
         List<Answer> answers = currentQ.answers;
         foreach(Answer ans in answers)
         {
             if(ans.isCorrect)
             {
-                correctAnswerTextForIncorrectAnswer.text = ans.answerText;
-                return;
+                return ans.answerText;
             }
         }
-
-
-    }
-
-    private void IncorrectAnswerClicked()
-    {
-        Debug.Log("Incorrect answer clicked");
-        questionPanel.SetActive(false);
-        questionText.enabled = false;
-        incorrectAnswerPanel.SetActive(true);
-
-
+        return "";
     }
 
     public void EndRound()
     {
         isRoundActive = false;
         questionPanel.SetActive(false);
-        incorrectAnswerPanel.SetActive(false);
+        questionAnsweredPanel.SetActive(false);
         questionText.enabled = false;
         roundEndPanel.SetActive(true);
-
     }
 
     // Update is called once per frame
