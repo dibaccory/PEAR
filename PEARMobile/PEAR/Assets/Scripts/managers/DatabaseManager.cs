@@ -85,18 +85,10 @@ public class DatabaseManager : MonoBehaviour
 
         Router.GetClassroomInfo(classCode, moduleName, item, buildOrCollect).GetValueAsync().ContinueWith((task) =>
         {
-            Debug.Log("Has " + task.Result.ChildrenCount.ToString() + " children");
             foreach (var question in task.Result.Children)
             {
                 string questionText = task.Result.Child(question.Key.ToString()).Child("question").Value.ToString();
-
-                Debug.Log("Question text");
-                Debug.Log(questionText);
-
                 int loop = (int)task.Result.Child(question.Key.ToString()).Child("answers").ChildrenCount;
-
-                Debug.Log("Inner loop count: " + loop.ToString());
-
                 List<Answer> currentAnswerList = new List<Answer>();
 
                 for (int i = 0; i < loop; i++)
@@ -104,10 +96,6 @@ public class DatabaseManager : MonoBehaviour
                     string answer = "A" + (i + 1).ToString();
                     
                     string answerText = task.Result.Child(question.Key.ToString()).Child("answers").Child(answer).Value.ToString();
-
-                    Debug.Log("Answer Text: ");
-                    Debug.Log(answerText);
-
                     Answer currentAnswer = new Answer(answerText, true);
                     if (i == 0)
                     {
@@ -119,10 +107,8 @@ public class DatabaseManager : MonoBehaviour
                     }
                     currentAnswerList.Add(currentAnswer);
                 }
-                Debug.Log("Adding question " + questionText);
                 questionAndAnswerList.Add(new Question(questionText, currentAnswerList));
             }
-            Debug.Log("Question list size: " + questionAndAnswerList.Count);
             completionBlock(questionAndAnswerList);
         });
     }

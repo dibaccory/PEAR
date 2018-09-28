@@ -21,15 +21,8 @@ public class QandAController : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
-        SetupQuestions();
-        questionIndex = 0;
-        ShowQuestion();
-        isRoundActive = true;
-    }
-
-    private void SetupQuestions()
-    {
-        // TODO: Get the questions from the databse
+        // Values hardcoded for testing right now
+        // TODO: Do this dynamically 
         string classCode = "test class";
         string moduleName = "solar system";
         string item = "earth";
@@ -37,21 +30,29 @@ public class QandAController : MonoBehaviour {
         DatabaseManager.sharedInstance.getQnA(classCode, moduleName, item, buildOrCollect, (result) =>
         {
             questionPool = result;
+            questionIndex = 0;
+            ShowQuestion();
+            isRoundActive = true;
         });
-
-        // Hard coded questions for testing
-        //List<Answer> questionAnswers = new List<Answer>
-        //{
-        //    new Answer("This is a wrong answer", false),
-        //    new Answer("This is another wrong answer", false),
-        //    new Answer("This is a third wrong answer", false),
-        //    new Answer("This is a correct answer", true)
-        //};
-
-        //questionPool.Add(new Question("This is a question you must answer", questionAnswers));
-        //questionPool.Add(new Question("This is another question for you", questionAnswers));
-        //questionPool.Add(new Question("And one more. Answer correctly", questionAnswers));
     }
+
+    /* Used for testing purposes only
+    private void SetupQuestions()
+    {
+        // Hard coded questions for testing
+        List<Answer> questionAnswers = new List<Answer>
+        {
+            new Answer("This is a wrong answer", false),
+            new Answer("This is another wrong answer", false),
+            new Answer("This is a third wrong answer", false),
+            new Answer("This is a correct answer", true)
+        };
+
+        questionPool.Add(new Question("This is a question you must answer", questionAnswers));
+        questionPool.Add(new Question("This is another question for you", questionAnswers));
+        questionPool.Add(new Question("And one more. Answer correctly", questionAnswers));
+    }
+    */
 
     private void ShowQuestion()
     {
