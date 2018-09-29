@@ -57,7 +57,7 @@ public class DatabaseManager : MonoBehaviour
         string classJSON = JsonUtility.ToJson(classroom);
 
         Router.UserWithClass(user.UserId, classroom.classCode).SetRawJsonValueAsync(classJSON);
-        Router.ClassWithUser2(user.UserId, classroom.classCode).SetValueAsync(user.Email);
+        Router.ClassWithUser(user.UserId, classroom.classCode).Child("email").SetValueAsync(user.Email);
 
     }
 
@@ -112,4 +112,16 @@ public class DatabaseManager : MonoBehaviour
             completionBlock(questionAndAnswerList);
         });
     }
+
+
+    public void SubmitAnswer(string uid, string classCode, string moduleName, string item, string buildOrCollect, string questionNumber, string submittedAnswer)
+    {
+        Router.StoreUserAnswers(uid, classCode, moduleName, item, buildOrCollect, questionNumber).SetValueAsync(submittedAnswer);
+    }
+    public void TimeAndAttempts(string uid, string classCode, string moduleName, string item, string buildOrCollect, float timeSpent, int numAttempts)
+    {
+        Router.StoreTimeAndAttempt(uid, classCode, moduleName, item, buildOrCollect).Child("time").SetValueAsync(timeSpent);
+        Router.StoreTimeAndAttempt(uid, classCode, moduleName, item, buildOrCollect).Child("attempts").SetValueAsync(numAttempts);
+    }
+
 }

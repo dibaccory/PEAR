@@ -30,11 +30,6 @@ public class Router : MonoBehaviour
         return baseRef.Child("classrooms").Child(classCode).Child("users").Child(uid);
     }
 
-    public static DatabaseReference ClassWithUser2(string uid, string classCode)
-    {
-        return baseRef.Child("classrooms").Child(classCode).Child("users").Child(uid).Child("email");
-    }
-
     public static DatabaseReference UserWithUID(string uid)
     {
         return baseRef.Child("users").Child(uid);
@@ -65,8 +60,8 @@ public class Router : MonoBehaviour
     //Get all the Materials for current module
     public static DatabaseReference ModuleMaterials (string classCode, string moduleName)
     {
-      //Do we have a getCurrentModule function?
-        return baseRef.Child("classrooms").Child(classCode).Child("modules").Child("solar system").Children();
+        //Do we have a getCurrentModule function?
+        return baseRef.Child("classrooms").Child(classCode).Child("modules").Child("solar system");
     }
 
     /*
@@ -74,6 +69,16 @@ public class Router : MonoBehaviour
     pull in master
 
     */
+    public static DatabaseReference StoreUserAnswers(string uid, string classCode, string moduleName, string item, string buildOrCollect, string questionNumber)
+    {
+        return baseRef.Child("answers").Child(uid).Child(classCode).Child("modules").Child(moduleName).Child(item).Child(buildOrCollect).Child(questionNumber).Child("answer given");
+
+    }
+    public static DatabaseReference StoreTimeAndAttempt(string uid, string classCode, string moduleName, string item, string buildOrCollect)
+    {
+        return baseRef.Child("answers").Child(uid).Child(classCode).Child("modules").Child(moduleName).Child(item).Child(buildOrCollect);
+
+    }
 
 
 }
