@@ -5,6 +5,7 @@ using Firebase;
 using Firebase.Database;
 using Firebase.Unity.Editor;
 using System;
+using System.Threading.Tasks;
 using Firebase.Auth;
 
 
@@ -84,28 +85,29 @@ public class DatabaseManager : MonoBehaviour
 
         Router.GetClassroomInfo(classCode, moduleName, item, buildOrCollect).GetValueAsync().ContinueWith((task) =>
         {
-            DataSnapshot snapshot = task.Result;
-
-            foreach (DataSnapshot question in snapshot.Children)
+            foreach (var question in task.Result.Children)
             {
-                Question currentQuestion = new Question();
-                
-                currentQuestion.QuestionText = snapshot.Child(question.Key.ToString()).Child("question").Value.ToString();
-                long loop = snapshot.Child(question.Key.ToString()).Child("answers").ChildrenCount;
+                string questionText = task.Result.Child(question.Key.ToString()).Child("question").Value.ToString();
+                int loop = (int)task.Result.Child(question.Key.ToString()).Child("answers").ChildrenCount;
+                List<Answer> currentAnswerList = new List<Answer>();
 
-                for (int i = 1; i <= loop; i++)
+                for (int i = 0; i < loop; i++)
                 {
-                    string answer = "A" + i.ToString();
-                    if (i == 1)
+                    string answer = "A" + (i + 1).ToString();
+                    
+                    string answerText = task.Result.Child(question.Key.ToString()).Child("answers").Child(answer).Value.ToString();
+                    Answer currentAnswer = new Answer(answerText, true);
+                    if (i == 0)
                     {
-                        currentQuestion.CorrectAnswer = snapshot.Child(question.Key.ToString()).Child("answers").Child(answer).Value.ToString();
+                        currentAnswer = new Answer(answerText, true);
                     }
                     else
                     {
-                        currentQuestion.otherAnswers.Add(snapshot.Child(question.Key.ToString()).Child("answers").Child(answer).Value.ToString());
+                        currentAnswer = new Answer(answerText, false);
                     }
+                    currentAnswerList.Add(currentAnswer);
                 }
-                questionAndAnswerList.Add(currentQuestion);              
+                questionAndAnswerList.Add(new Question(questionText, currentAnswerList));
             }
             completionBlock(questionAndAnswerList);
         });
