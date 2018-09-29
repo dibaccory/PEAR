@@ -10,5 +10,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'PEAR';
-  loggedIn = true;
+  loggedIn = false;
 }

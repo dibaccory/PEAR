@@ -21,6 +21,7 @@ import { DatabaseTestComponent } from '../app/views/database-test/database-test.
 import { AppRoutingModule } from './app-routing.module';
 import { NgxChartsComponent } from '../app/views/ngx-charts/ngx-charts.component';
 import { GoogleChartsComponent } from '../app/views/google-charts/google-charts.component';
+import { RegisterComponent } from '../app/views/register/register.component';
 
 @NgModule({
   imports: [
@@ -41,7 +42,8 @@ import { GoogleChartsComponent } from '../app/views/google-charts/google-charts.
     // NavbarComponent,
     DatabaseTestComponent,
     NgxChartsComponent,
-    GoogleChartsComponent
+    GoogleChartsComponent,
+    RegisterComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
