@@ -42,12 +42,6 @@ public class DatabaseManager : MonoBehaviour
         string classJSON = JsonUtility.ToJson(classroom);
         Router.UserWithClass(uid, classroom.classCode).SetRawJsonValueAsync(classJSON);
         Router.ClassWithUser(uid, classroom.classCode).SetValueAsync(user.email);
-
-
-        //Router.UserWithClass(uid, classroom.classCode).SetValueAsync(classJSON);
-
-        //Router.ClassWithUser(uid, classroom.classCode, user.name).SetValueAsync("true");
-
     }
 
     public void AddClass(string classCode, Classroom classroom, FirebaseUser user)
@@ -57,7 +51,6 @@ public class DatabaseManager : MonoBehaviour
 
         Router.UserWithClass(user.UserId, classroom.classCode).SetRawJsonValueAsync(classJSON);
         Router.ClassWithUser2(user.UserId, classroom.classCode).SetValueAsync(user.Email);
-
     }
 
     public void GetClasses(string uid, Action<List<Classroom>>completionBlock)
@@ -115,4 +108,40 @@ public class DatabaseManager : MonoBehaviour
             completionBlock(questionAndAnswerList);
         });
     }
+
+    public void GetUserAnswers(string uid, string classCode, string moduleName, string item, string buildOrCollect, string questionNumber /*User user, string uid, Classroom classroom*/)
+    {
+        //string userDataJSON = JsonUtility.ToJson(user);
+        //Router.GetUserAnswers(uid, classCode, moduleName, item, buildOrCollect, questionNumber).SetRawJsonValueAsync(userDataJSON);
+
+    }
+    //get keys of the items in the class to populate the collect mode items
+    public void ItemList(string classCode, string moduleName, Action<List<Item>> completionBlock)
+    {
+        //List<Item> tempList = new List<Item>();
+
+        //Router.GetClassroomInfo(classCode,moduleName).GetValueAsync().ContinueWith((task) =>
+        //{
+        //    DataSnapshot classSnapshot = task.Result;
+
+        //    foreach (DataSnapshot classnode in classSnapshot.Children)
+        //    {
+        //        var key = classnode.Key;
+        //        Item newItem = new Item(classDict);
+        //        tempList.Add(newItem);
+        //    }
+        //    completionBlock(tempList);
+        //});
+    }
+
+    public void SubmitAnswer(string uid, string classCode, string moduleName, string item, string buildOrCollect, string questionNumber, string submittedAnswer)
+    {
+        Router.StoreUserAnswers(uid,classCode,moduleName, item, buildOrCollect,questionNumber).SetValueAsync(submittedAnswer);
+    }
+    public void TimeAndAttempts(string uid, string classCode, string moduleName, string item, string buildOrCollect, float timeSpent, int numAttempts)
+    {
+        Router.StoreTimeAndAttempt(uid, classCode, moduleName, item, buildOrCollect).Child("time").SetValueAsync(timeSpent);
+        Router.StoreTimeAndAttempt(uid, classCode, moduleName, item, buildOrCollect).Child("attempts").SetValueAsync(numAttempts);
+    }
+
 }
