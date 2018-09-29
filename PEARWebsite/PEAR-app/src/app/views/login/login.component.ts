@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-// import { AngularFireAuth } from '@angular/fire/auth';
-// import { Router } from '@angular/router';
-// import { AuthService } from '../../services/auth.service';
-// import { auth } from 'firebase';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { auth } from 'firebase/app';
 
-
+// import { AngularFireDatabase } from '@angular/fire/database';
+// import { Observable } from 'rxjs';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -12,10 +11,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-//   user = {
-//     email: '',
-//     password: ''
-//  };
+  user = {
+    email: '',
+    password: ''
+ };
+
+  model = {
+    left: true,
+    middle: false,
+    right: false
+};
 
 //   constructor(public afAuth: AngularFireAuth, private router: Router) {
 //   }
@@ -32,9 +37,29 @@ export class LoginComponent implements OnInit {
 //         })
 //     };
 
-//   logout() {
-//     this.afAuth.auth.signOut();
-//   }
+
+  // constructor(public afAuth: AngularFireAuth) {
+  // }
+  // constructor(public afAuth: AngularFireAuth) {
+  // }
+
+  // login() {
+  //   // this.afAuth.auth.signInWithEmailAndPassword(this.user.email, this.user.password).catch(function(error) {
+  //   //   const errorCode = error.code;
+  //   //   const errorMessage: string = error.message;
+  //   this.afAuth.auth.signInWithEmailAndPassword(this.user.email, this.user.password)
+  //       .then((res) => {
+  //         console.log(res);
+  //       })
+  //       .catch((err) => {
+  //         console.log('error: ' + err);
+  //         alert('Wrong password.');
+  //   });
+  // }
+
+  // logout() {
+  //   this.afAuth.auth.signOut();
+  // }
 
   ngOnInit() {
   }
