@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Teacher } from '../../teacher';
-import { Admin } from '../../user';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,16 +7,9 @@ import { Admin } from '../../user';
 })
 export class DashboardComponent implements OnInit {
   title = 'PEAR';
-  teachers: Teacher[] = [];
-  login: Admin[] = [];
 
   constructor() { }
 
   ngOnInit() {
   }
-
-  // getHeroes(): void {
-    // this.teacherService.getHeroes()
-      // .subscribe(teachers => this.teachers = teachers.slice(1, 5));
-  // }
 }

@@ -50,3 +50,31 @@
 [debug] [2018-09-18T15:40:18.518Z] <<< HTTP RESPONSE 200
 [info] i  hosting[pear-f60a2]: Serving hosting files from: dist/PEAR-app
 [info] +  hosting[pear-f60a2]: Local server: http://localhost:5000
+[debug] [2018-09-29T01:12:00.712Z] ----------------------------------------------------------------------
+[debug] [2018-09-29T01:12:00.715Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\KeniaCastro\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase serve
+[debug] [2018-09-29T01:12:00.715Z] CLI Version:   4.2.1
+[debug] [2018-09-29T01:12:00.715Z] Platform:      win32
+[debug] [2018-09-29T01:12:00.715Z] Node Version:  v8.12.0
+[debug] [2018-09-29T01:12:00.716Z] Time:          Fri Sep 28 2018 21:12:00 GMT-0400 (Eastern Daylight Time)
+[debug] [2018-09-29T01:12:00.716Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-09-29T01:12:00.847Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-09-29T01:12:00.848Z] > authorizing via signed-in user
+[debug] [2018-09-29T01:12:00.852Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2018-09-29T01:12:00.852Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+
+[debug] [2018-09-29T01:12:01.047Z] <<< HTTP RESPONSE 200
+[debug] [2018-09-29T01:12:01.293Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/pear-f60a2  
+ 
+[debug] [2018-09-29T01:12:01.738Z] <<< HTTP RESPONSE 200
+[debug] [2018-09-29T01:12:01.739Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/pear-f60a2  
+ 
+[debug] [2018-09-29T01:12:01.964Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from 'C:\Users\KeniaCastro\Desktop\PEAR\PEARWebsite\PEAR-app'...
+[info] 
+[debug] [2018-09-29T01:12:01.966Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/962088956383/clients/_:getWebAppConfig  
+ 
+[debug] [2018-09-29T01:12:02.347Z] <<< HTTP RESPONSE 200
+[info] i  hosting[pear-f60a2]: Serving hosting files from: dist/PEAR-app
+[info] +  hosting[pear-f60a2]: Local server: http://localhost:5000
