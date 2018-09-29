@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 })
 export class AppComponent {
   title = 'PEAR';
+  loggedIn = true;
   // items: Observable<any>;
   // constructor(db: AngularFireDatabase) {
   //   this.items = db.object('items').valueChanges();

@@ -13,6 +13,10 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
 // My created components
 import { DashboardComponent } from '../app/views/dashboard/dashboard.component';
 import { LoginComponent } from '../app/views/login/login.component';
+import { SplashpageComponent } from '../app/views/splashpage/splashpage.component';
+// import { NavbarComponent } from '../app/views/navbar/navbar.component';
+import { DatabaseTestComponent } from '../app/views/database-test/database-test.component';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   imports: [
@@ -20,12 +24,16 @@ import { LoginComponent } from '../app/views/login/login.component';
     FormsModule,
     NgbModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebase, 'PEAR'),
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    AppRoutingModule
   ],
   declarations: [
     AppComponent,
     DashboardComponent,
-    LoginComponent
+    LoginComponent,
+    SplashpageComponent,
+    // NavbarComponent,
+    DatabaseTestComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
