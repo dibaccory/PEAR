@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
-import { AngularFireAuth } from '@angular/fire/auth';
+// import { AngularFireAuth } from '@angular/fire/auth';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -11,10 +11,6 @@ import { Observable } from 'rxjs';
 export class AppComponent {
   title = 'PEAR';
   loggedIn = true;
-  // items: Observable<any>;
-  // constructor(db: AngularFireDatabase) {
-  //   this.items = db.object('items').valueChanges();
-  // }
 
   // writeUserData(db: AngularFireDatabase, userId, name, email) {
   //   firebase.database().ref('users/' + userId).set({
