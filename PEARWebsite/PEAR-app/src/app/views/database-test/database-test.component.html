@@ -2,3 +2,24 @@
 <p>
   database-test works!
 </p>
+
+<h2>Users</h2>
+<ul>    
+  <li *ngFor="let user of users | async">
+    {{ user | json }}
+  </li>
+</ul>
+
+<h2>Answers</h2>
+<ul>    
+  <li *ngFor="let answer of answers | async">
+    {{ answer | json }}
+  </li>
+</ul>
+
+<h2>Classrooms</h2>
+<ul>    
+  <li *ngFor="let classroom of classrooms | async">
+    {{ classrooms | json }}
+  </li>
+</ul>

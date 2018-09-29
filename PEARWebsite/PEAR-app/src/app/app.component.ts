@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { AngularFireDatabase } from '@angular/fire/database';
+// import { AngularFireDatabase } from '@angular/fire/database';
 // import { AngularFireAuth } from '@angular/fire/auth';
-import { Observable } from 'rxjs';
+// import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -11,22 +11,4 @@ import { Observable } from 'rxjs';
 export class AppComponent {
   title = 'PEAR';
   loggedIn = true;
-
-  // writeUserData(db: AngularFireDatabase, userId, name, email) {
-  //   firebase.database().ref('users/' + userId).set({
-  //     username: name,
-  //     email: email
-  //   });
-  // }
-
-  // readUserData(db: AngularFireDatabase) {
-  //   db.database.ref('/users/' + "Cqgkn1hpngSOM01Q859LMg36gBE2");
-    // .once('value').then(function(snapshot) {
-      // let user/name = (snapshot.val() && snapshot.val().username) || 'Anonymous';
-    // }
-    // return db.database.ref('/users/' + name).once('value').then(function(snapshot) {
-    //   let username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
-    //   // ...
-    // });
-  // }
 }

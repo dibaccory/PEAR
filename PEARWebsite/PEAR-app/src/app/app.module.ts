@@ -4,6 +4,8 @@ import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'; // Bootstrap
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { GoogleChartsModule } from 'angular-google-charts';
 import { FormsModule } from '@angular/forms';
 
 // Angularfire2
@@ -17,6 +19,8 @@ import { SplashpageComponent } from '../app/views/splashpage/splashpage.componen
 // import { NavbarComponent } from '../app/views/navbar/navbar.component';
 import { DatabaseTestComponent } from '../app/views/database-test/database-test.component';
 import { AppRoutingModule } from './app-routing.module';
+import { NgxChartsComponent } from '../app/views/ngx-charts/ngx-charts.component';
+import { GoogleChartsComponent } from '../app/views/google-charts/google-charts.component';
 
 @NgModule({
   imports: [
@@ -25,7 +29,9 @@ import { AppRoutingModule } from './app-routing.module';
     NgbModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebase, 'PEAR'),
     AngularFireDatabaseModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgxChartsModule,
+    GoogleChartsModule
   ],
   declarations: [
     AppComponent,
@@ -33,7 +39,9 @@ import { AppRoutingModule } from './app-routing.module';
     LoginComponent,
     SplashpageComponent,
     // NavbarComponent,
-    DatabaseTestComponent
+    DatabaseTestComponent,
+    NgxChartsComponent,
+    GoogleChartsComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
