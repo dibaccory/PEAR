@@ -7,6 +7,7 @@ import { SplashpageComponent } from '../app/views/splashpage/splashpage.componen
 import { DatabaseTestComponent } from '../app/views/database-test/database-test.component';
 import { NgxChartsComponent } from '../app/views/ngx-charts/ngx-charts.component';
 import { GoogleChartsComponent } from '../app/views/google-charts/google-charts.component';
+import { RegisterComponent } from '../app/views/register/register.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
@@ -14,7 +15,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'splashpage', component: SplashpageComponent },
   { path: 'ngx-charts', component: NgxChartsComponent },
-  { path: 'google-charts', component: GoogleChartsComponent }
+  { path: 'google-charts', component: GoogleChartsComponent },
+  { path: 'register', component: RegisterComponent }
 ];
 
 @NgModule({
