@@ -9,13 +9,19 @@ public class init_orb : MonoBehaviour {
 	public GameObject orb;
 	// Use this for initialization
 	void Start () {
+
+		List<Vector3> temp;
 		for(int i=0; i < count; i++) {
 			orb = Resources.Load("Orb") as GameObject;
-			Vector3 position = Random.onUnitSphere*30;
+			Vector3 pos = Random.onUnitSphere*30;
+			temp.Add(pos);
+
+			if(temp.Contains(pos) || /*check if within a certain distance of any of the currently added Vector3*/)
+
 			if(position.y < -10) { //Ensure user doesn't have to look to low
-				position.y = Mathf.Abs(position.y);
+				pos.y = Mathf.Abs(pos.y);
 			}
-			Instantiate(orb, position, Quaternion.identity);
+			Instantiate(orb, pos, Quaternion.identity);
 			//Orb needs to have a script to check if the user had interacted with it.
 		}
 

@@ -40,6 +40,27 @@ public class Router : MonoBehaviour
         return baseRef.Child("users").Child(uid);
     }
 
+    public static DatabaseReference GetModules (string classCode)
+    {
+      return baseRef.Child("classrooms").Child(classCode).Child("modules");
+    }
+
+    //Get all the Materials for current module
+    public static DatabaseReference ModuleMaterials (string classCode, string moduleName)
+    {
+      //Do we have a getCurrentModule function?
+        return baseRef.Child("classrooms").Child(classCode).Child("modules").Child("solar system").Children();
+    }
+
+    /*
+    TODO Get current Module (to make this generic)
+    pull in master
+
+    */
+
+
+    //public static DatabaseReference
+
     //public static DatabaseReference AddUserClassroom(string uid, Classroom classroom)
     //{
     //    return baseRef.SetTaskAsync(uid + "/" + classroom.classCode, classroom)
