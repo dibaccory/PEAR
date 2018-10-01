@@ -94,7 +94,7 @@ public class DatabaseManager : MonoBehaviour
                 for (int i = 0; i < loop; i++)
                 {
                     string answer = "A" + (i + 1).ToString();
-                    
+
                     string answerText = task.Result.Child(question.Key.ToString()).Child("answers").Child(answer).Value.ToString();
                     Answer currentAnswer = new Answer(answerText, true);
                     if (i == 0)
@@ -112,4 +112,24 @@ public class DatabaseManager : MonoBehaviour
             completionBlock(questionAndAnswerList);
         });
     }
+
+    public Stack<string> getMaterialNames()
+    {
+      Stack<string> keys = new Stack<string>();
+
+      Router.ModuleMaterials("astronomy", "solar system").GetValueAsync().ContinueWith((task) =>
+      {
+        DataSnapshot materials = task.Result;
+        foreach (DataSnapshot entry in materials.Children)
+        {
+          Debug.Log("o");
+          Debug.Log(entry.Key);
+          keys.Push(entry.Key);
+        }
+      });
+      Debug.Log(keys);
+      return keys;
+    }
+
+
 }

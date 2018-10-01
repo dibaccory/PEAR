@@ -1,24 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Firebase;
+using Firebase.Database;
+using Firebase.Unity.Editor;
 
 public class init_orb : MonoBehaviour {
 
+
 	int count = 9; //Should get this from the database; i.e. How many things do we need to collect for this module
-// [{tag: }]
 	public GameObject orb;
 	// Use this for initialization
 	void Start () {
-
-		List<Vector3> temp;
+		//Stack<string> keys = DatabaseManager.sharedInstance.getMaterialNames();
+		List<Vector3> temp = new List<Vector3>();
 		for(int i=0; i < count; i++) {
 			orb = Resources.Load("Orb") as GameObject;
 			Vector3 pos = Random.onUnitSphere*30;
+			//orb.tag = keys.Pop();
+
+			//if(temp.Contains(pos) /* || check if within a certain distance of any of the currently added Vector3*/){}
 			temp.Add(pos);
-
-			if(temp.Contains(pos) /* || check if within a certain distance of any of the currently added Vector3*/)
-
-			if(position.y < -10) { //Ensure user doesn't have to look to low
+			if(pos.y < -10) { //Ensure user doesn't have to look to low
 				pos.y = Mathf.Abs(pos.y);
 			}
 			Instantiate(orb, pos, Quaternion.identity);

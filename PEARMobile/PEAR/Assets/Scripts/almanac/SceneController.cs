@@ -24,7 +24,7 @@ public class SceneController : MonoBehaviour
     public float fadeDuration = 1f;
 
     // The name of the scene that should be loaded first.
-    public string startingSceneName = "ItemDisplay";
+    public string startingSceneName = "CollectScene";
 
     // Reference to the ScriptableObject which stores the name of the StartingPosition in the next scene.
     public SaveData playerSaveData;
