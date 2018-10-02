@@ -24,7 +24,7 @@ public class UserClassManager : MonoBehaviour {
     {
         submitButton.interactable = false;
 
-        string uid = GetUser().UserId;
+        string uid = DatabaseManager.sharedInstance.GetUser().UserId;
 
         classroomList.Clear();
 
@@ -44,13 +44,6 @@ public class UserClassManager : MonoBehaviour {
         {
             questionList = result;
         });
-    }
-
-    private FirebaseUser GetUser()
-    {
-        auth = Firebase.Auth.FirebaseAuth.DefaultInstance;
-        Firebase.Auth.FirebaseUser user = auth.CurrentUser;
-        return user;
     }
 
     void InitalizeUI()
@@ -84,7 +77,7 @@ public class UserClassManager : MonoBehaviour {
 
     public void OnAddClass()
     {
-        FirebaseUser user = GetUser();
+        FirebaseUser user = DatabaseManager.sharedInstance.GetUser();
         Classroom classroom = new Classroom(classCodeInput.text);
         DatabaseManager.sharedInstance.AddClass(classCodeInput.text, classroom, user);
         classroomList.Clear();

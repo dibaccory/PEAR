@@ -11,6 +11,7 @@ using Firebase.Auth;
 
 public class DatabaseManager : MonoBehaviour
 {
+    Firebase.Auth.FirebaseAuth auth;
 
     public static DatabaseManager sharedInstance = null;
 
@@ -57,7 +58,7 @@ public class DatabaseManager : MonoBehaviour
         string classJSON = JsonUtility.ToJson(classroom);
 
         Router.UserWithClass(user.UserId, classroom.classCode).SetRawJsonValueAsync(classJSON);
-        Router.ClassWithUser(user.UserId, classroom.classCode).Child("email").SetValueAsync(user.Email);
+        Router.ClassWithUser(user.UserId, classroom.classCode).SetValueAsync(user.Email);
 
     }
 
@@ -122,6 +123,13 @@ public class DatabaseManager : MonoBehaviour
     {
         Router.StoreTimeAndAttempt(uid, classCode, moduleName, item, buildOrCollect).Child("time").SetValueAsync(timeSpent);
         Router.StoreTimeAndAttempt(uid, classCode, moduleName, item, buildOrCollect).Child("attempts").SetValueAsync(numAttempts);
+    }
+
+    public FirebaseUser GetUser()
+    {
+        auth = Firebase.Auth.FirebaseAuth.DefaultInstance;
+        Firebase.Auth.FirebaseUser user = auth.CurrentUser;
+        return user;
     }
 
 }
