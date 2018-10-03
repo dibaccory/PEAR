@@ -16,7 +16,7 @@ export class DatabaseTestComponent implements OnInit {
     this.users = db.list<any>('users').valueChanges();
     this.answers = db.list<any>('answers').valueChanges();
     this.classrooms = db.list<any>('classrooms').valueChanges();
-    // db.list<any>('users').valueChanges().subscribe(console.log);
+    db.list<any>('users').valueChanges().subscribe(console.log);
   }
 
   ngOnInit() {
