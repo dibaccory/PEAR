@@ -22,26 +22,24 @@ export class LoginComponent implements OnInit {
     right: false
 };
 
-//   constructor(public afAuth: AngularFireAuth, private router: Router) {
-//   }
-//   login() {
-//     this.afAuth.auth.signInWithEmailAndPassword(this.user.email, this.user.password)
-//         .then((res) => {
-//           console.log(res);
-//           this.router.navigate(['dashboard'])
-//         })
-//         .catch((err) => {
-//           console.log('error: ' + err);
-//           alert('Wrong password.');
-//           // this.router.navigate(['teachers'])
-//         })
-//     };
+// constructor(public afAuth: AngularFireAuth) {
+// }
+login() {
+  // this.afAuth.auth.signInWithEmailAndPassword(this.user.email, this.user.password);
+      // .then((res) => {
+      //   console.log(res);
+      //   this.router.navigate(['/splashpage']);
+      // })
+      // .catch((err) => {
+      //   console.log('error: ' + err);
+      //   alert('Wrong password.');
+      //   // this.router.navigate(['teachers'])
+      // });
+  }
 
-
-  // constructor(public afAuth: AngularFireAuth) {
-  // }
-  // constructor(public afAuth: AngularFireAuth) {
-  // }
+// logout() {
+//   this.afAuth.auth.signOut();
+// }
 
   // login() {
   //   // this.afAuth.auth.signInWithEmailAndPassword(this.user.email, this.user.password).catch(function(error) {
