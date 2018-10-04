@@ -34,6 +34,15 @@ public class UserClassManager : MonoBehaviour {
         });
 
         string classCode = "astronomy";
+        string moduleName = "solar system";
+        string item = "earth";
+        string buildOrCollect = "collect";
+        double timeSpent = 2.54325;
+        int numAttempts = 4;
+
+
+        DatabaseManager.sharedInstance.TimeAndAttempts(uid,classCode,moduleName,item,buildOrCollect,timeSpent,numAttempts);
+
 
         DatabaseManager.sharedInstance.GetModules(classCode, (result) =>
         {

@@ -139,7 +139,7 @@ public class DatabaseManager : MonoBehaviour
         Router.StoreUserAnswers(uid, classCode, moduleName, item, buildOrCollect, questionNumber).SetValueAsync(submittedAnswer);
     }
 
-    public void TimeAndAttempts(string uid, string classCode, string moduleName, string item, string buildOrCollect, float timeSpent, int numAttempts)
+    public void TimeAndAttempts(string uid, string classCode, string moduleName, string item, string buildOrCollect, double timeSpent, int numAttempts)
     {
         Router.StoreTime(uid, classCode, moduleName, item, buildOrCollect).SetValueAsync(timeSpent);
         Router.StoreAttempts(uid, classCode, moduleName, item, buildOrCollect).SetValueAsync(numAttempts);
