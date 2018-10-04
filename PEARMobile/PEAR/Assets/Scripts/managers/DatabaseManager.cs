@@ -11,6 +11,7 @@ using Firebase.Auth;
 
 public class DatabaseManager : MonoBehaviour
 {
+    Firebase.Auth.FirebaseAuth auth;
 
     public static DatabaseManager sharedInstance = null;
 
@@ -57,7 +58,7 @@ public class DatabaseManager : MonoBehaviour
         string classJSON = JsonUtility.ToJson(classroom);
 
         Router.UserWithClass(user.UserId, classroom.classCode).SetRawJsonValueAsync(classJSON);
-        Router.ClassWithUser2(user.UserId, classroom.classCode).SetValueAsync(user.Email);
+        Router.ClassWithUser(user.UserId, classroom.classCode).SetValueAsync(user.Email);
 
     }
 
@@ -74,6 +75,25 @@ public class DatabaseManager : MonoBehaviour
                 var classDict = (IDictionary<string, object>)classnode.Value;
                 Classroom newClassroom = new Classroom(classDict);
                 tempList.Add(newClassroom);
+            }
+            completionBlock(tempList);
+        });
+    }
+
+    public void GetModules(string classCode, Action<List<Module>> completionBlock)
+    {
+        List<Module> tempList = new List<Module>();
+
+        Router.GetModules(classCode).GetValueAsync().ContinueWith((task) =>
+        {
+            DataSnapshot moduleSnapshot = task.Result;
+            Debug.Log(moduleSnapshot.GetRawJsonValue());
+
+            foreach (DataSnapshot module in moduleSnapshot.Children)
+            {
+                var moduleDict = (IDictionary<string, object>)module.Value;
+                Module newModule = new Module(moduleDict);
+                tempList.Add(newModule);
             }
             completionBlock(tempList);
         });
@@ -130,5 +150,25 @@ public class DatabaseManager : MonoBehaviour
       });
     }
 
+
+}
+
+    public void SubmitAnswer(string uid, string classCode, string moduleName, string item, string buildOrCollect, string questionNumber, string submittedAnswer)
+    {
+        Router.StoreUserAnswers(uid, classCode, moduleName, item, buildOrCollect, questionNumber).SetValueAsync(submittedAnswer);
+    }
+
+    public void TimeAndAttempts(string uid, string classCode, string moduleName, string item, string buildOrCollect, double timeSpent, int numAttempts)
+    {
+        Router.StoreTime(uid, classCode, moduleName, item, buildOrCollect).SetValueAsync(timeSpent);
+        Router.StoreAttempts(uid, classCode, moduleName, item, buildOrCollect).SetValueAsync(numAttempts);
+    }
+
+    public FirebaseUser GetUser()
+    {
+        auth = Firebase.Auth.FirebaseAuth.DefaultInstance;
+        Firebase.Auth.FirebaseUser user = auth.CurrentUser;
+        return user;
+    }
 
 }

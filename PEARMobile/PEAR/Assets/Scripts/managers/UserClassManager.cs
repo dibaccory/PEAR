@@ -13,9 +13,8 @@ public class UserClassManager : MonoBehaviour {
     public Button submitButton;
 
     public List<Classroom> classroomList = new List<Classroom>();
-    public List<Question> questionList = new List<Question>();
+    public List<Module> moduleList = new List<Module>();
 
-    Firebase.Auth.FirebaseAuth auth;
 
     public GameObject rowPrefab;
     public GameObject scrollContainer;
@@ -24,7 +23,7 @@ public class UserClassManager : MonoBehaviour {
     {
         submitButton.interactable = false;
 
-        string uid = GetUser().UserId;
+        string uid = DatabaseManager.sharedInstance.GetUser().UserId;
 
         classroomList.Clear();
 
@@ -34,38 +33,37 @@ public class UserClassManager : MonoBehaviour {
             InitalizeUI();
         });
 
-        //some test code on how to pull up and store some database info
-        string classCode = "test class";
-        string moduleName = "solar system";
-        string item = "earth";
-        string buildOrCollect = "build";
+        //string classCode = "astronomy";
+        //string moduleName = "solar system";
+        //string item = "earth";
+        //string buildOrCollect = "collect";
+        //double timeSpent = 2.54325;
+        //int numAttempts = 4;
 
-        DatabaseManager.sharedInstance.getQnA(classCode, moduleName, item, buildOrCollect, (result) =>
-        {
-            questionList = result;
-        });
-    }
 
-    private FirebaseUser GetUser()
-    {
-        auth = Firebase.Auth.FirebaseAuth.DefaultInstance;
-        Firebase.Auth.FirebaseUser user = auth.CurrentUser;
-        return user;
+        // DatabaseManager.sharedInstance.TimeAndAttempts(uid,classCode,moduleName,item,buildOrCollect,timeSpent,numAttempts);
+        //
+        //
+        // DatabaseManager.sharedInstance.GetModules(classCode, (result) =>
+        // {
+        //     moduleList = result;
+        //     InitalizeUI();
+        // });
     }
 
     void InitalizeUI()
     {
-        foreach(Classroom classroom in classroomList)
-        {
-            CreateRow(classroom);
-        }
+       foreach (Classroom classroom in classroomList)
+       {
+           CreateRow(classroom);
+       }
     }
 
     void CreateRow(Classroom classroom)
     {
-        GameObject newRow = Instantiate(rowPrefab) as GameObject;
-        newRow.GetComponent<RowConfig>().Initalize(classroom);
-        newRow.transform.SetParent(scrollContainer.transform, false);
+       GameObject newRow = Instantiate(rowPrefab) as GameObject;
+       newRow.GetComponent<RowConfig>().Initalize(classroom);
+       newRow.transform.SetParent(scrollContainer.transform, false);
     }
 
     public void ValidateClassCode()
@@ -84,10 +82,13 @@ public class UserClassManager : MonoBehaviour {
 
     public void OnAddClass()
     {
-        FirebaseUser user = GetUser();
+        FirebaseUser user = DatabaseManager.sharedInstance.GetUser();
         Classroom classroom = new Classroom(classCodeInput.text);
         DatabaseManager.sharedInstance.AddClass(classCodeInput.text, classroom, user);
         classroomList.Clear();
+
+
+        //Destroy all the row GameObjects currently in place
 
         DatabaseManager.sharedInstance.GetClasses(user.UserId, (result) =>
         {
@@ -97,4 +98,21 @@ public class UserClassManager : MonoBehaviour {
 
         });
     }
+
+    // void InitalizeUI()
+    // {
+    //     foreach (Module module in moduleList)
+    //     {
+    //         CreateRow(module);
+    //     }
+    // }
+    //
+    // void CreateRow(Module module)
+    // {
+    //     GameObject newRow = Instantiate(rowPrefab) as GameObject;
+    //     newRow.GetComponent<RowConfig>().Initalize(module);
+    //     newRow.transform.SetParent(scrollContainer.transform, false);
+    // }
+
+
 }
