@@ -150,9 +150,6 @@ public class DatabaseManager : MonoBehaviour
       });
     }
 
-
-}
-
     public void SubmitAnswer(string uid, string classCode, string moduleName, string item, string buildOrCollect, string questionNumber, string submittedAnswer)
     {
         Router.StoreUserAnswers(uid, classCode, moduleName, item, buildOrCollect, questionNumber).SetValueAsync(submittedAnswer);
