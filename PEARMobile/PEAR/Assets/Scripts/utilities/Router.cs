@@ -50,8 +50,6 @@ public class Router : MonoBehaviour
         return baseRef.Child("classrooms").Child(classCode).Child("modules").Child(moduleName).Child(item).Child(buildOrCollect);
     }
 
-
-
     public static DatabaseReference GetModules (string classCode)
     {
       return baseRef.Child("classrooms").Child(classCode).Child("modules");
@@ -74,9 +72,14 @@ public class Router : MonoBehaviour
         return baseRef.Child("answers").Child(uid).Child(classCode).Child("modules").Child(moduleName).Child(item).Child(buildOrCollect).Child(questionNumber).Child("answer given");
 
     }
-    public static DatabaseReference StoreTimeAndAttempt(string uid, string classCode, string moduleName, string item, string buildOrCollect)
+    public static DatabaseReference StoreTime(string uid, string classCode, string moduleName, string item, string buildOrCollect)
     {
-        return baseRef.Child("answers").Child(uid).Child(classCode).Child("modules").Child(moduleName).Child(item).Child(buildOrCollect);
+        return baseRef.Child("answers").Child(uid).Child(classCode).Child("modules").Child(moduleName).Child(item).Child(buildOrCollect).Child("time spent");
+
+    }
+    public static DatabaseReference StoreAttempts(string uid, string classCode, string moduleName, string item, string buildOrCollect)
+    {
+        return baseRef.Child("answers").Child(uid).Child(classCode).Child("modules").Child(moduleName).Child(item).Child(buildOrCollect).Child("no. of attempts");
 
     }
 

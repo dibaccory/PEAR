@@ -80,6 +80,25 @@ public class DatabaseManager : MonoBehaviour
         });
     }
 
+    public void GetModules(string classCode, Action<List<Module>> completionBlock)
+    {
+        List<Module> tempList = new List<Module>();
+
+        Router.GetModules(classCode).GetValueAsync().ContinueWith((task) =>
+        {
+            DataSnapshot moduleSnapshot = task.Result;
+            Debug.Log(moduleSnapshot.GetRawJsonValue());
+
+            foreach (DataSnapshot module in moduleSnapshot.Children)
+            {
+                var moduleDict = (IDictionary<string, object>)module.Value;
+                Module newModule = new Module(moduleDict);
+                tempList.Add(newModule);
+            }
+            completionBlock(tempList);
+        });
+    }
+
     public void getQnA(string classCode, string moduleName, string item, string buildOrCollect, Action<List<Question>> completionBlock)
     {
         List<Question> questionAndAnswerList = new List<Question>();
@@ -119,10 +138,11 @@ public class DatabaseManager : MonoBehaviour
     {
         Router.StoreUserAnswers(uid, classCode, moduleName, item, buildOrCollect, questionNumber).SetValueAsync(submittedAnswer);
     }
+
     public void TimeAndAttempts(string uid, string classCode, string moduleName, string item, string buildOrCollect, float timeSpent, int numAttempts)
     {
-        Router.StoreTimeAndAttempt(uid, classCode, moduleName, item, buildOrCollect).Child("time").SetValueAsync(timeSpent);
-        Router.StoreTimeAndAttempt(uid, classCode, moduleName, item, buildOrCollect).Child("attempts").SetValueAsync(numAttempts);
+        Router.StoreTime(uid, classCode, moduleName, item, buildOrCollect).SetValueAsync(timeSpent);
+        Router.StoreAttempts(uid, classCode, moduleName, item, buildOrCollect).SetValueAsync(numAttempts);
     }
 
     public FirebaseUser GetUser()
