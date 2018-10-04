@@ -30,41 +30,41 @@ public class UserClassManager : MonoBehaviour {
         DatabaseManager.sharedInstance.GetClasses(uid, (result) =>
         {
             classroomList = result;
-            //InitalizeUI();
-        });
-
-        string classCode = "astronomy";
-        string moduleName = "solar system";
-        string item = "earth";
-        string buildOrCollect = "collect";
-        double timeSpent = 2.54325;
-        int numAttempts = 4;
-
-
-        DatabaseManager.sharedInstance.TimeAndAttempts(uid,classCode,moduleName,item,buildOrCollect,timeSpent,numAttempts);
-
-
-        DatabaseManager.sharedInstance.GetModules(classCode, (result) =>
-        {
-            moduleList = result;
             InitalizeUI();
         });
+
+        //string classCode = "astronomy";
+        //string moduleName = "solar system";
+        //string item = "earth";
+        //string buildOrCollect = "collect";
+        //double timeSpent = 2.54325;
+        //int numAttempts = 4;
+
+
+        // DatabaseManager.sharedInstance.TimeAndAttempts(uid,classCode,moduleName,item,buildOrCollect,timeSpent,numAttempts);
+        //
+        //
+        // DatabaseManager.sharedInstance.GetModules(classCode, (result) =>
+        // {
+        //     moduleList = result;
+        //     InitalizeUI();
+        // });
     }
 
-    //void InitalizeUI()
-    //{
-    //    foreach (Classroom classroom in classroomList)
-    //    {
-    //        CreateRow(classroom);
-    //    }
-    //}
+    void InitalizeUI()
+    {
+       foreach (Classroom classroom in classroomList)
+       {
+           CreateRow(classroom);
+       }
+    }
 
-    //void CreateRow(Classroom classroom)
-    //{
-    //    GameObject newRow = Instantiate(rowPrefab) as GameObject;
-    //    newRow.GetComponent<RowConfig>().Initalize(classroom);
-    //    newRow.transform.SetParent(scrollContainer.transform, false);
-    //}
+    void CreateRow(Classroom classroom)
+    {
+       GameObject newRow = Instantiate(rowPrefab) as GameObject;
+       newRow.GetComponent<RowConfig>().Initalize(classroom);
+       newRow.transform.SetParent(scrollContainer.transform, false);
+    }
 
     public void ValidateClassCode()
     {
@@ -87,6 +87,9 @@ public class UserClassManager : MonoBehaviour {
         DatabaseManager.sharedInstance.AddClass(classCodeInput.text, classroom, user);
         classroomList.Clear();
 
+
+        //Destroy all the row GameObjects currently in place
+
         DatabaseManager.sharedInstance.GetClasses(user.UserId, (result) =>
         {
 
@@ -96,20 +99,20 @@ public class UserClassManager : MonoBehaviour {
         });
     }
 
-    void InitalizeUI()
-    {
-        foreach (Module module in moduleList)
-        {
-            CreateRow(module);
-        }
-    }
-
-    void CreateRow(Module module)
-    {
-        GameObject newRow = Instantiate(rowPrefab) as GameObject;
-        newRow.GetComponent<RowConfig>().Initalize(module);
-        newRow.transform.SetParent(scrollContainer.transform, false);
-    }
+    // void InitalizeUI()
+    // {
+    //     foreach (Module module in moduleList)
+    //     {
+    //         CreateRow(module);
+    //     }
+    // }
+    //
+    // void CreateRow(Module module)
+    // {
+    //     GameObject newRow = Instantiate(rowPrefab) as GameObject;
+    //     newRow.GetComponent<RowConfig>().Initalize(module);
+    //     newRow.transform.SetParent(scrollContainer.transform, false);
+    // }
 
 
 }
