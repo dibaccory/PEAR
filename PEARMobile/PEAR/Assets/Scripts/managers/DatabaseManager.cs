@@ -61,7 +61,7 @@ public class DatabaseManager : MonoBehaviour
 
     }
 
-    public void GetClasses(string uid, Action<List<Classroom>>completionBlock)
+    public void GetClasses(string uid, Action<List<Classroom>> completionBlock)
     {
         List<Classroom> tempList = new List<Classroom>();
 
@@ -113,22 +113,21 @@ public class DatabaseManager : MonoBehaviour
         });
     }
 
-    public Stack<string> getMaterialNames()
+    public void getMaterialNames(Action<Stack<string>> lambdaBuster)
     {
-      Stack<string> keys = new Stack<string>();
+      //Debug.Log("we in");
+      Stack<string> k = new Stack<string>();
 
       Router.ModuleMaterials("astronomy", "solar system").GetValueAsync().ContinueWith((task) =>
       {
         DataSnapshot materials = task.Result;
         foreach (DataSnapshot entry in materials.Children)
         {
-          Debug.Log("o");
           Debug.Log(entry.Key);
-          keys.Push(entry.Key);
+          k.Push(entry.Key);
         }
+        lambdaBuster(k);
       });
-      Debug.Log(keys);
-      return keys;
     }
 
 
