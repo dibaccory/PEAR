@@ -80,20 +80,18 @@ public class DatabaseManager : MonoBehaviour
         });
     }
 
-    public void GetModules(string classCode, Action<List<Module>> completionBlock)
+    public void GetModules(string classCode, Action<List<string>> completionBlock)
     {
-        List<Module> tempList = new List<Module>();
+        List<string> tempList = new List<string>();
 
         Router.GetModules(classCode).GetValueAsync().ContinueWith((task) =>
         {
             DataSnapshot moduleSnapshot = task.Result;
-            Debug.Log(moduleSnapshot.GetRawJsonValue());
 
             foreach (DataSnapshot module in moduleSnapshot.Children)
             {
-                var moduleDict = (IDictionary<string, object>)module.Value;
-                Module newModule = new Module(moduleDict);
-                tempList.Add(newModule);
+                var moduleKey = module.Key;
+                tempList.Add(moduleKey);
             }
             completionBlock(tempList);
         });
@@ -139,10 +137,30 @@ public class DatabaseManager : MonoBehaviour
         Router.StoreUserAnswers(uid, classCode, moduleName, item, buildOrCollect, questionNumber).SetValueAsync(submittedAnswer);
     }
 
+    //Code to use this function:
+    //DatabaseManager.sharedInstance.TimeAndAttempts(uid,classCode,moduleName,item,buildOrCollect,timeSpent,numAttempts);
+
     public void TimeAndAttempts(string uid, string classCode, string moduleName, string item, string buildOrCollect, double timeSpent, int numAttempts)
     {
         Router.StoreTime(uid, classCode, moduleName, item, buildOrCollect).SetValueAsync(timeSpent);
         Router.StoreAttempts(uid, classCode, moduleName, item, buildOrCollect).SetValueAsync(numAttempts);
+    }
+
+    public void ListItemsCollected(string uid,string classCode, string moduleName, Action<List<string>> completionBlock)
+    {
+        List<string> tempList = new List<string>();
+
+        Router.ListItemsCollected(uid,classCode,moduleName).GetValueAsync().ContinueWith((task) =>
+        {
+            DataSnapshot itemListSnapshot = task.Result;
+
+            foreach (DataSnapshot item in itemListSnapshot.Children)
+            {
+                var itemKey = item.Key;
+                tempList.Add(itemKey);
+            }
+            completionBlock(tempList);
+        });
     }
 
     public FirebaseUser GetUser()
