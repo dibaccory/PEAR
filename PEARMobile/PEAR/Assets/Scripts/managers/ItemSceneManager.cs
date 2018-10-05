@@ -27,10 +27,8 @@ public class ItemSceneManager : MonoBehaviour
     }
     public void OnAddItemButtonClick()
     {
-        Debug.Log("Item: " + currentItem.name);
         almanac = FindObjectOfType<Almanac>();
         almanac.AddItem(currentItem);
-        Debug.Log("Item " + currentItem.name + " added.");
     }
     public void OnQuestionButtonClick()
     {
@@ -47,9 +45,16 @@ public class ItemSceneManager : MonoBehaviour
         midAirPositioner.SetActive(false);
     }
 
+    public void returnToCollectButtonCLick()
+    {
+        var controller = FindObjectOfType<SceneController>();
+        controller.FadeAndLoadScene("CollectScene");
+    }
+
     void ToggleVideo(bool value)
     {
         videoQuad.SetActive(value);
         questionsQuad.SetActive(!value);
     }
+    
 }

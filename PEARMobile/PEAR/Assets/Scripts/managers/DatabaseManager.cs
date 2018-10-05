@@ -170,4 +170,8 @@ public class DatabaseManager : MonoBehaviour
         return user;
     }
 
+    public void Logout()
+    {
+        Debug.Log("Logout function invoked");
+    }
 }
