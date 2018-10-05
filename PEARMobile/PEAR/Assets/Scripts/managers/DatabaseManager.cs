@@ -103,6 +103,7 @@ public class DatabaseManager : MonoBehaviour
 
         Router.GetClassroomInfo(classCode, moduleName, item, buildOrCollect).GetValueAsync().ContinueWith((task) =>
         {
+            int qNum = 0;
             foreach (var question in task.Result.Children)
             {
                 string questionText = task.Result.Child(question.Key.ToString()).Child("question").Value.ToString();
@@ -125,22 +126,39 @@ public class DatabaseManager : MonoBehaviour
                     }
                     currentAnswerList.Add(currentAnswer);
                 }
-                questionAndAnswerList.Add(new Question(questionText, currentAnswerList));
+                questionAndAnswerList.Add(new Question(questionText, currentAnswerList, qNum++));
             }
             completionBlock(questionAndAnswerList);
         });
     }
 
 
-    public void SubmitAnswer(string uid, string classCode, string moduleName, string item, string buildOrCollect, string questionNumber, string submittedAnswer)
+    public void SubmitAnswer(string uid, 
+                             string classCode, 
+                             string moduleName, 
+                             string item, 
+                             string buildOrCollect, 
+                             string questionNumber, 
+                             string submittedAnswer)
     {
-        Router.StoreUserAnswers(uid, classCode, moduleName, item, buildOrCollect, questionNumber).SetValueAsync(submittedAnswer);
+        Router.StoreUserAnswers(uid, 
+                                classCode, 
+                                moduleName, 
+                                item, 
+                                buildOrCollect, 
+                                questionNumber).SetValueAsync(submittedAnswer);
     }
 
     //Code to use this function:
     //DatabaseManager.sharedInstance.TimeAndAttempts(uid,classCode,moduleName,item,buildOrCollect,timeSpent,numAttempts);
 
-    public void TimeAndAttempts(string uid, string classCode, string moduleName, string item, string buildOrCollect, double timeSpent, int numAttempts)
+    public void TimeAndAttempts(string uid, 
+                                string classCode, 
+                                string moduleName, 
+                                string item, 
+                                string buildOrCollect,
+                                double timeSpent, 
+                                int numAttempts)
     {
         Router.StoreTime(uid, classCode, moduleName, item, buildOrCollect).SetValueAsync(timeSpent);
         Router.StoreAttempts(uid, classCode, moduleName, item, buildOrCollect).SetValueAsync(numAttempts);

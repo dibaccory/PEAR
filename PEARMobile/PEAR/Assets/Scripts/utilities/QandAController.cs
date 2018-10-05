@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Firebase.Auth;
 
 public class QandAController : MonoBehaviour {
 
@@ -20,6 +21,8 @@ public class QandAController : MonoBehaviour {
     private bool isRoundActive = false;
     private int totalNumQuestions;
     private int numberCorrectlyAnswered;
+
+    private FirebaseUser firebaseUser;
 
     private IDictionary<Question, Answer> userAnswers = new Dictionary<Question, Answer>();
 
@@ -44,6 +47,7 @@ public class QandAController : MonoBehaviour {
             questionIndex = 0;
             ShowQuestion();
             isRoundActive = true;
+            firebaseUser = DatabaseManager.sharedInstance.GetUser();
         });
     }
 
@@ -76,7 +80,15 @@ public class QandAController : MonoBehaviour {
     {
         string message = "";
         string correctAnswer = GetCorrectAnswerText(questionPool[questionIndex]);
-        Debug.Log(correctAnswer);
+        // var uid = firebaseUser.UserId;
+        DatabaseManager.sharedInstance.SubmitAnswer("sqG05GXsh7TnGTiby9uMlDAkFz72", 
+                                                    "astronomy", 
+                                                    "solar system", 
+                                                    "earth", 
+                                                    "build", 
+                                                    questionPool[questionIndex].QuestionNumber.ToString(), 
+                                                    answer.answerText);
+
         if(answer.isCorrect)
         {
             Debug.Log("Correct answer clicked");
@@ -152,6 +164,13 @@ public class QandAController : MonoBehaviour {
 
         Debug.Log("Total time spent on this item: " + secondCount);
         Debug.Log("User answered " + percentCorrect * 100 + "% correctly");
+        DatabaseManager.sharedInstance.TimeAndAttempts("sqG05GXsh7TnGTiby9uMlDAkFz72",
+                                                       "astronomy",
+                                                       "solar system",
+                                                       "earth",
+                                                       "build",
+                                                       (double)secondCount,
+                                                       1);
     }
 
     // Update is called once per frame
