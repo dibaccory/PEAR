@@ -13,9 +13,8 @@ public class UserClassManager : MonoBehaviour {
     public Button submitButton;
 
     public List<Classroom> classroomList = new List<Classroom>();
-    public List<Question> questionList = new List<Question>();
+    public List<string> loginItemList = new List<string>();
 
-    Firebase.Auth.FirebaseAuth auth;
 
     public GameObject rowPrefab;
     public GameObject scrollContainer;
@@ -24,7 +23,7 @@ public class UserClassManager : MonoBehaviour {
     {
         submitButton.interactable = false;
 
-        string uid = GetUser().UserId;
+        string uid = DatabaseManager.sharedInstance.GetUser().UserId;
 
         classroomList.Clear();
 
@@ -34,28 +33,11 @@ public class UserClassManager : MonoBehaviour {
             InitalizeUI();
         });
 
-        //some test code on how to pull up and store some database info
-        string classCode = "test class";
-        string moduleName = "solar system";
-        string item = "earth";
-        string buildOrCollect = "build";
-
-        DatabaseManager.sharedInstance.getQnA(classCode, moduleName, item, buildOrCollect, (result) =>
-        {
-            questionList = result;
-        });
-    }
-
-    private FirebaseUser GetUser()
-    {
-        auth = Firebase.Auth.FirebaseAuth.DefaultInstance;
-        Firebase.Auth.FirebaseUser user = auth.CurrentUser;
-        return user;
     }
 
     void InitalizeUI()
     {
-        foreach(Classroom classroom in classroomList)
+        foreach (Classroom classroom in classroomList)
         {
             CreateRow(classroom);
         }
@@ -84,7 +66,7 @@ public class UserClassManager : MonoBehaviour {
 
     public void OnAddClass()
     {
-        FirebaseUser user = GetUser();
+        FirebaseUser user = DatabaseManager.sharedInstance.GetUser();
         Classroom classroom = new Classroom(classCodeInput.text);
         DatabaseManager.sharedInstance.AddClass(classCodeInput.text, classroom, user);
         classroomList.Clear();
@@ -97,4 +79,5 @@ public class UserClassManager : MonoBehaviour {
 
         });
     }
+
 }

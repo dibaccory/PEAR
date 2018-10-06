@@ -11,6 +11,7 @@ using Firebase.Auth;
 
 public class DatabaseManager : MonoBehaviour
 {
+    Firebase.Auth.FirebaseAuth auth;
 
     public static DatabaseManager sharedInstance = null;
 
@@ -57,7 +58,7 @@ public class DatabaseManager : MonoBehaviour
         string classJSON = JsonUtility.ToJson(classroom);
 
         Router.UserWithClass(user.UserId, classroom.classCode).SetRawJsonValueAsync(classJSON);
-        Router.ClassWithUser2(user.UserId, classroom.classCode).SetValueAsync(user.Email);
+        Router.ClassWithUser(user.UserId, classroom.classCode).SetValueAsync(user.Email);
 
     }
 
@@ -79,12 +80,30 @@ public class DatabaseManager : MonoBehaviour
         });
     }
 
+    public void GetModules(string classCode, Action<List<string>> completionBlock)
+    {
+        List<string> tempList = new List<string>();
+
+        Router.GetModules(classCode).GetValueAsync().ContinueWith((task) =>
+        {
+            DataSnapshot moduleSnapshot = task.Result;
+
+            foreach (DataSnapshot module in moduleSnapshot.Children)
+            {
+                var moduleKey = module.Key;
+                tempList.Add(moduleKey);
+            }
+            completionBlock(tempList);
+        });
+    }
+
     public void getQnA(string classCode, string moduleName, string item, string buildOrCollect, Action<List<Question>> completionBlock)
     {
         List<Question> questionAndAnswerList = new List<Question>();
 
         Router.GetClassroomInfo(classCode, moduleName, item, buildOrCollect).GetValueAsync().ContinueWith((task) =>
         {
+            int qNum = 0;
             foreach (var question in task.Result.Children)
             {
                 string questionText = task.Result.Child(question.Key.ToString()).Child("question").Value.ToString();
@@ -107,9 +126,73 @@ public class DatabaseManager : MonoBehaviour
                     }
                     currentAnswerList.Add(currentAnswer);
                 }
-                questionAndAnswerList.Add(new Question(questionText, currentAnswerList));
+                questionAndAnswerList.Add(new Question(questionText, currentAnswerList, qNum++));
             }
             completionBlock(questionAndAnswerList);
         });
+    }
+
+
+    public void SubmitAnswer(string uid, 
+                             string classCode, 
+                             string moduleName, 
+                             string item, 
+                             string buildOrCollect, 
+                             string questionNumber, 
+                             string submittedAnswer)
+    {
+        Router.StoreUserAnswers(uid, 
+                                classCode, 
+                                moduleName, 
+                                item, 
+                                buildOrCollect, 
+                                questionNumber).SetValueAsync(submittedAnswer);
+    }
+
+    //Code to use this function:
+    //DatabaseManager.sharedInstance.TimeAndAttempts(uid,classCode,moduleName,item,buildOrCollect,timeSpent,numAttempts);
+
+    public void TimeAndAttempts(string uid, 
+                                string classCode, 
+                                string moduleName, 
+                                string item, 
+                                string buildOrCollect,
+                                double timeSpent, 
+                                int numAttempts)
+    {
+        Router.StoreTime(uid, classCode, moduleName, item, buildOrCollect).SetValueAsync(timeSpent);
+        Router.StoreAttempts(uid, classCode, moduleName, item, buildOrCollect).SetValueAsync(numAttempts);
+    }
+
+    public void ListItemsCollected(string uid,string classCode, string moduleName, Action<List<string>> completionBlock)
+    {
+        List<string> tempList = new List<string>();
+
+        Router.ListItemsCollected(uid,classCode,moduleName).GetValueAsync().ContinueWith((task) =>
+        {
+            DataSnapshot itemListSnapshot = task.Result;
+
+            foreach (DataSnapshot item in itemListSnapshot.Children)
+            {
+                var itemKey = item.Key;
+                tempList.Add(itemKey);
+            }
+            completionBlock(tempList);
+        });
+    }
+
+    public FirebaseUser GetUser()
+    {
+        auth = Firebase.Auth.FirebaseAuth.DefaultInstance;
+        Firebase.Auth.FirebaseUser user = auth.CurrentUser;
+        return user;
+    }
+
+    public void Logout()
+    {
+        Debug.Log("Logout function invoked");
+        // TODO: This might not be the best place for this function
+        //       Needs to determine everything the user has gathered
+        //       and/or built and upload it to the database
     }
 }

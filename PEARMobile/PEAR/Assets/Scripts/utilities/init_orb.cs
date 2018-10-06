@@ -10,7 +10,8 @@ public class init_orb : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		List<Vector3> temp;
+		List<Vector3> temp = new List<Vector3>();
+
 		for(int i=0; i < count; i++) {
 			orb = Resources.Load("Orb") as GameObject;
 			Vector3 pos = Random.onUnitSphere*30;
@@ -18,7 +19,7 @@ public class init_orb : MonoBehaviour {
 
 			if(temp.Contains(pos) /* || check if within a certain distance of any of the currently added Vector3*/)
 
-			if(position.y < -10) { //Ensure user doesn't have to look to low
+			if(pos.y < -10) { //Ensure user doesn't have to look to low
 				pos.y = Mathf.Abs(pos.y);
 			}
 			Instantiate(orb, pos, Quaternion.identity);

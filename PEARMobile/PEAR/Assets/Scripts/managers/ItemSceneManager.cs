@@ -14,6 +14,8 @@ public class ItemSceneManager : MonoBehaviour
     public GameObject videoQuad;
     public GameObject questionsQuad;
     public GameObject midAirPositioner;
+    public GameObject itemModel;
+    public GameObject itemLabel;
 
     public Text questionText;
 
@@ -23,14 +25,16 @@ public class ItemSceneManager : MonoBehaviour
     void Awake()
     {
         ToggleVideo(true);
-        
+        var controller = FindObjectOfType<SceneController>();
+        currentItem = controller.activeItem;
+        itemModel.GetComponent<MeshRenderer>().material = currentItem.material;
+        itemLabel.GetComponent<TextMesh>().text = currentItem.itemName;
     }
+
     public void OnAddItemButtonClick()
     {
-        Debug.Log("Item: " + currentItem.name);
         almanac = FindObjectOfType<Almanac>();
         almanac.AddItem(currentItem);
-        Debug.Log("Item " + currentItem.name + " added.");
     }
     public void OnQuestionButtonClick()
     {
@@ -45,6 +49,12 @@ public class ItemSceneManager : MonoBehaviour
     public void OnMidAirPositionPlaced()
     {
         midAirPositioner.SetActive(false);
+    }
+
+    public void returnToCollectButtonCLick()
+    {
+        var controller = FindObjectOfType<SceneController>();
+        controller.FadeAndLoadScene("CollectScene");
     }
 
     void ToggleVideo(bool value)

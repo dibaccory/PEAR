@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Firebase.Auth;
 
 public class QandAController : MonoBehaviour {
 
@@ -12,11 +13,20 @@ public class QandAController : MonoBehaviour {
     public Transform answerButtonParent;
     public GameObject questionPanel;
     public GameObject roundEndPanel;
+    public GameObject roundFailedPanel;
     public GameObject questionAnsweredPanel;
 
     private List<Question> questionPool = new List<Question>();
     private int questionIndex;
     private bool isRoundActive = false;
+    private int totalNumQuestions;
+    private int numberCorrectlyAnswered;
+
+    private FirebaseUser firebaseUser;
+
+    private IDictionary<Question, Answer> userAnswers = new Dictionary<Question, Answer>();
+
+    private float secondCount;
 
     private List<GameObject> answerButtonGameObjects = new List<GameObject>();
     
@@ -32,9 +42,12 @@ public class QandAController : MonoBehaviour {
         DatabaseManager.sharedInstance.getQnA(classCode, moduleName, item, buildOrCollect, (result) =>
         {
             questionPool = result;
+            totalNumQuestions = questionPool.Count;
+            numberCorrectlyAnswered = 0;
             questionIndex = 0;
             ShowQuestion();
             isRoundActive = true;
+            firebaseUser = DatabaseManager.sharedInstance.GetUser();
         });
     }
 
@@ -63,16 +76,25 @@ public class QandAController : MonoBehaviour {
         }
     }
 
-    public void AnswerButtonClick(bool isCorrect)
+    public void AnswerButtonClick(Answer answer)
     {
         string message = "";
         string correctAnswer = GetCorrectAnswerText(questionPool[questionIndex]);
-        Debug.Log(correctAnswer);
-        if(isCorrect)
+        // var uid = firebaseUser.UserId;
+        DatabaseManager.sharedInstance.SubmitAnswer("sqG05GXsh7TnGTiby9uMlDAkFz72", 
+                                                    "astronomy", 
+                                                    "solar system", 
+                                                    "earth", 
+                                                    "build", 
+                                                    questionPool[questionIndex].QuestionNumber.ToString(), 
+                                                    answer.answerText);
+
+        if(answer.isCorrect)
         {
             Debug.Log("Correct answer clicked");
             message = "You're right! The correct answer was "
                             + correctAnswer;
+            numberCorrectlyAnswered++;
         }
         else
         {
@@ -80,7 +102,9 @@ public class QandAController : MonoBehaviour {
 
             message = "Sorry, the correct answer was "
                             + correctAnswer;
+            Debug.Log("User selected " + answer.answerText + " instead of " + correctAnswer);
         }
+        userAnswers.Add(questionPool[questionIndex], answer);
         correctAnswerTextBox.text = message;
         questionPanel.SetActive(false);
         questionText.enabled = false;
@@ -122,12 +146,36 @@ public class QandAController : MonoBehaviour {
         questionPanel.SetActive(false);
         questionAnsweredPanel.SetActive(false);
         questionText.enabled = false;
-        roundEndPanel.SetActive(true);
+
+        foreach(var item in userAnswers)
+        {
+            Debug.Log("User answered " + item.Value.answerText + " for the following question: ");
+            Debug.Log("Question Text: " + item.Key.QuestionText);
+        }
+        float percentCorrect = (float)numberCorrectlyAnswered / (float)totalNumQuestions;
+        if (percentCorrect > .50)
+        {
+            roundEndPanel.SetActive(true);
+        }
+        else
+        {
+            roundFailedPanel.SetActive(true);
+        }
+
+        Debug.Log("Total time spent on this item: " + secondCount);
+        Debug.Log("User answered " + percentCorrect * 100 + "% correctly");
+        DatabaseManager.sharedInstance.TimeAndAttempts("sqG05GXsh7TnGTiby9uMlDAkFz72",
+                                                       "astronomy",
+                                                       "solar system",
+                                                       "earth",
+                                                       "build",
+                                                       (double)secondCount,
+                                                       1);
     }
 
     // Update is called once per frame
     void Update ()
     {
-               		
+        secondCount += Time.deltaTime;
 	}
 }
