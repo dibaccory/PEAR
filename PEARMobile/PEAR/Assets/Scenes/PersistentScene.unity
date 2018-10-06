@@ -308,6 +308,15 @@ MonoBehaviour:
   fadeDuration: 1
   startingSceneName: ItemDisplay
   playerSaveData: {fileID: 11400000, guid: bc56ef5dc3097ab4994da357be65e89b, type: 2}
+  sun: {fileID: 11400000, guid: 60cb74570a8084843b72f4330181c21f, type: 2}
+  mercury: {fileID: 11400000, guid: 5895787a6b6b6ab42a9aa6136740f88e, type: 2}
+  venus: {fileID: 11400000, guid: 00f901f9405bc434a8dc825b877fd82c, type: 2}
+  earth: {fileID: 11400000, guid: fe0ba8249a63f40b5b2d8f1d357a9389, type: 2}
+  mars: {fileID: 11400000, guid: 60a0ab9a396bdf34dbee8e80908c0bf5, type: 2}
+  jupiter: {fileID: 11400000, guid: 6406a2e12cf0bab42bd043d5ecff702a, type: 2}
+  saturn: {fileID: 11400000, guid: e39b7b7530db6bd4c87209a788f1ca52, type: 2}
+  neptune: {fileID: 11400000, guid: 0f91e571cc01d1b458b9922cce0e5ad9, type: 2}
+  uranus: {fileID: 11400000, guid: 53c09149e420bc747b285f615063459e, type: 2}
 --- !u!4 &228081076
 Transform:
   m_ObjectHideFlags: 0

@@ -584,8 +584,10 @@ MonoBehaviour:
   videoQuad: {fileID: 449034770}
   questionsQuad: {fileID: 853499302}
   midAirPositioner: {fileID: 1533272333}
+  itemModel: {fileID: 1187200729}
+  itemLabel: {fileID: 502588783}
   questionText: {fileID: 187877227}
-  currentItem: {fileID: 11400000, guid: fe0ba8249a63f40b5b2d8f1d357a9389, type: 2}
+  currentItem: {fileID: 0}
 --- !u!4 &293593329
 Transform:
   m_ObjectHideFlags: 0
@@ -1348,7 +1350,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 502588783}
-  m_Text: Earth
+  m_Text: Item Label
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
@@ -2437,7 +2439,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: a9267223436693a4bb8e35161a24f8ba, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

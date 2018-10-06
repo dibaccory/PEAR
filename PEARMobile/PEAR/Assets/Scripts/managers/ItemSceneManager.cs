@@ -14,6 +14,8 @@ public class ItemSceneManager : MonoBehaviour
     public GameObject videoQuad;
     public GameObject questionsQuad;
     public GameObject midAirPositioner;
+    public GameObject itemModel;
+    public GameObject itemLabel;
 
     public Text questionText;
 
@@ -23,8 +25,12 @@ public class ItemSceneManager : MonoBehaviour
     void Awake()
     {
         ToggleVideo(true);
-        
+        var controller = FindObjectOfType<SceneController>();
+        currentItem = controller.activeItem;
+        itemModel.GetComponent<MeshRenderer>().material = currentItem.material;
+        itemLabel.GetComponent<TextMesh>().text = currentItem.itemName;
     }
+
     public void OnAddItemButtonClick()
     {
         almanac = FindObjectOfType<Almanac>();
@@ -56,5 +62,4 @@ public class ItemSceneManager : MonoBehaviour
         videoQuad.SetActive(value);
         questionsQuad.SetActive(!value);
     }
-    
 }

@@ -191,5 +191,8 @@ public class DatabaseManager : MonoBehaviour
     public void Logout()
     {
         Debug.Log("Logout function invoked");
+        // TODO: This might not be the best place for this function
+        //       Needs to determine everything the user has gathered
+        //       and/or built and upload it to the database
     }
 }

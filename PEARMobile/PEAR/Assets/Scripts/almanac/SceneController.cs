@@ -2,6 +2,7 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
 // This script exists in the Persistent scene and manages the content
 // based scene's loading.  It works on a principle that the
@@ -32,9 +33,28 @@ public class SceneController : MonoBehaviour
     // Flag used to determine if the Image is currently fading to or from black.
     private bool isFading;
 
+    public IDictionary<string, Item> itemDictionary = new Dictionary<string, Item>();
+    public Item sun;
+    public Item mercury;
+    public Item venus;
+    public Item earth;
+    public Item mars;
+    public Item jupiter;
+    public Item saturn;
+    public Item neptune;
+    public Item uranus;
+
+    public Item activeItem;
+
 
     private IEnumerator Start()
     {
+        // Setup all available items
+        SetupItemDictionary();
+
+        // Default item is earth for testing
+        activeItem = earth;
+
         // Set the initial alpha to start off with a black screen.
         faderCanvasGroup.alpha = 1f;
 
@@ -44,6 +64,19 @@ public class SceneController : MonoBehaviour
         // Once the scene is finished loading, start fading in.
         StartCoroutine(Fade(0f));
 
+    }
+
+    private void SetupItemDictionary()
+    {
+        itemDictionary.Add("sun",       sun);
+        itemDictionary.Add("mercury",   mercury);
+        itemDictionary.Add("venus",     venus);
+        itemDictionary.Add("earth",     earth);
+        itemDictionary.Add("mars",      mars);
+        itemDictionary.Add("jupiter",   jupiter);
+        itemDictionary.Add("saturn",    saturn);
+        itemDictionary.Add("neptune",   neptune);
+        itemDictionary.Add("uranus",    uranus);
     }
 
 

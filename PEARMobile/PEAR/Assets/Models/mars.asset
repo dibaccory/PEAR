@@ -9,7 +9,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bcbab50924ea846888d97698a29387b4, type: 3}
-  m_Name: VulcanItem
+  m_Name: mars
   m_EditorClassIdentifier: 
-  itemName: Vulcan
-  sprite: {fileID: 21300000, guid: 33158c7d1da2f1f45948813a89c959f0, type: 3}
+  itemName: 
+  sprite: {fileID: 0}
+  material: {fileID: 0}
