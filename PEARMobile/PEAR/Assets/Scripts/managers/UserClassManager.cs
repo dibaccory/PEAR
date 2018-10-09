@@ -14,7 +14,7 @@ public class UserClassManager : MonoBehaviour {
     public Button submitButton;
 
     public List<Classroom> classroomList = new List<Classroom>();
-    public List<Module> moduleList      = new List<Module>();
+    public List<string> moduleList      = new List<string>();
     public List<string> loginItemList = new List<string>();
 
 
@@ -59,13 +59,13 @@ public class UserClassManager : MonoBehaviour {
        newRow.GetComponent<Button>().onClick.AddListener(
        delegate()
        {
-          OnClassroomClick( newRow.GetComponent<RowConfig>().classCode.text );
+          OnClassroomClick( newRow.GetComponent<RowConfig>().text.text );
        });
 
        newRow.transform.SetParent(classScroll.transform, false);
     }
 
-    void CreateModuleRow(Module module)
+    void CreateModuleRow(string module)
     {
         Debug.Log("woop");
         GameObject newRow = Instantiate(moduleItem) as GameObject;
@@ -96,7 +96,7 @@ public class UserClassManager : MonoBehaviour {
       DatabaseManager.sharedInstance.GetModules(classCode, (m) =>
      {
          moduleList = m;
-         foreach (Module module in moduleList)
+         foreach (string module in moduleList)
          {
              CreateModuleRow(module);
          }
