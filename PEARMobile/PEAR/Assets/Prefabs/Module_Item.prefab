@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   classCode: {fileID: 0}
-  moduleName: {fileID: 114929973742265518}
+  moduleName: {fileID: 0}
 --- !u!114 &114212789105245600
 MonoBehaviour:
   m_ObjectHideFlags: 1

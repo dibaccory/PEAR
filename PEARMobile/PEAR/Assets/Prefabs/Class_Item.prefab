@@ -85,7 +85,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 876feed79e0755d478a329739c424454, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  classCode: {fileID: 114238217996301474}
+  classCode: {fileID: 0}
   moduleName: {fileID: 0}
 --- !u!114 &114238217996301474
 MonoBehaviour:
