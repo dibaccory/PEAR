@@ -5,17 +5,16 @@ using UnityEngine.UI;
 
 public class RowConfig : MonoBehaviour {
 
-    public Text classCode;
-    public Text moduleName;
+    public Text text;
 
     public void Initalize(Classroom classroom)
     {
         Debug.Log("classroom init");
-        this.classCode.text = classroom.classCode;
+        this.text.text = classroom.classCode;
     }
-    public void Initalize(Module module)
+    public void Initalize(string moduleKey)
     {
         Debug.Log("module init");
-        this.moduleName.text = module.moduleName;
+        this.text.text = moduleKey;
     }
 }

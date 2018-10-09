@@ -33,13 +33,17 @@ public class Almanac : MonoBehaviour
 
     public void AddItem(Item itemToAdd)
     {
-        if (items.Count < 9)
+        if (items.Count < 9 && !items.Contains(itemToAdd))
         {
             items.Add(itemToAdd);
         }
-        else
+        else if(items.Contains(itemToAdd))
         {
-            // TODO: Handle full inventory error
+            // TODO: Handle item already in inventory error
+        }
+        else if (items.Count >= 9)
+        {
+            // TODO: Handle inventory full error
         }
         UpdatePanelSlots();
     }

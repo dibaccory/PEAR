@@ -15,6 +15,7 @@ public class UserClassManager : MonoBehaviour {
 
     public List<Classroom> classroomList = new List<Classroom>();
     public List<Module> moduleList      = new List<Module>();
+    public List<string> loginItemList = new List<string>();
 
 
     public GameObject classItem;
