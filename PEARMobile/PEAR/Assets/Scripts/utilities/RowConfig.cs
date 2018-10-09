@@ -7,7 +7,7 @@ public class RowConfig : MonoBehaviour {
 
     public Text classCode;
     public Text moduleName;
-   
+
     public void Initalize(Classroom classroom)
     {
         Debug.Log("classroom init");

@@ -87,7 +87,7 @@ public class DatabaseManager : MonoBehaviour
         Router.GetModules(classCode).GetValueAsync().ContinueWith((task) =>
         {
             DataSnapshot moduleSnapshot = task.Result;
-            Debug.Log(moduleSnapshot.GetRawJsonValue());
+            //Debug.Log(moduleSnapshot.GetRawJsonValue());
 
             foreach (DataSnapshot module in moduleSnapshot.Children)
             {
