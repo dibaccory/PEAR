@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase/app';
+import { Router } from '@angular/router';
 
 // import { AngularFireDatabase } from '@angular/fire/database';
 // import { Observable } from 'rxjs';
@@ -16,15 +17,10 @@ export class LoginComponent implements OnInit {
     password: ''
  };
 
-  model = {
-    left: true,
-    middle: false,
-    right: false
-};
+  constructor(public afAuth: AngularFireAuth, private router: Router) {
+ }
 
-// constructor(public afAuth: AngularFireAuth) {
-// }
-login() {
+// login() {
   // this.afAuth.auth.signInWithEmailAndPassword(this.user.email, this.user.password);
       // .then((res) => {
       //   console.log(res);
@@ -35,29 +31,42 @@ login() {
       //   alert('Wrong password.');
       //   // this.router.navigate(['teachers'])
       // });
-  }
+  // }
+
+login() {
+  this.afAuth.auth.signInWithEmailAndPassword(this.user.email, this.user.password)
+    .then((res) => {
+      console.log(res);
+      this.router.navigate(['dashboard']);
+    })
+    .catch(function(error) {
+      // Handle Errors here.
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      if (errorCode === 'auth/wrong-password') {
+        alert('Wrong password.');
+      } else {
+        alert(errorMessage);
+      }
+      console.log(error);
+      // ...
+
+    // this.afAuth.auth.signInWithEmailAndPassword(this.user.email, this.user.password)
+    //   .then((res) => {
+    //     console.log(res);
+    //     this.router.navigate(['dashboard'])
+    //   })
+    //   .catch((err) => {
+    //     console.log('error: ' + err);
+    //     alert('Wrong password.');
+    //     // this.router.navigate(['teachers'])
+    //   }
+  });
+}
 
 // logout() {
 //   this.afAuth.auth.signOut();
 // }
-
-  // login() {
-  //   // this.afAuth.auth.signInWithEmailAndPassword(this.user.email, this.user.password).catch(function(error) {
-  //   //   const errorCode = error.code;
-  //   //   const errorMessage: string = error.message;
-  //   this.afAuth.auth.signInWithEmailAndPassword(this.user.email, this.user.password)
-  //       .then((res) => {
-  //         console.log(res);
-  //       })
-  //       .catch((err) => {
-  //         console.log('error: ' + err);
-  //         alert('Wrong password.');
-  //   });
-  // }
-
-  // logout() {
-  //   this.afAuth.auth.signOut();
-  // }
 
   ngOnInit() {
   }

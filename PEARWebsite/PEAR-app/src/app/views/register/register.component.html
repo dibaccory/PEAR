@@ -1,30 +1,40 @@
-<!-- <div class="row">
+<div class="row">
 	<div class="col-3"></div>
 		<div class="col-6">
 			<form name="userform" method="post" #formCtrl="ngForm">
-				<h3 align="center">Register Form</h3>
+				<h3 align="center">Create an account</h3>
 				<div class="form-group">
-					<label for="exampleInputEmail1">First Name</label>
-					<input type="email" class="form-control" [(ngModel)]="user.fName" name="fName" placeholder="First Name" required>
+					<div class="row">
+						<div class="col">
+							<label for="exampleInputFirstName1">First Name</label>
+							<input type="fName" class="form-control" [(ngModel)]="user.fName" name="fName" placeholder="First Name" required>
+						</div>
+						<div class="col">
+							<label for="exampleInputLastName1">Last Name</label>
+							<input type="lName" class="form-control" [(ngModel)]="user.lName" name="lName" placeholder="Last Name" required>
+						</div>
+					</div>
 				</div>
-				<div class="form-group">
-					<label for="exampleInputPassword1">Last Name</label>
-					<input type="password" class="form-control" [(ngModel)]="user.lName" name="lName" placeholder="Last Name" required>
-        </div>
         <div class="form-group">
           <label for="exampleInputEmail1">Email address</label>
           <input type="email" class="form-control" [(ngModel)]="user.email" name="email" placeholder="Email" required>
         </div>
         <div class="form-group">
           <label for="exampleInputPassword1">Password</label>
-          <input type="password" class="form-control" [(ngModel)]="user.password" name="password" placeholder="Password" required>
-        </div>
+          <input type="password" class="form-control" [(ngModel)]="user.password" name="password" placeholder="Minimum 6 characters" required>
+				</div>
+				<div class="form-group">
+					<fieldset disabled>
+						<label for="exampleInputClassCode1">Class Code</label>
+						<input type="classCode" class="form-control" [(ngModel)]="user.classCode" name="classCode" placeholder="Astronomy">
+					</fieldset>
+				</div>
 
 				<div class="form-group">
-					<button type="buton" class="btn btn-primary btn-block" style="margin-bottom: 20px" (click)="register()" [disabled]="formCtrl.form.invalid">
-						Login with Email
+					<button type="buton" class="btn btn-primary btn-block" style="margin-bottom: 20px" (click)="register()">
+						Register
 					</button>
 				</div>
 			</form>
 		</div>
-</div> -->
+</div>

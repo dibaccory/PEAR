@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 // Angularfire2
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 
 // My created components
 import { DashboardComponent } from '../app/views/dashboard/dashboard.component';
@@ -30,6 +31,7 @@ import { CarouselComponent } from '../app/views/carousel/carousel.component';
     NgbModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebase, 'PEAR'),
     AngularFireDatabaseModule,
+    AngularFireAuthModule,
     AppRoutingModule,
     NgxChartsModule,
     GoogleChartsModule
