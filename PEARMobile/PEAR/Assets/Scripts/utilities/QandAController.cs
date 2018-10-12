@@ -81,12 +81,15 @@ public class QandAController : MonoBehaviour {
         string message = "";
         string correctAnswer = GetCorrectAnswerText(questionPool[questionIndex]);
         // var uid = firebaseUser.UserId;
+
+        string questionString = "question" + questionPool[questionIndex].QuestionNumber.ToString();
+
         DatabaseManager.sharedInstance.SubmitAnswer("sqG05GXsh7TnGTiby9uMlDAkFz72", 
                                                     "astronomy", 
                                                     "solar system", 
                                                     "earth", 
                                                     "build", 
-                                                    questionPool[questionIndex].QuestionNumber.ToString(), 
+                                                    questionString, 
                                                     answer.answerText);
 
         if(answer.isCorrect)
