@@ -24,8 +24,8 @@ You need two terminals.
 2. On second terminal run `firebase serve` to open on `http://localhost:5000`
 
 ## To deploy
-1. Build the angular project for production `ng build --prod` on first terminal
-2. On another terminal run `firebase delpoy` and navigate to [PEAR Website](http://pear-f60a2.firebaseapp.com)
+1. Build the angular project for production `ng build --prod`
+2. Then run `firebase delpoy` and navigate to [PEAR Website](http://pear-f60a2.firebaseapp.com)
 
 --------------
 ## Development server
