@@ -307,6 +307,7 @@ MonoBehaviour:
   faderCanvasGroup: {fileID: 521956155}
   fadeDuration: 1
   startingSceneName: ItemDisplay
+  currentScene: 
   playerSaveData: {fileID: 11400000, guid: bc56ef5dc3097ab4994da357be65e89b, type: 2}
   sun: {fileID: 11400000, guid: 60cb74570a8084843b72f4330181c21f, type: 2}
   mercury: {fileID: 11400000, guid: 5895787a6b6b6ab42a9aa6136740f88e, type: 2}
@@ -779,6 +780,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 1550726281}
     m_Modifications:
+    - target: {fileID: 114979387567497908, guid: e598967b6d21f49b0853c77fcf57ca7a,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 224495131926807270, guid: e598967b6d21f49b0853c77fcf57ca7a,
         type: 2}
       propertyPath: m_LocalPosition.x
@@ -929,6 +935,16 @@ Prefab:
         type: 2}
       propertyPath: m_RaycastTarget
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114979387567497908, guid: e598967b6d21f49b0853c77fcf57ca7a,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114979387567497908, guid: e598967b6d21f49b0853c77fcf57ca7a,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e598967b6d21f49b0853c77fcf57ca7a, type: 2}
