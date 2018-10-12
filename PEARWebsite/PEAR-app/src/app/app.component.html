@@ -1,8 +1,27 @@
 <div *ngIf="loggedIn; else loggedOut">
   <app-dashboard></app-dashboard>
-</div>  
+</div> 
+
+<!-- <div *ngIf="afAuth.user | async as user; else loggedOut">
+  <app-dashboard></app-dashboard>
+  <h1>Hello {{ user.displayName }}!</h1>
+  <button (click)="logout()">Logout</button>
+</div> -->
 
 <ng-template #loggedOut>
   <app-splashpage></app-splashpage>
-  <!-- <p>You are logged out: Cue splash page</p> -->
+  <!-- <p>Please login.</p> -->
+  <!-- <button (click)="login()">Login</button> -->
 </ng-template>
+
+
+<!-- <div *ngIf="afAuth.user | async as user; else loggedOut"> -->
+  <!-- <app-dashboard></app-dashboard> -->
+  <!-- <h1>Hello {{ user.displayName }}!</h1> -->
+  <!-- <button (click)="logout()">Logout</button> -->
+<!-- </div> -->
+
+<!-- <ng-template #loggedOut> -->
+  <!-- <app-splashpage></app-splashpage> -->
+  <!-- <p>You are logged out: Cue splash page</p> -->
+<!-- </ng-template> -->
