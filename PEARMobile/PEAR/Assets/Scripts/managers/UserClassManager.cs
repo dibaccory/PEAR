@@ -67,7 +67,7 @@ public class UserClassManager : MonoBehaviour {
 
     void CreateModuleRow(string module)
     {
-        Debug.Log("woop");
+        
         GameObject newRow = Instantiate(moduleItem) as GameObject;
         newRow.GetComponent<RowConfig>().Initalize(module);
         newRow.GetComponent<Button>().onClick.AddListener(
@@ -140,7 +140,7 @@ public class UserClassManager : MonoBehaviour {
 
     public void OnModuleClick(string module)
     {
-      SceneManager.LoadScene("CollectScene");
+      SceneManager.LoadScene("PersistentScene");
     }
 
 }
