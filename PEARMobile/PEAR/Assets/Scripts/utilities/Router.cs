@@ -58,8 +58,8 @@ public class Router : MonoBehaviour
     //Get all the Materials for current module
     public static DatabaseReference ModuleMaterials (string classCode, string moduleName)
     {
-        //Do we have a getCurrentModule function?
-        return baseRef.Child("classrooms").Child(classCode).Child("modules").Child("solar system");
+      //Do we have a getCurrentModule function?
+        return baseRef.Child("classrooms").Child(classCode).Child("modules").Child(moduleName);
     }
 
     /*

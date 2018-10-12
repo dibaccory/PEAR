@@ -6,6 +6,7 @@ using Firebase;
 using Firebase.Auth;
 using System;
 using Firebase.Database;
+using UnityEngine.SceneManagement;
 
 public class UserClassManager : MonoBehaviour {
 
@@ -13,42 +14,97 @@ public class UserClassManager : MonoBehaviour {
     public Button submitButton;
 
     public List<Classroom> classroomList = new List<Classroom>();
+    public List<string> moduleList      = new List<string>();
     public List<string> loginItemList = new List<string>();
 
 
-    public GameObject rowPrefab;
-    public GameObject scrollContainer;
+    public GameObject classItem;
+    public GameObject moduleItem;
+    public GameObject classScroll;
+    public GameObject moduleScroll;
+    public string uid;
+    //public string classCode;
 
     private void Awake()
     {
         submitButton.interactable = false;
 
-        string uid = DatabaseManager.sharedInstance.GetUser().UserId;
+        uid = DatabaseManager.sharedInstance.GetUser().UserId;
 
         classroomList.Clear();
+        UpdateClasses();
 
-        DatabaseManager.sharedInstance.GetClasses(uid, (result) =>
+        //string classCode = "astronomy";
+        //string moduleName = "solar system";
+        //string item = "earth";
+        //string buildOrCollect = "collect";
+        //double timeSpent = 2.54325;
+        //int numAttempts = 4;
+
+
+        // DatabaseManager.sharedInstance.TimeAndAttempts(uid,classCode,moduleName,item,buildOrCollect,timeSpent,numAttempts);
+        //
+        //
+        // DatabaseManager.sharedInstance.GetModules(classCode, (result) =>
+        // {
+        //     moduleList = result;
+        //     InitalizeUI();
+        // });
+    }
+
+    void CreateClassRow(Classroom classroom)
+    {
+       GameObject newRow = Instantiate(classItem) as GameObject;
+       newRow.GetComponent<RowConfig>().Initalize(classroom);
+       newRow.GetComponent<Button>().onClick.AddListener(
+       delegate()
+       {
+          OnClassroomClick( newRow.GetComponent<RowConfig>().text.text );
+       });
+
+       newRow.transform.SetParent(classScroll.transform, false);
+    }
+
+    void CreateModuleRow(string module)
+    {
+        Debug.Log("woop");
+        GameObject newRow = Instantiate(moduleItem) as GameObject;
+        newRow.GetComponent<RowConfig>().Initalize(module);
+        newRow.GetComponent<Button>().onClick.AddListener(
+        delegate()
         {
-            classroomList = result;
-            InitalizeUI();
+          OnModuleClick("CollectScene");
         });
 
+        newRow.transform.SetParent(moduleScroll.transform, false);
     }
 
-    void InitalizeUI()
+    void UpdateClasses()
     {
-        foreach (Classroom classroom in classroomList)
-        {
-            CreateRow(classroom);
-        }
+      DatabaseManager.sharedInstance.GetClasses(uid, (c) =>
+      {
+          classroomList = c;
+          foreach (Classroom classroom in classroomList)
+          {
+              CreateClassRow(classroom);
+          }
+      });
     }
 
-    void CreateRow(Classroom classroom)
+    void UpdateModules(string classCode)
     {
-        GameObject newRow = Instantiate(rowPrefab) as GameObject;
-        newRow.GetComponent<RowConfig>().Initalize(classroom);
-        newRow.transform.SetParent(scrollContainer.transform, false);
+      DatabaseManager.sharedInstance.GetModules(classCode, (m) =>
+     {
+         moduleList = m;
+         foreach (string module in moduleList)
+         {
+             CreateModuleRow(module);
+         }
+     });
     }
+
+
+
 
     public void ValidateClassCode()
     {
@@ -71,13 +127,20 @@ public class UserClassManager : MonoBehaviour {
         DatabaseManager.sharedInstance.AddClass(classCodeInput.text, classroom, user);
         classroomList.Clear();
 
-        DatabaseManager.sharedInstance.GetClasses(user.UserId, (result) =>
-        {
 
-            classroomList = result;
-            InitalizeUI();
+        //Destroy all the row GameObjects currently in place
 
-        });
+        UpdateClasses();
+    }
+
+    public void OnClassroomClick(string classCode)
+    {
+        UpdateModules(classCode);
+    }
+
+    public void OnModuleClick(string module)
+    {
+      SceneManager.LoadScene("CollectScene");
     }
 
 }

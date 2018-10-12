@@ -21,7 +21,7 @@ public class SaveData : ScriptableObject
     [Serializable]
     public class KeyValuePairLists<T>
     {
-        public List<string> keys = new List<string>();      // The keys are unique identifiers for each element of data. 
+        public List<string> keys = new List<string>();      // The keys are unique identifiers for each element of data.
         public List<T> values = new List<T>();              // The values are the elements of data.
 
 

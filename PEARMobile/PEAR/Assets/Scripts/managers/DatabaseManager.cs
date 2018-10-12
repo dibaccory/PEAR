@@ -62,7 +62,7 @@ public class DatabaseManager : MonoBehaviour
 
     }
 
-    public void GetClasses(string uid, Action<List<Classroom>>completionBlock)
+    public void GetClasses(string uid, Action<List<Classroom>> completionBlock)
     {
         List<Classroom> tempList = new List<Classroom>();
 
@@ -87,6 +87,7 @@ public class DatabaseManager : MonoBehaviour
         Router.GetModules(classCode).GetValueAsync().ContinueWith((task) =>
         {
             DataSnapshot moduleSnapshot = task.Result;
+            //Debug.Log(moduleSnapshot.GetRawJsonValue());
 
             foreach (DataSnapshot module in moduleSnapshot.Children)
             {
@@ -113,7 +114,7 @@ public class DatabaseManager : MonoBehaviour
                 for (int i = 0; i < loop; i++)
                 {
                     string answer = "A" + (i + 1).ToString();
-                    
+
                     string answerText = task.Result.Child(question.Key.ToString()).Child("answers").Child(answer).Value.ToString();
                     Answer currentAnswer = new Answer(answerText, true);
                     if (i == 0)
@@ -132,32 +133,48 @@ public class DatabaseManager : MonoBehaviour
         });
     }
 
+    public void getMaterialNames(Action<Stack<string>> lambdaBuster)
+    {
+      //Debug.Log("we in");
+      Stack<string> k = new Stack<string>();
 
-    public void SubmitAnswer(string uid, 
-                             string classCode, 
-                             string moduleName, 
-                             string item, 
-                             string buildOrCollect, 
-                             string questionNumber, 
+      Router.ModuleMaterials("astronomy", "solar system").GetValueAsync().ContinueWith((task) =>
+      {
+        DataSnapshot materials = task.Result;
+        foreach (DataSnapshot entry in materials.Children)
+        {
+          Debug.Log(entry.Key);
+          k.Push(entry.Key);
+        }
+        lambdaBuster(k);
+      });
+    }
+
+    public void SubmitAnswer(string uid,
+                             string classCode,
+                             string moduleName,
+                             string item,
+                             string buildOrCollect,
+                             string questionNumber,
                              string submittedAnswer)
     {
-        Router.StoreUserAnswers(uid, 
-                                classCode, 
-                                moduleName, 
-                                item, 
-                                buildOrCollect, 
+        Router.StoreUserAnswers(uid,
+                                classCode,
+                                moduleName,
+                                item,
+                                buildOrCollect,
                                 questionNumber).SetValueAsync(submittedAnswer);
     }
 
     //Code to use this function:
     //DatabaseManager.sharedInstance.TimeAndAttempts(uid,classCode,moduleName,item,buildOrCollect,timeSpent,numAttempts);
 
-    public void TimeAndAttempts(string uid, 
-                                string classCode, 
-                                string moduleName, 
-                                string item, 
+    public void TimeAndAttempts(string uid,
+                                string classCode,
+                                string moduleName,
+                                string item,
                                 string buildOrCollect,
-                                double timeSpent, 
+                                double timeSpent,
                                 int numAttempts)
     {
         Router.StoreTime(uid, classCode, moduleName, item, buildOrCollect).SetValueAsync(timeSpent);
