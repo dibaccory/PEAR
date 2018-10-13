@@ -82,6 +82,10 @@ public class LoginFormManager : MonoBehaviour {
             yield return new WaitForSeconds(1.5f);
             SceneManager.LoadScene("UserProfile");
         }
+        else
+        {
+          UpdateStatus("What the fuck");
+        }
     }
 
     void OnDestroy()
