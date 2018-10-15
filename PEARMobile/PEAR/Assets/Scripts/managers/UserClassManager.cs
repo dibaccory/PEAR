@@ -32,7 +32,6 @@ public class UserClassManager : MonoBehaviour {
             classroomList = result;
             InitalizeUI();
         });
-
     }
 
     void InitalizeUI()

@@ -164,6 +164,22 @@ public class DatabaseManager : MonoBehaviour
         Router.StoreAttempts(uid, classCode, moduleName, item, buildOrCollect).SetValueAsync(numAttempts);
     }
 
+    public void IncreaseAttempts(string uid,
+                                string classCode,
+                                string moduleName,
+                                string item,
+                                string buildOrCollect)
+    {
+        Router.StoreAttempts(uid, classCode, moduleName, item, buildOrCollect).GetValueAsync().ContinueWith((task) =>
+        {
+            DataSnapshot snapshot = task.Result;
+            int num = Convert.ToInt32(snapshot.Value.ToString());
+            num++;
+            Router.StoreAttempts(uid, classCode, moduleName, item, buildOrCollect).SetValueAsync(num);
+        });
+
+    }
+
     public void ListItemsCollected(string uid,string classCode, string moduleName, Action<List<string>> completionBlock)
     {
         List<string> tempList = new List<string>();

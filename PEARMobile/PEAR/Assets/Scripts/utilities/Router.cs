@@ -87,5 +87,10 @@ public class Router : MonoBehaviour
         return baseRef.Child("answers").Child(uid).Child(classCode).Child("modules").Child(moduleName);
     }
 
+    public static DatabaseReference IncreaseAttempts(string uid, string classCode, string moduleName, string item, string buildOrCollect)
+    {
+        return baseRef.Child("answers").Child(uid).Child(classCode).Child("modules").Child(moduleName).Child(item).Child(buildOrCollect).Child("attempts");
+    }
+
 
 }
