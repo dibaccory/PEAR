@@ -12,24 +12,19 @@ import { auth } from 'firebase/app';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
+
+  constructor(public afAuth: AngularFireAuth) {
+  }
+
   title = 'PEAR';
-  loggedIn = false;
-  // user = this.afAuth.auth.currentUser;
+  loggedIn = this.afAuth.auth.currentUser;
 
-  // user:
-  // {
-  //   email: string,
-  //   password: string
-  // };
-
-  // constructor(public afAuth: AngularFireAuth) {
+  // loggedInF() {
   //   this.afAuth.auth.onAuthStateChanged(function(user) {
   //     if (user) {
-  //       // User is signed in.
-  //       // const loggedIn = true;
+  //       // User is logged in
   //     } else {
-  //       // No user is signed in.
-  //       // const loggedIn = false;
+  //       // User is logged out
   //     }
   //   });
   // }

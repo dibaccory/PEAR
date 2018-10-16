@@ -1,85 +1,29 @@
-[debug] [2018-10-03T19:39:08.542Z] ----------------------------------------------------------------------
-[debug] [2018-10-03T19:39:08.545Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\KeniaCastro\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase serve
-[debug] [2018-10-03T19:39:08.545Z] CLI Version:   4.2.1
-[debug] [2018-10-03T19:39:08.545Z] Platform:      win32
-[debug] [2018-10-03T19:39:08.545Z] Node Version:  v8.12.0
-[debug] [2018-10-03T19:39:08.546Z] Time:          Wed Oct 03 2018 15:39:08 GMT-0400 (Eastern Daylight Time)
-[debug] [2018-10-03T19:39:08.546Z] ----------------------------------------------------------------------
+[debug] [2018-10-16T16:35:42.400Z] ----------------------------------------------------------------------
+[debug] [2018-10-16T16:35:42.403Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\KeniaCastro\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase serve
+[debug] [2018-10-16T16:35:42.404Z] CLI Version:   5.0.1
+[debug] [2018-10-16T16:35:42.404Z] Platform:      win32
+[debug] [2018-10-16T16:35:42.404Z] Node Version:  v8.12.0
+[debug] [2018-10-16T16:35:42.405Z] Time:          Tue Oct 16 2018 12:35:42 GMT-0400 (Eastern Daylight Time)
+[debug] [2018-10-16T16:35:42.405Z] ----------------------------------------------------------------------
 [debug] 
-[debug] [2018-10-03T19:39:08.562Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
-[debug] [2018-10-03T19:39:08.563Z] > authorizing via signed-in user
-[debug] [2018-10-03T19:39:08.566Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
-[debug] [2018-10-03T19:39:08.566Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
-
-[debug] [2018-10-03T19:39:08.740Z] <<< HTTP RESPONSE 200
-[debug] [2018-10-03T19:39:08.787Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/pear-f60a2  
- 
-[debug] [2018-10-03T19:39:09.784Z] <<< HTTP RESPONSE 200
-[debug] [2018-10-03T19:39:09.785Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/pear-f60a2  
- 
-[debug] [2018-10-03T19:39:10.025Z] <<< HTTP RESPONSE 200
-[info] 
-[info] === Serving from 'C:\Users\KeniaCastro\Desktop\PEAR\PEARWebsite\PEAR-app'...
-[info] 
-[debug] [2018-10-03T19:39:10.030Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/962088956383/clients/_:getWebAppConfig  
- 
-[debug] [2018-10-03T19:39:10.318Z] <<< HTTP RESPONSE 200
-[info] i  hosting[pear-f60a2]: Serving hosting files from: dist/PEAR-app
-[info] +  hosting[pear-f60a2]: Local server: http://localhost:5000
-[debug] [2018-10-06T23:49:31.645Z] ----------------------------------------------------------------------
-[debug] [2018-10-06T23:49:31.648Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\KeniaCastro\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase serve
-[debug] [2018-10-06T23:49:31.648Z] CLI Version:   4.2.1
-[debug] [2018-10-06T23:49:31.648Z] Platform:      win32
-[debug] [2018-10-06T23:49:31.648Z] Node Version:  v8.12.0
-[debug] [2018-10-06T23:49:31.649Z] Time:          Sat Oct 06 2018 19:49:31 GMT-0400 (Eastern Daylight Time)
-[debug] [2018-10-06T23:49:31.650Z] ----------------------------------------------------------------------
-[debug] 
-[debug] [2018-10-06T23:49:31.727Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
-[debug] [2018-10-06T23:49:31.728Z] > authorizing via signed-in user
-[debug] [2018-10-06T23:49:31.732Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
-[debug] [2018-10-06T23:49:31.732Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
-
-[debug] [2018-10-06T23:49:31.914Z] <<< HTTP RESPONSE 200
-[debug] [2018-10-06T23:49:32.075Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/pear-f60a2  
- 
-[debug] [2018-10-06T23:49:32.525Z] <<< HTTP RESPONSE 200
-[debug] [2018-10-06T23:49:32.529Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/pear-f60a2  
- 
-[debug] [2018-10-06T23:49:32.766Z] <<< HTTP RESPONSE 200
-[info] 
-[info] === Serving from 'C:\Users\KeniaCastro\Desktop\PEAR\PEARWebsite\PEAR-app'...
-[info] 
-[debug] [2018-10-06T23:49:32.770Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/962088956383/clients/_:getWebAppConfig  
- 
-[debug] [2018-10-06T23:49:33.092Z] <<< HTTP RESPONSE 200
-[info] i  hosting[pear-f60a2]: Serving hosting files from: dist/PEAR-app
-[info] +  hosting[pear-f60a2]: Local server: http://localhost:5000
-[debug] [2018-10-09T22:14:34.819Z] ----------------------------------------------------------------------
-[debug] [2018-10-09T22:14:34.823Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\KeniaCastro\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase serve
-[debug] [2018-10-09T22:14:34.823Z] CLI Version:   5.0.1
-[debug] [2018-10-09T22:14:34.823Z] Platform:      win32
-[debug] [2018-10-09T22:14:34.823Z] Node Version:  v8.12.0
-[debug] [2018-10-09T22:14:34.824Z] Time:          Tue Oct 09 2018 18:14:34 GMT-0400 (Eastern Daylight Time)
-[debug] [2018-10-09T22:14:34.824Z] ----------------------------------------------------------------------
-[debug] 
-[debug] [2018-10-09T22:14:34.844Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
-[debug] [2018-10-09T22:14:34.845Z] > authorizing via signed-in user
-[debug] [2018-10-09T22:14:34.845Z] [iam] checking project pear-f60a2 for permissions ["firebase.projects.get"]
-[debug] [2018-10-09T22:14:34.848Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
-[debug] [2018-10-09T22:14:34.848Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+[debug] [2018-10-16T16:35:42.421Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-10-16T16:35:42.423Z] > authorizing via signed-in user
+[debug] [2018-10-16T16:35:42.423Z] [iam] checking project pear-f60a2 for permissions ["firebase.projects.get"]
+[debug] [2018-10-16T16:35:42.427Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2018-10-16T16:35:42.427Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
  <request body omitted>
-[debug] [2018-10-09T22:14:35.042Z] <<< HTTP RESPONSE 200
-[debug] [2018-10-09T22:14:35.075Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/pear-f60a2:testIamPermissions  
+[debug] [2018-10-16T16:35:42.601Z] <<< HTTP RESPONSE 200
+[debug] [2018-10-16T16:35:42.662Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/pear-f60a2:testIamPermissions  
 
-[debug] [2018-10-09T22:14:35.294Z] <<< HTTP RESPONSE 200
-[debug] [2018-10-09T22:14:35.295Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/pear-f60a2  
+[debug] [2018-10-16T16:35:42.891Z] <<< HTTP RESPONSE 200
+[debug] [2018-10-16T16:35:42.892Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/pear-f60a2  
  
-[debug] [2018-10-09T22:14:35.493Z] <<< HTTP RESPONSE 200
+[debug] [2018-10-16T16:35:43.073Z] <<< HTTP RESPONSE 200
 [info] 
 [info] === Serving from 'C:\Users\KeniaCastro\Desktop\PEAR\PEARWebsite\PEAR-app'...
 [info] 
-[debug] [2018-10-09T22:14:35.496Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/962088956383/clients/_:getWebAppConfig  
+[debug] [2018-10-16T16:35:43.077Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/962088956383/clients/_:getWebAppConfig  
  
-[debug] [2018-10-09T22:14:35.951Z] <<< HTTP RESPONSE 200
+[debug] [2018-10-16T16:35:43.358Z] <<< HTTP RESPONSE 200
 [info] i  hosting: Serving hosting files from: dist/PEAR-app
 [info] +  hosting: Local server: http://localhost:5000
