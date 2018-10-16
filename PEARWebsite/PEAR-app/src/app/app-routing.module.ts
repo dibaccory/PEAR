@@ -11,7 +11,8 @@ import { RegisterComponent } from '../app/views/register/register.component';
 import { CarouselComponent } from '../app/views/carousel/carousel.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  // { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  { path: 'dashboard', component: DashboardComponent },
   { path: 'database', component: DatabaseTestComponent },
   { path: 'login', component: LoginComponent },
   { path: 'splashpage', component: SplashpageComponent },

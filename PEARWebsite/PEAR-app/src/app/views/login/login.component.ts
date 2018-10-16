@@ -15,54 +15,23 @@ export class LoginComponent implements OnInit {
   user = {
     email: '',
     password: ''
- };
+  };
 
   constructor(public afAuth: AngularFireAuth, private router: Router) {
- }
-
-// login() {
-  // this.afAuth.auth.signInWithEmailAndPassword(this.user.email, this.user.password);
-      // .then((res) => {
-      //   console.log(res);
-      //   this.router.navigate(['/splashpage']);
-      // })
-      // .catch((err) => {
-      //   console.log('error: ' + err);
-      //   alert('Wrong password.');
-      //   // this.router.navigate(['teachers'])
-      // });
-  // }
+  }
 
 login() {
   this.afAuth.auth.signInWithEmailAndPassword(this.user.email, this.user.password)
-    .then((res) => {
-      console.log(res);
-      this.router.navigate(['dashboard']);
-    })
-    .catch(function(error) {
-      // Handle Errors here.
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      if (errorCode === 'auth/wrong-password') {
+      .then((res) => {
+        console.log(res);
+        this.router.navigate(['/dashboard']);
+      })
+      .catch((err) => {
+        console.log('error: ' + err);
         alert('Wrong password.');
-      } else {
-        alert(errorMessage);
-      }
-      console.log(error);
-      // ...
-
-    // this.afAuth.auth.signInWithEmailAndPassword(this.user.email, this.user.password)
-    //   .then((res) => {
-    //     console.log(res);
-    //     this.router.navigate(['dashboard'])
-    //   })
-    //   .catch((err) => {
-    //     console.log('error: ' + err);
-    //     alert('Wrong password.');
-    //     // this.router.navigate(['teachers'])
-    //   }
-  });
-}
+        this.router.navigate(['/login']);
+      });
+  }
 
 // logout() {
 //   this.afAuth.auth.signOut();
