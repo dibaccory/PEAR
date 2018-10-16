@@ -11,6 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcbab50924ea846888d97698a29387b4, type: 3}
   m_Name: mercury
   m_EditorClassIdentifier: 
-  itemName: 
-  sprite: {fileID: 0}
-  material: {fileID: 0}
+  itemName: Mercury
+  tag: mercury
+  sprite: {fileID: 21300000, guid: d078f539c5a304f0894ecd8228c9b45e, type: 3}
+  material: {fileID: 2100000, guid: a9ba09e05f0e34d1090ca4a190af6443, type: 2}

@@ -13,7 +13,7 @@ public class InventorySlotManager : MonoBehaviour {
         {
             Debug.Log("You used: " + item.itemName);
             var controller = FindObjectOfType<SceneController>();
-            if(controller.currentScene == "CollectScene")
+            if(controller.currentScene == "CollectScene" || controller.currentScene == "ItemDisplay")
             {
                 // If we're in the collect scene, and the item is in the inventory,
                 // then we've already collected the item. If the user clicks on the item
