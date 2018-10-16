@@ -104,7 +104,7 @@ public class DatabaseManager : MonoBehaviour
 
         Router.GetClassroomInfo(classCode, moduleName, item, buildOrCollect).GetValueAsync().ContinueWith((task) =>
         {
-            int qNum = 0;
+            int qNum = 1;
             foreach (var question in task.Result.Children)
             {
                 string questionText = task.Result.Child(question.Key.ToString()).Child("question").Value.ToString();

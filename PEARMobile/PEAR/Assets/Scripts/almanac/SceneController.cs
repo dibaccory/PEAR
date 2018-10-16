@@ -27,6 +27,9 @@ public class SceneController : MonoBehaviour
     // The name of the scene that should be loaded first.
     public string startingSceneName = "CollectScene";
 
+    // Keeps track of the current scene loaded
+    public string currentScene = "";
+
     // Reference to the ScriptableObject which stores the name of the StartingPosition in the next scene.
     public SaveData playerSaveData;
 
@@ -123,7 +126,8 @@ public class SceneController : MonoBehaviour
 
     private IEnumerator LoadSceneAndSetActive(string sceneName)
     {
-        // Allow the given scene to load over several frames and add it to the already loaded scenes (just the Persistent scene at this point).
+        // Allow the given scene to load over several frames and add it to the already 
+        // loaded scenes (just the Persistent scene at this point).
         yield return SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
 
         // Find the scene that was most recently loaded (the one at the last index of the loaded scenes).
@@ -131,6 +135,7 @@ public class SceneController : MonoBehaviour
 
         // Set the newly loaded scene as the active scene (this marks it as the one to be unloaded next).
         SceneManager.SetActiveScene(newlyLoadedScene);
+        currentScene = sceneName;
     }
 
 
@@ -142,7 +147,8 @@ public class SceneController : MonoBehaviour
         // Make sure the CanvasGroup blocks raycasts into the scene so no more input can be accepted.
         faderCanvasGroup.blocksRaycasts = true;
 
-        // Calculate how fast the CanvasGroup should fade based on it's current alpha, it's final alpha and how long it has to change between the two.
+        // Calculate how fast the CanvasGroup should fade based on it's current alpha, 
+        // it's final alpha and how long it has to change between the two.
         float fadeSpeed = Mathf.Abs(faderCanvasGroup.alpha - finalAlpha) / fadeDuration;
 
         // While the CanvasGroup hasn't reached the final alpha yet...
