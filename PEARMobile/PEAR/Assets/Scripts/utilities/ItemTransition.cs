@@ -15,7 +15,10 @@ public class ItemTransition : MonoBehaviour {
 	}
 
 	void OnMouseDown(){
-			 // this object was clicked - do something
-	 //Destroy (this.gameObject);
-	}
+        // this object was clicked - do something
+        //Destroy (this.gameObject);
+        var controller = FindObjectOfType<SceneController>();
+        controller.activeItem = controller.itemDictionary[this.name];
+        controller.FadeAndLoadScene("ItemDisplay");
+    }
 }

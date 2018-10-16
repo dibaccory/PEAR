@@ -11,7 +11,7 @@ public class cam_gyro : MonoBehaviour {
 
     void Update ()
     {
-        this.transform.Rotate (0, -Input.gyro.rotationRateUnbiased.y, -Input.gyro.rotationRateUnbiased.z);
+        this.transform.Rotate (-Input.gyro.rotationRateUnbiased.x, -Input.gyro.rotationRateUnbiased.y, 0);
     }
 
 }
