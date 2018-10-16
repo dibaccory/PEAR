@@ -55,6 +55,7 @@ GameObject:
   - component: {fileID: 33350850709620648}
   - component: {fileID: 23675067973430840}
   - component: {fileID: 135799746828672930}
+  - component: {fileID: 114815231064353674}
   m_Layer: 0
   m_Name: Orb
   m_TagString: Untagged
@@ -237,6 +238,17 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &114815231064353674
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1747840792753002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 115ba26696c594a829e7d02061984e97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!135 &135799746828672930
 SphereCollider:
   m_ObjectHideFlags: 1
