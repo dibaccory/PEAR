@@ -3,23 +3,23 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { DashboardComponent } from '../app/views/dashboard/dashboard.component';
 import { LoginComponent } from '../app/views/login/login.component';
-import { SplashpageComponent } from '../app/views/splashpage/splashpage.component';
+import { NavbarComponent } from '../app/views/navbar/navbar.component';
 import { DatabaseTestComponent } from '../app/views/database-test/database-test.component';
 import { NgxChartsComponent } from '../app/views/ngx-charts/ngx-charts.component';
 import { GoogleChartsComponent } from '../app/views/google-charts/google-charts.component';
 import { RegisterComponent } from '../app/views/register/register.component';
-import { CarouselComponent } from '../app/views/carousel/carousel.component';
+import { SplashpageComponent } from '../app/views/splashpage/splashpage.component';
 
 const routes: Routes = [
-  // { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  { path: '', redirectTo: '/splashpage', pathMatch: 'full' },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'database', component: DatabaseTestComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'navbar', component: NavbarComponent },
   { path: 'splashpage', component: SplashpageComponent },
   { path: 'ngx-charts', component: NgxChartsComponent },
   { path: 'google-charts', component: GoogleChartsComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'carousel', component: CarouselComponent }
 ];
 
 @NgModule({

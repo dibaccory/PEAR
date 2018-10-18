@@ -6,7 +6,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./splashpage.component.css']
 })
 export class SplashpageComponent implements OnInit {
-  title = 'PEAR';
 
   constructor() { }
 

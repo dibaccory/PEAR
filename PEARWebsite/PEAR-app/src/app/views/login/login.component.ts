@@ -3,8 +3,6 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase/app';
 import { Router } from '@angular/router';
 
-// import { AngularFireDatabase } from '@angular/fire/database';
-// import { Observable } from 'rxjs';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -32,10 +30,6 @@ login() {
         this.router.navigate(['/login']);
       });
   }
-
-// logout() {
-//   this.afAuth.auth.signOut();
-// }
 
   ngOnInit() {
   }
