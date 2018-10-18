@@ -16,13 +16,13 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 // My created components
 import { DashboardComponent } from '../app/views/dashboard/dashboard.component';
 import { LoginComponent } from '../app/views/login/login.component';
-import { SplashpageComponent } from '../app/views/splashpage/splashpage.component';
+import { NavbarComponent } from '../app/views/navbar/navbar.component';
 import { DatabaseTestComponent } from '../app/views/database-test/database-test.component';
 import { AppRoutingModule } from './app-routing.module';
 import { NgxChartsComponent } from '../app/views/ngx-charts/ngx-charts.component';
 import { GoogleChartsComponent } from '../app/views/google-charts/google-charts.component';
 import { RegisterComponent } from '../app/views/register/register.component';
-import { CarouselComponent } from '../app/views/carousel/carousel.component';
+import { SplashpageComponent } from '../app/views/splashpage/splashpage.component';
 
 @NgModule({
   imports: [
@@ -40,12 +40,12 @@ import { CarouselComponent } from '../app/views/carousel/carousel.component';
     AppComponent,
     DashboardComponent,
     LoginComponent,
-    SplashpageComponent,
+    NavbarComponent,
     DatabaseTestComponent,
     NgxChartsComponent,
     GoogleChartsComponent,
     RegisterComponent,
-    CarouselComponent
+    SplashpageComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
