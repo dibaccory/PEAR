@@ -1,0 +1,11 @@
+.jumbotron {
+	background-image: url("./pearWallpaper.jpg");
+	background-size: cover;
+	/* min-height: 500px !important; */
+	height: 100vh;
+}
+
+.container {
+	max-width: 100%; 
+	overflow: hidden;
+}
