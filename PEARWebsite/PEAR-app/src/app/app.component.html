@@ -1,6 +1,8 @@
 <div *ngIf="loggedIn; else loggedOut">
 <!-- <div *ngIf="afAuth.user | async as user; else LoggedOut"> -->
+  <app-navbar></app-navbar>
   <app-dashboard></app-dashboard>
+  <app-questions></app-questions>
 </div> 
 
 <ng-template #loggedOut>

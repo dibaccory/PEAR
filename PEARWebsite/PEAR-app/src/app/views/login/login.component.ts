@@ -26,7 +26,7 @@ login() {
       })
       .catch((err) => {
         console.log('error: ' + err);
-        alert('Wrong password.');
+        alert('Wrong email or password.');
         this.router.navigate(['/login']);
       });
   }

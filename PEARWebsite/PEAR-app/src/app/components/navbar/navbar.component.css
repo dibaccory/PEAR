@@ -5,3 +5,9 @@
 .h1 {
     font-family: Arial;
 }
+
+nav {
+	max-width: 100%; 
+	overflow-y: hidden;
+	overflow-x: hidden;
+}

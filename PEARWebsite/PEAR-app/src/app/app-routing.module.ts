@@ -9,6 +9,7 @@ import { NgxChartsComponent } from '../app/old/ngx-charts/ngx-charts.component';
 import { GoogleChartsComponent } from '../app/old/google-charts/google-charts.component';
 import { RegisterComponent } from '../app/views/register/register.component';
 import { SplashpageComponent } from '../app/views/splashpage/splashpage.component';
+import { QuestionsComponent } from '../app/views/dashboard/questions/questions.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/splashpage', pathMatch: 'full' },
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'ngx-charts', component: NgxChartsComponent },
   { path: 'google-charts', component: GoogleChartsComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'questions', component: QuestionsComponent }
 ];
 
 @NgModule({

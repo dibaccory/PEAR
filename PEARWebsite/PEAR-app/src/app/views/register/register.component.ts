@@ -37,7 +37,7 @@ export class RegisterComponent implements OnInit {
     // this.afAuth.auth.signInWithCustomToken(token)
       .then((res) => {
         console.log(res);
-        this.writeUserData(res.user.uid, this.user.fName, this.user.lName, this.user.email, this.user.password, this.user.classCode);
+        // this.writeUserData(res.user.uid, this.user.fName, this.user.lName, this.user.email, this.user.password, this.user.classCode);
         this.router.navigate(['/dashboard']);
       })
       .catch((err) => {
@@ -47,18 +47,18 @@ export class RegisterComponent implements OnInit {
       });
   }
 
-  writeUserData(userId, fName, lName, email, password, classCode) {
-    this.itemRef = this.database.object('users/' + userId);
-    // firebase.database().ref('users/' + userId).update({
-      this.itemRef.update({
-      uid: userId,
-      firstName: fName,
-      lastName: lName,
-      email: email,
-      password: password,
-      class: classCode,
-  });
-}
+//   writeUserData(userId, fName, lName, email, password, classCode) {
+//     this.itemRef = this.database.object('users/' + userId);
+//     // firebase.database().ref('users/' + userId).update({
+//       this.itemRef.update({
+//       uid: userId,
+//       firstName: fName,
+//       lastName: lName,
+//       email: email,
+//       password: password,
+//       class: classCode,
+//   });
+// }
 
   ngOnInit() {
   }
