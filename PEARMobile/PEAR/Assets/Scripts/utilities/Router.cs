@@ -67,30 +67,25 @@ public class Router : MonoBehaviour
     pull in master
 
     */
-    public static DatabaseReference StoreUserAnswers(string uid, string classCode, string moduleName, string item, string buildOrCollect, string questionNumber)
+
+    public static DatabaseReference StoreUserAnswers(string uid, string classCode, string moduleName, string item, string buildOrCollect, string attemptNum, string questionNumber)
     {
-        return baseRef.Child("answers").Child(uid).Child(classCode).Child("modules").Child(moduleName).Child(item).Child(buildOrCollect).Child(questionNumber).Child("answer given");
+        return baseRef.Child("answers").Child(uid).Child(classCode).Child("modules").Child(moduleName).Child(item).Child(buildOrCollect).Child("attempts").Child(attemptNum).Child(questionNumber).Child("answer given");
 
     }
-    public static DatabaseReference StoreTime(string uid, string classCode, string moduleName, string item, string buildOrCollect)
+    public static DatabaseReference StoreTime(string uid, string classCode, string moduleName, string item, string buildOrCollect, string attemptNum)
     {
-        return baseRef.Child("answers").Child(uid).Child(classCode).Child("modules").Child(moduleName).Child(item).Child(buildOrCollect).Child("time spent");
+        return baseRef.Child("answers").Child(uid).Child(classCode).Child("modules").Child(moduleName).Child(item).Child(buildOrCollect).Child("attempts").Child(attemptNum).Child("time spent");
 
     }
     public static DatabaseReference StoreAttempts(string uid, string classCode, string moduleName, string item, string buildOrCollect)
     {
-        return baseRef.Child("answers").Child(uid).Child(classCode).Child("modules").Child(moduleName).Child(item).Child(buildOrCollect).Child("attempts");
+        return baseRef.Child("answers").Child(uid).Child(classCode).Child("modules").Child(moduleName).Child(item).Child(buildOrCollect).Child("totalAttempts");
     }
 
     public static DatabaseReference ListItemsCollected(string uid, string classCode, string moduleName)
     {
         return baseRef.Child("answers").Child(uid).Child(classCode).Child("modules").Child(moduleName);
     }
-
-    public static DatabaseReference IncreaseAttempts(string uid, string classCode, string moduleName, string item, string buildOrCollect)
-    {
-        return baseRef.Child("answers").Child(uid).Child(classCode).Child("modules").Child(moduleName).Child(item).Child(buildOrCollect).Child("attempts");
-    }
-
 
 }

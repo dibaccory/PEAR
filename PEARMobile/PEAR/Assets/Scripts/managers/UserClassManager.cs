@@ -24,6 +24,13 @@ public class UserClassManager : MonoBehaviour {
         submitButton.interactable = false;
 
         string uid = DatabaseManager.sharedInstance.GetUser().UserId;
+        string classCode = "astronomy";
+        string moduleName = "solar system";
+        string item = "earth";
+        string buildOrCollect = "collect";
+
+        DatabaseManager.sharedInstance.StoreAttempts(uid, classCode, moduleName, item, buildOrCollect);
+
 
         classroomList.Clear();
 
@@ -32,6 +39,9 @@ public class UserClassManager : MonoBehaviour {
             classroomList = result;
             InitalizeUI();
         });
+
+
+        Test(uid,classCode,moduleName,item,buildOrCollect);
     }
 
     void InitalizeUI()
@@ -77,6 +87,25 @@ public class UserClassManager : MonoBehaviour {
             InitalizeUI();
 
         });
+    }
+
+    public void Test(string uid, string classCode, string moduleName, string item, string buildOrCollect)
+    {
+        DatabaseManager.sharedInstance.SubmitAnswer(uid,
+                      classCode,
+                      moduleName,
+                      item,
+                      buildOrCollect,
+                      "question1",
+                      "poooooo");
+
+        DatabaseManager.sharedInstance.SubmitAnswer(uid,
+                      classCode,
+                      moduleName,
+                      item,
+                      buildOrCollect,
+                      "question2",
+                      "poooooo2");
     }
 
 }

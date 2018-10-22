@@ -167,13 +167,13 @@ public class QandAController : MonoBehaviour {
 
         Debug.Log("Total time spent on this item: " + secondCount);
         Debug.Log("User answered " + percentCorrect * 100 + "% correctly");
-        DatabaseManager.sharedInstance.TimeAndAttempts("sqG05GXsh7TnGTiby9uMlDAkFz72",
-                                                       "astronomy",
-                                                       "solar system",
-                                                       "earth",
-                                                       "build",
-                                                       (double)secondCount,
-                                                       1);
+        //DatabaseManager.sharedInstance.TimeAndAttempts("sqG05GXsh7TnGTiby9uMlDAkFz72",
+        //                                               "astronomy",
+        //                                               "solar system",
+        //                                               "earth",
+        //                                               "build",
+        //                                               (double)secondCount,
+        //                                               1);
     }
 
     // Update is called once per frame
