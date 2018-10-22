@@ -66,6 +66,13 @@
             </button>
           </div>
         </div>
+
+        <h2>Users</h2>
+        <ul>
+          <li *ngFor="let question of questions | async">
+            {{ question | json }}
+          </li>
+        </ul>
         
         <router-outlet></router-outlet>
 
