@@ -3,10 +3,10 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { DashboardComponent } from '../app/views/dashboard/dashboard.component';
 import { LoginComponent } from '../app/views/login/login.component';
-import { NavbarComponent } from '../app/views/navbar/navbar.component';
-import { DatabaseTestComponent } from '../app/views/database-test/database-test.component';
-import { NgxChartsComponent } from '../app/views/ngx-charts/ngx-charts.component';
-import { GoogleChartsComponent } from '../app/views/google-charts/google-charts.component';
+import { NavbarComponent } from '../app/components/navbar/navbar.component';
+import { DatabaseTestComponent } from '../app/old/database-test/database-test.component';
+import { NgxChartsComponent } from '../app/old/ngx-charts/ngx-charts.component';
+import { GoogleChartsComponent } from '../app/old/google-charts/google-charts.component';
 import { RegisterComponent } from '../app/views/register/register.component';
 import { SplashpageComponent } from '../app/views/splashpage/splashpage.component';
 
