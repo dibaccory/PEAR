@@ -149,7 +149,6 @@ public class DatabaseManager : MonoBehaviour
         lambdaBuster(k);
       });
     }
-
     public void SubmitAnswer(string uid,
                              string classCode,
                              string moduleName,
@@ -158,27 +157,93 @@ public class DatabaseManager : MonoBehaviour
                              string questionNumber,
                              string submittedAnswer)
     {
-        Router.StoreUserAnswers(uid,
-                                classCode,
-                                moduleName,
-                                item,
-                                buildOrCollect,
-                                questionNumber).SetValueAsync(submittedAnswer);
+
+        Router.StoreAttempts(uid, classCode, moduleName, item, buildOrCollect).GetValueAsync().ContinueWith((task) =>
+        {
+            DataSnapshot snapshot = task.Result;
+
+            string attemptNum;
+
+            if (snapshot.Value == null)
+            {
+                //Debug.Log("null as fuvk");
+                attemptNum = "1";
+            }
+            else
+            {
+                int num = Convert.ToInt32(snapshot.Value.ToString());
+                attemptNum = (num + 1).ToString();
+            }
+
+
+
+            Router.StoreUserAnswers(uid,
+                                    classCode,
+                                    moduleName,
+                                    item,
+                                    buildOrCollect,
+                                    attemptNum,
+                                    questionNumber).SetValueAsync(submittedAnswer);
+
+        });
+
+
+    }
+    //add attempt number
+    public void StoreTime(string uid, 
+                                string classCode, 
+                                string moduleName, 
+                                string item, 
+                                string buildOrCollect,
+                                double timeSpent)
+    {
+
+        Router.StoreAttempts(uid, classCode, moduleName, item, buildOrCollect).GetValueAsync().ContinueWith((task) =>
+        {
+            DataSnapshot snapshot = task.Result;
+
+            string attemptNum;
+
+            if (snapshot.Value == null)
+            {
+                //Debug.Log("null as fuvk");
+                attemptNum = "1";
+            }
+            else
+            {
+                int num = Convert.ToInt32(snapshot.Value.ToString());
+                attemptNum = (num + 1).ToString();
+            }
+
+            Router.StoreTime(uid, classCode, moduleName, item, buildOrCollect, attemptNum).SetValueAsync(timeSpent);
+
+        });
+
     }
 
-    //Code to use this function:
-    //DatabaseManager.sharedInstance.TimeAndAttempts(uid,classCode,moduleName,item,buildOrCollect,timeSpent,numAttempts);
-
-    public void TimeAndAttempts(string uid,
+    public void StoreAttempts(string uid,
                                 string classCode,
                                 string moduleName,
                                 string item,
-                                string buildOrCollect,
-                                double timeSpent,
-                                int numAttempts)
+                                string buildOrCollect)
     {
-        Router.StoreTime(uid, classCode, moduleName, item, buildOrCollect).SetValueAsync(timeSpent);
-        Router.StoreAttempts(uid, classCode, moduleName, item, buildOrCollect).SetValueAsync(numAttempts);
+        Router.StoreAttempts(uid, classCode, moduleName, item, buildOrCollect).GetValueAsync().ContinueWith((task) =>
+        {
+            DataSnapshot snapshot = task.Result;
+            int num;
+            if (snapshot.Value == null)
+            {
+                //Debug.Log("null as fuvk");
+                num = 1;
+            }
+            else
+            {
+                num = Convert.ToInt32(snapshot.Value.ToString());
+                num++;
+            }
+            Router.StoreAttempts(uid, classCode, moduleName, item, buildOrCollect).SetValueAsync(num);
+        });
+
     }
 
     public void ListItemsCollected(string uid,string classCode, string moduleName, Action<List<string>> completionBlock)

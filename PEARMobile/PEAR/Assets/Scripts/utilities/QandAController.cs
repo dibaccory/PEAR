@@ -50,6 +50,11 @@ public class QandAController : MonoBehaviour {
             ShowQuestion();
             isRoundActive = true;
             firebaseUser = DatabaseManager.sharedInstance.GetUser();
+            DatabaseManager.sharedInstance.StoreAttempts("sqG05GXsh7TnGTiby9uMlDAkFz72",
+                                                         "astronomy",
+                                                         "solar sytem",
+                                                         FindObjectOfType<ItemSceneManager>().currentItem.name,
+                                                         "collect");
         });
     }
 
@@ -90,7 +95,7 @@ public class QandAController : MonoBehaviour {
                                                     "astronomy", 
                                                     "solar system", 
                                                     FindObjectOfType<ItemSceneManager>().currentItem.name,
-                                                    "build", 
+                                                    "collect", 
                                                     questionString, 
                                                     answer.answerText);
 
@@ -168,13 +173,19 @@ public class QandAController : MonoBehaviour {
 
         Debug.Log("Total time spent on this item: " + secondCount);
         Debug.Log("User answered " + percentCorrect * 100 + "% correctly");
-        DatabaseManager.sharedInstance.TimeAndAttempts("sqG05GXsh7TnGTiby9uMlDAkFz72",
-                                                       "astronomy",
-                                                       "solar system",
-                                                       FindObjectOfType<ItemSceneManager>().currentItem.name,
-                                                       "build",
-                                                       (double)secondCount,
-                                                       1);
+        //DatabaseManager.sharedInstance.TimeAndAttempts("sqG05GXsh7TnGTiby9uMlDAkFz72",
+        //                                               "astronomy",
+        //                                               "solar system",
+        //                                               "earth",
+        //                                               "build",
+        //                                               (double)secondCount,
+        //                                               1);
+        DatabaseManager.sharedInstance.StoreTime("sqG05GXsh7TnGTiby9uMlDAkFz72",
+                                                 "astronomy",
+                                                 "solar sytem",
+                                                 FindObjectOfType<ItemSceneManager>().currentItem.name,
+                                                 "collect",
+                                                 secondCount);
     }
 
     // Update is called once per frame
