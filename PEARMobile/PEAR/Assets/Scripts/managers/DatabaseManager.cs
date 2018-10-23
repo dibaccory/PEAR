@@ -5,11 +5,13 @@ using Firebase;
 using Firebase.Database;
 using Firebase.Unity.Editor;
 using System;
+using System.Threading.Tasks;
 using Firebase.Auth;
 
 
 public class DatabaseManager : MonoBehaviour
 {
+    Firebase.Auth.FirebaseAuth auth;
 
     public static DatabaseManager sharedInstance = null;
 
@@ -56,11 +58,11 @@ public class DatabaseManager : MonoBehaviour
         string classJSON = JsonUtility.ToJson(classroom);
 
         Router.UserWithClass(user.UserId, classroom.classCode).SetRawJsonValueAsync(classJSON);
-        Router.ClassWithUser2(user.UserId, classroom.classCode).SetValueAsync(user.Email);
+        Router.ClassWithUser(user.UserId, classroom.classCode).SetValueAsync(user.Email);
 
     }
 
-    public void GetClasses(string uid, Action<List<Classroom>>completionBlock)
+    public void GetClasses(string uid, Action<List<Classroom>> completionBlock)
     {
         List<Classroom> tempList = new List<Classroom>();
 
@@ -78,36 +80,136 @@ public class DatabaseManager : MonoBehaviour
         });
     }
 
+    public void GetModules(string classCode, Action<List<string>> completionBlock)
+    {
+        List<string> tempList = new List<string>();
+
+        Router.GetModules(classCode).GetValueAsync().ContinueWith((task) =>
+        {
+            DataSnapshot moduleSnapshot = task.Result;
+            //Debug.Log(moduleSnapshot.GetRawJsonValue());
+
+            foreach (DataSnapshot module in moduleSnapshot.Children)
+            {
+                var moduleKey = module.Key;
+                tempList.Add(moduleKey);
+            }
+            completionBlock(tempList);
+        });
+    }
+
     public void getQnA(string classCode, string moduleName, string item, string buildOrCollect, Action<List<Question>> completionBlock)
     {
         List<Question> questionAndAnswerList = new List<Question>();
 
         Router.GetClassroomInfo(classCode, moduleName, item, buildOrCollect).GetValueAsync().ContinueWith((task) =>
         {
-            DataSnapshot snapshot = task.Result;
-
-            foreach (DataSnapshot question in snapshot.Children)
+            int qNum = 1;
+            foreach (var question in task.Result.Children)
             {
-                Question currentQuestion = new Question();
-                
-                currentQuestion.QuestionText = snapshot.Child(question.Key.ToString()).Child("question").Value.ToString();
-                long loop = snapshot.Child(question.Key.ToString()).Child("answers").ChildrenCount;
+                string questionText = task.Result.Child(question.Key.ToString()).Child("question").Value.ToString();
+                int loop = (int)task.Result.Child(question.Key.ToString()).Child("answers").ChildrenCount;
+                List<Answer> currentAnswerList = new List<Answer>();
 
-                for (int i = 1; i <= loop; i++)
+                for (int i = 0; i < loop; i++)
                 {
-                    string answer = "A" + i.ToString();
-                    if (i == 1)
+                    string answer = "A" + (i + 1).ToString();
+
+                    string answerText = task.Result.Child(question.Key.ToString()).Child("answers").Child(answer).Value.ToString();
+                    Answer currentAnswer = new Answer(answerText, true);
+                    if (i == 0)
                     {
-                        currentQuestion.CorrectAnswer = snapshot.Child(question.Key.ToString()).Child("answers").Child(answer).Value.ToString();
+                        currentAnswer = new Answer(answerText, true);
                     }
                     else
                     {
-                        currentQuestion.otherAnswers.Add(snapshot.Child(question.Key.ToString()).Child("answers").Child(answer).Value.ToString());
+                        currentAnswer = new Answer(answerText, false);
                     }
+                    currentAnswerList.Add(currentAnswer);
                 }
-                questionAndAnswerList.Add(currentQuestion);              
+                questionAndAnswerList.Add(new Question(questionText, currentAnswerList, qNum++));
             }
             completionBlock(questionAndAnswerList);
         });
+    }
+
+    public void getMaterialNames(Action<Stack<string>> lambdaBuster)
+    {
+      //Debug.Log("we in");
+      Stack<string> k = new Stack<string>();
+
+      Router.ModuleMaterials("astronomy", "solar system").GetValueAsync().ContinueWith((task) =>
+      {
+        DataSnapshot materials = task.Result;
+        foreach (DataSnapshot entry in materials.Children)
+        {
+          Debug.Log(entry.Key);
+          k.Push(entry.Key);
+        }
+        lambdaBuster(k);
+      });
+    }
+
+    public void SubmitAnswer(string uid,
+                             string classCode,
+                             string moduleName,
+                             string item,
+                             string buildOrCollect,
+                             string questionNumber,
+                             string submittedAnswer)
+    {
+        Router.StoreUserAnswers(uid,
+                                classCode,
+                                moduleName,
+                                item,
+                                buildOrCollect,
+                                questionNumber).SetValueAsync(submittedAnswer);
+    }
+
+    //Code to use this function:
+    //DatabaseManager.sharedInstance.TimeAndAttempts(uid,classCode,moduleName,item,buildOrCollect,timeSpent,numAttempts);
+
+    public void TimeAndAttempts(string uid,
+                                string classCode,
+                                string moduleName,
+                                string item,
+                                string buildOrCollect,
+                                double timeSpent,
+                                int numAttempts)
+    {
+        Router.StoreTime(uid, classCode, moduleName, item, buildOrCollect).SetValueAsync(timeSpent);
+        Router.StoreAttempts(uid, classCode, moduleName, item, buildOrCollect).SetValueAsync(numAttempts);
+    }
+
+    public void ListItemsCollected(string uid,string classCode, string moduleName, Action<List<string>> completionBlock)
+    {
+        List<string> tempList = new List<string>();
+
+        Router.ListItemsCollected(uid,classCode,moduleName).GetValueAsync().ContinueWith((task) =>
+        {
+            DataSnapshot itemListSnapshot = task.Result;
+
+            foreach (DataSnapshot item in itemListSnapshot.Children)
+            {
+                var itemKey = item.Key;
+                tempList.Add(itemKey);
+            }
+            completionBlock(tempList);
+        });
+    }
+
+    public FirebaseUser GetUser()
+    {
+        auth = Firebase.Auth.FirebaseAuth.DefaultInstance;
+        Firebase.Auth.FirebaseUser user = auth.CurrentUser;
+        return user;
+    }
+
+    public void Logout()
+    {
+        Debug.Log("Logout function invoked");
+        // TODO: This might not be the best place for this function
+        //       Needs to determine everything the user has gathered
+        //       and/or built and upload it to the database
     }
 }

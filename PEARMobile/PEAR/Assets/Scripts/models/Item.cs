@@ -6,22 +6,7 @@ using UnityEngine.UI;
 public class Item : ScriptableObject {
     
     public string itemName;
+    public string tag;
     public Sprite sprite;
-    public List<Question> collectQuestions;
-    public List<Question> gatherQuestions;
-
-    public virtual void Use()
-    {
-       
-    }
-
-    public void GetGatherQuestions()
-    {
-        // collectQuestions = DatabaseManager.getQuestions("astonomy", "solar system", itemName, "gather");
-    }
-
-    public void GetCollectQuestions()
-    {
-        // collectQuestions = DatabaseManager.getQuestions("astonomy", "solar system", itemName, "collect");
-    }
+    public Material material;
 }

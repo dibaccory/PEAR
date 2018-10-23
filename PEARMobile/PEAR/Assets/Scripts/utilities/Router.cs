@@ -27,11 +27,6 @@ public class Router : MonoBehaviour
 
     public static DatabaseReference ClassWithUser(string uid, string classCode)
     {
-        return baseRef.Child("classrooms").Child(classCode).Child("users").Child(uid);
-    }
-
-    public static DatabaseReference ClassWithUser2(string uid, string classCode)
-    {
         return baseRef.Child("classrooms").Child(classCode).Child("users").Child(uid).Child("email");
     }
 
@@ -54,5 +49,43 @@ public class Router : MonoBehaviour
     {
         return baseRef.Child("classrooms").Child(classCode).Child("modules").Child(moduleName).Child(item).Child(buildOrCollect);
     }
+
+    public static DatabaseReference GetModules (string classCode)
+    {
+      return baseRef.Child("classrooms").Child(classCode).Child("modules");
+    }
+
+    //Get all the Materials for current module
+    public static DatabaseReference ModuleMaterials (string classCode, string moduleName)
+    {
+      //Do we have a getCurrentModule function?
+        return baseRef.Child("classrooms").Child(classCode).Child("modules").Child(moduleName);
+    }
+
+    /*
+    TODO Get current Module (to make this generic)
+    pull in master
+
+    */
+    public static DatabaseReference StoreUserAnswers(string uid, string classCode, string moduleName, string item, string buildOrCollect, string questionNumber)
+    {
+        return baseRef.Child("answers").Child(uid).Child(classCode).Child("modules").Child(moduleName).Child(item).Child(buildOrCollect).Child(questionNumber).Child("answer given");
+
+    }
+    public static DatabaseReference StoreTime(string uid, string classCode, string moduleName, string item, string buildOrCollect)
+    {
+        return baseRef.Child("answers").Child(uid).Child(classCode).Child("modules").Child(moduleName).Child(item).Child(buildOrCollect).Child("time spent");
+
+    }
+    public static DatabaseReference StoreAttempts(string uid, string classCode, string moduleName, string item, string buildOrCollect)
+    {
+        return baseRef.Child("answers").Child(uid).Child(classCode).Child("modules").Child(moduleName).Child(item).Child(buildOrCollect).Child("attempts");
+    }
+
+    public static DatabaseReference ListItemsCollected(string uid, string classCode, string moduleName)
+    {
+        return baseRef.Child("answers").Child(uid).Child(classCode).Child("modules").Child(moduleName);
+    }
+
 
 }

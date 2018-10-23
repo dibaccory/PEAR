@@ -12,6 +12,29 @@ public class InventorySlotManager : MonoBehaviour {
         if(item)
         {
             Debug.Log("You used: " + item.itemName);
+            var controller = FindObjectOfType<SceneController>();
+            if(controller.currentScene == "CollectScene" || controller.currentScene == "ItemDisplay")
+            {
+                // If we're in the collect scene, and the item is in the inventory,
+                // then we've already collected the item. If the user clicks on the item
+                // in the inventory then bring them back to the item display scene
+                // with the current item loaded
+                controller.activeItem = item;
+                controller.FadeAndLoadScene("ItemDisplay");   
+            }
+            else if(controller.currentScene == "BuildScene")
+            {
+                // If we're currently in the build scene, when the user clicks
+                // an item in the inventory, it initiates the build mode
+                // for that particular item
+                // TODO: Implement this
+                Debug.Log("You used: " + item.itemName + " in build mode");
+            }
+            else
+            {
+                // Otherwise, do nothing
+                ;
+            }
         }
     }
 
