@@ -41,6 +41,13 @@ public class QandAController : MonoBehaviour {
         string moduleName = "solar system";
         string item = FindObjectOfType<ItemSceneManager>().currentItem.name;
         string buildOrCollect = "build";
+
+        DatabaseManager.sharedInstance.StoreAttempts("sqG05GXsh7TnGTiby9uMlDAkFz72",
+                                             "astronomy",
+                                             "solar system",
+                                             FindObjectOfType<ItemSceneManager>().currentItem.name,
+                                             "collect");
+
         DatabaseManager.sharedInstance.getQnA(classCode, moduleName, item, buildOrCollect, (result) =>
         {
             questionPool = result;
@@ -50,11 +57,7 @@ public class QandAController : MonoBehaviour {
             ShowQuestion();
             isRoundActive = true;
             firebaseUser = DatabaseManager.sharedInstance.GetUser();
-            DatabaseManager.sharedInstance.StoreAttempts("sqG05GXsh7TnGTiby9uMlDAkFz72",
-                                                         "astronomy",
-                                                         "solar sytem",
-                                                         FindObjectOfType<ItemSceneManager>().currentItem.name,
-                                                         "collect");
+
         });
     }
 
@@ -156,12 +159,13 @@ public class QandAController : MonoBehaviour {
         questionAnsweredPanel.SetActive(false);
         questionText.enabled = false;
 
-        foreach(var item in userAnswers)
+        foreach (var item in userAnswers)
         {
             Debug.Log("User answered " + item.Value.answerText + " for the following question: ");
             Debug.Log("Question Text: " + item.Key.QuestionText);
         }
         float percentCorrect = (float)numberCorrectlyAnswered / (float)totalNumQuestions;
+
         if (percentCorrect > .50)
         {
             roundEndPanel.SetActive(true);
@@ -181,11 +185,12 @@ public class QandAController : MonoBehaviour {
         //                                               (double)secondCount,
         //                                               1);
         DatabaseManager.sharedInstance.StoreTime("sqG05GXsh7TnGTiby9uMlDAkFz72",
-                                                 "astronomy",
-                                                 "solar sytem",
-                                                 FindObjectOfType<ItemSceneManager>().currentItem.name,
-                                                 "collect",
-                                                 secondCount);
+                                 "astronomy",
+                                 "solar system",
+                                 FindObjectOfType<ItemSceneManager>().currentItem.name,
+                                 "collect",
+                                 secondCount);
+
     }
 
     // Update is called once per frame

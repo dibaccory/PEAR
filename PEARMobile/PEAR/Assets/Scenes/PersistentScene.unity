@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311918, g: 0.38073993, b: 0.35872698, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311918, g: 0.3807398, b: 0.35872716, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -306,7 +306,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   faderCanvasGroup: {fileID: 521956155}
   fadeDuration: 1
-  startingSceneName: CollectScene
+  startingSceneName: ItemDisplay
   currentScene: 
   playerSaveData: {fileID: 11400000, guid: bc56ef5dc3097ab4994da357be65e89b, type: 2}
   sun: {fileID: 11400000, guid: 60cb74570a8084843b72f4330181c21f, type: 2}

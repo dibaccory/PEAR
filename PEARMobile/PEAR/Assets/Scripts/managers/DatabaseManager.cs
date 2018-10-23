@@ -162,18 +162,18 @@ public class DatabaseManager : MonoBehaviour
         {
             DataSnapshot snapshot = task.Result;
 
-            string attemptNum;
+            string attemptNum = snapshot.Value.ToString();
 
-            if (snapshot.Value == null)
-            {
-                //Debug.Log("null as fuvk");
-                attemptNum = "1";
-            }
-            else
-            {
-                int num = Convert.ToInt32(snapshot.Value.ToString());
-                attemptNum = (num + 1).ToString();
-            }
+            //if (snapshot.Value == null)
+            //{
+            //    //Debug.Log("null as fuvk");
+            //    attemptNum = "1";
+            //}
+            //else
+            //{
+            //    int num = Convert.ToInt32(snapshot.Value.ToString());
+            //    attemptNum = (num + 1).ToString();
+            //}
 
 
 
@@ -202,18 +202,21 @@ public class DatabaseManager : MonoBehaviour
         {
             DataSnapshot snapshot = task.Result;
 
-            string attemptNum;
+            string attemptNum = snapshot.Value.ToString();
+            Debug.Log("store time attempt number" + attemptNum);
+            Debug.Log("setting time to" + timeSpent);
 
-            if (snapshot.Value == null)
-            {
-                //Debug.Log("null as fuvk");
-                attemptNum = "1";
-            }
-            else
-            {
-                int num = Convert.ToInt32(snapshot.Value.ToString());
-                attemptNum = (num + 1).ToString();
-            }
+
+            //if (snapshot.Value == null)
+            //{
+            //    //Debug.Log("null as fuvk");
+            //    attemptNum = "1";
+            //}
+            //else
+            //{
+            //    int num = Convert.ToInt32(snapshot.Value.ToString());
+            //    attemptNum = (num + 1).ToString();
+            //}
 
             Router.StoreTime(uid, classCode, moduleName, item, buildOrCollect, attemptNum).SetValueAsync(timeSpent);
 
