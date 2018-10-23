@@ -12,23 +12,24 @@ MonoBehaviour:
   m_Name: VuforiaConfiguration
   m_EditorClassIdentifier: 
   vuforia:
-    vuforiaLicenseKey: AbLyyNj/////AAABmRdXaBwhmk33r5bJSGmjFElV1taF4/tzwZ1P2wp6CkxhxyyIAiFO81KisnkijHgsL1/V33O2s8pL49Ev1AduJZczotK/kIBiwcSq84BSpoBSPJrvctRRKpGfgPDN8ojgH3xHmEcspnR+MrHPF2gS4uL2Pmz20PWz+TQoN3VoLmJwKQgBnOMXJITZeaBMB8IJx+q5ZZ/fIYJAw7EKrZDI/DIS/YCKSrroQRhOGYuBIPys17dk4YH3XaE53wLn8rTluAHxh8xCMR3hXOEh8Q4lGiGCJohqSC4vg34BrVy2VlWenK0NW0aKUb0dh/I+4gjnn1Oe+zOoyaHyh0HtHKEwH0nzNJi7EMWrdPxNKTXjQIxx
+    vuforiaLicenseKey: AeZ2BKL/////AAABmdxcG+Z7EEdIvyd8QAeo7LJN7GxCGqkLAYUjt7UUi/8EOoOfF/NsrQgHYvGOZqYed/dKDlNV/hxl3+JVxc+0rUnv/UdwQMC1KT/qvDD4yS0oWWCPkfF32WTv/R+CfkDSiY+Dl6MF0gBQtLojISKU+Kp6CP5zjA58p6bTMkfpmkuDDPDEsZbFzDQ7M0lgcEpHjRrN4kBqDI9mMmtU5477FN+Lv4Y1k5cz/kDifWDrGUo/cku1UrrdIrJL4t42zXvn1hL6kkP+AL7A0a9QCf5GRjmq6bPvjD3yegIMgBofKQBqyMuXW3f+q9F3xaRo/6u5PuwsyCJ0nrUNyM96zRbU9mE04zIfjVqu32rvoCgj2hnn
     ufoLicenseKey: QVptSVVkVC8vLy8vQUFBQUtDSzJ4LzJCOGtweWlZZzhHQUtDekdON0tPYjFHOUFsY2pGK1hyakdmVlpDdy9FK0FVN0xGeTRHcVpEVGRlN3V1TTlYNUJPL2RVM0MrRlMwVVphOGhtZ1pDc3EyejhlbXFTK3h3azgxWTZyNlpJbGFEN1ZSNjBTVVlXZUZqdDNHb0EwWkkvTnNYZVc3VUJHSktzbnRRcll0VURaeUV1Z3JWWTZHR1FvRjdTV3pYVFFHYWxhV3FJR2RkcTAwRXpDUTNoaEJiYXpCS2xiQUMyNHAzeGV2ZmpjditvSkZxcXVEVi8zOFR6eDI3cnE5N05NUW5PMmtic25IZzE2QnlhYlFpdVBUUERMdU5VY3k2dUlxTGF4NUlEOGNoeGprNm9MaTZkRVNoL2JGak9TTHBJc1dmWHU1bnRhTkdwNlpVRTlsYkJEZ2plRkN3bWtrSXZnNlBKb2pldE5xY09OTnRCOUd4Q0lGdlJ1Q3lkVzM=
     delayedInitialization: 0
     cameraDeviceModeSetting: -1
-    maxSimultaneousImageTargets: 4
+    maxSimultaneousImageTargets: 1
     maxSimultaneousObjectTargets: 1
     useDelayedLoadingObjectTargets: 0
     cameraDirection: 0
     mirrorVideoBackground: 0
+    version: 7.2.23
   digitalEyewear:
     cameraOffset: 0.06
     distortionRenderingLayer: 31
     eyewearType: 0
     stereoFramework: 0
     seeThroughConfiguration: 0
-    viewerName: 
-    viewerManufacturer: 
+    viewerName: Generic Cardboard
+    viewerManufacturer: Vuforia
     useCustomViewer: 0
     customViewer:
       Version: 0
@@ -57,6 +58,7 @@ MonoBehaviour:
     modelCorrectionMode: 0
     modelTransformEnabled: 0
     modelTransform: {x: 0, y: 0.1, z: -0.1}
+    fusionMode: 7
   smartTerrain:
     autoInitTracker: 0
     autoStartTracker: 0

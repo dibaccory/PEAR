@@ -29,6 +29,8 @@ public class QandAController : MonoBehaviour {
     private float secondCount;
 
     private List<GameObject> answerButtonGameObjects = new List<GameObject>();
+
+    private Item currentItem;
     
 	// Use this for initialization
 	void Start ()
@@ -37,7 +39,7 @@ public class QandAController : MonoBehaviour {
         // TODO: Do this dynamically 
         string classCode = "astronomy";
         string moduleName = "solar system";
-        string item = "earth";
+        string item = FindObjectOfType<ItemSceneManager>().currentItem.name;
         string buildOrCollect = "build";
         DatabaseManager.sharedInstance.getQnA(classCode, moduleName, item, buildOrCollect, (result) =>
         {
@@ -87,7 +89,7 @@ public class QandAController : MonoBehaviour {
         DatabaseManager.sharedInstance.SubmitAnswer("sqG05GXsh7TnGTiby9uMlDAkFz72", 
                                                     "astronomy", 
                                                     "solar system", 
-                                                    "earth", 
+                                                    FindObjectOfType<ItemSceneManager>().currentItem.name,
                                                     "build", 
                                                     questionString, 
                                                     answer.answerText);
@@ -103,8 +105,7 @@ public class QandAController : MonoBehaviour {
         {
             Debug.Log("Incorrect answer clicked");
 
-            message = "Sorry, the correct answer was "
-                            + correctAnswer;
+            message = "Sorry, the correct answer was "  + correctAnswer;
             Debug.Log("User selected " + answer.answerText + " instead of " + correctAnswer);
         }
         userAnswers.Add(questionPool[questionIndex], answer);

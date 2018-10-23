@@ -7,7 +7,7 @@ public class skipLogin : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		SceneManager.LoadScene("fpc-spaceship");
+		SceneManager.LoadScene("CollectScene");
 	}
 
 }

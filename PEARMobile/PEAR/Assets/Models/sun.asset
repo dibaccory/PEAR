@@ -11,6 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcbab50924ea846888d97698a29387b4, type: 3}
   m_Name: sun
   m_EditorClassIdentifier: 
-  itemName: 
-  sprite: {fileID: 0}
-  material: {fileID: 0}
+  itemName: Sun
+  tag: sun
+  sprite: {fileID: 21300000, guid: fd83642f45835410492ceef51bf9f86b, type: 3}
+  material: {fileID: 2100000, guid: 10433f68292a34a93adf04314ad91f47, type: 2}
