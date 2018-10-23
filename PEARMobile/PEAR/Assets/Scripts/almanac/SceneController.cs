@@ -36,6 +36,13 @@ public class SceneController : MonoBehaviour
     // Flag used to determine if the Image is currently fading to or from black.
     private bool isFading;
 
+    //(Build mode only) check if item in the almanac has been clicked
+    public bool itemSelected = false;
+
+    //self-explanatory
+    public string selectedSceneItemInBuildMode;
+
+
     public IDictionary<string, Item> itemDictionary = new Dictionary<string, Item>();
     public Item sun;
     public Item mercury;
@@ -47,8 +54,8 @@ public class SceneController : MonoBehaviour
     public Item neptune;
     public Item uranus;
 
-    public Item activeItem;
 
+    public Item activeItem;
 
     private IEnumerator Start()
     {

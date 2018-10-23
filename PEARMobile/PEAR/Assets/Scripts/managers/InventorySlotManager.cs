@@ -28,6 +28,9 @@ public class InventorySlotManager : MonoBehaviour {
                 // an item in the inventory, it initiates the build mode
                 // for that particular item
                 // TODO: Implement this
+                controller.activeItem = item;
+                controller.itemSelected = true;
+                FindObjectOfType<AlmanacFormManager>().InterfaceButtonClick(); //close almanac
                 Debug.Log("You used: " + item.itemName + " in build mode");
             }
             else
