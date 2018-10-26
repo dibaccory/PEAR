@@ -37,8 +37,10 @@ public class QandAController : MonoBehaviour {
     {
         // Values hardcoded for testing right now
         // TODO: Do this dynamically 
-        string classCode = "astronomy";
-        string moduleName = "solar system";
+        // string classCode = "astronomy";
+        string classCode = FindObjectOfType<SceneController>().classroom;
+        // string moduleName = "solar system";
+        string moduleName = FindObjectOfType<SceneController>().module;
         string item = FindObjectOfType<ItemSceneManager>().currentItem.name;
         string buildOrCollect = "build";
         DatabaseManager.sharedInstance.getQnA(classCode, moduleName, item, buildOrCollect, (result) =>
@@ -51,8 +53,8 @@ public class QandAController : MonoBehaviour {
             isRoundActive = true;
             firebaseUser = DatabaseManager.sharedInstance.GetUser();
             DatabaseManager.sharedInstance.StoreAttempts("sqG05GXsh7TnGTiby9uMlDAkFz72",
-                                                         "astronomy",
-                                                         "solar sytem",
+                                                         FindObjectOfType<SceneController>().classroom,
+                                                         FindObjectOfType<SceneController>().module,
                                                          FindObjectOfType<ItemSceneManager>().currentItem.name,
                                                          "collect");
         });
@@ -92,8 +94,8 @@ public class QandAController : MonoBehaviour {
         string questionString = "question" + questionPool[questionIndex].QuestionNumber.ToString();
 
         DatabaseManager.sharedInstance.SubmitAnswer("sqG05GXsh7TnGTiby9uMlDAkFz72", 
-                                                    "astronomy", 
-                                                    "solar system", 
+                                                    FindObjectOfType<SceneController>().classroom, 
+                                                    FindObjectOfType<SceneController>().module, 
                                                     FindObjectOfType<ItemSceneManager>().currentItem.name,
                                                     "collect", 
                                                     questionString, 
@@ -181,8 +183,8 @@ public class QandAController : MonoBehaviour {
         //                                               (double)secondCount,
         //                                               1);
         DatabaseManager.sharedInstance.StoreTime("sqG05GXsh7TnGTiby9uMlDAkFz72",
-                                                 "astronomy",
-                                                 "solar sytem",
+                                                 FindObjectOfType<SceneController>().classroom,
+                                                 FindObjectOfType<SceneController>().module,
                                                  FindObjectOfType<ItemSceneManager>().currentItem.name,
                                                  "collect",
                                                  secondCount);

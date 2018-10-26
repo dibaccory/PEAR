@@ -53,7 +53,7 @@ public class LoginFormManager : MonoBehaviour {
 
     public void LoadSignUpScreen()
     {
-        SceneManager.LoadScene("SignupScreen");
+        FindObjectOfType<SceneController>().FadeAndLoadScene("SignupScreen");
     }
 
     public void OnLogin()
@@ -80,11 +80,11 @@ public class LoginFormManager : MonoBehaviour {
             // UpdateStatus("Loading the game scene");
 
             yield return new WaitForSeconds(1.5f);
-            SceneManager.LoadScene("UserProfile");
+            FindObjectOfType<SceneController>().FadeAndLoadScene("UserProfile");
         }
         else
         {
-          UpdateStatus("What the fuck");
+          UpdateStatus("There was an error of some sort.");
         }
     }
 
