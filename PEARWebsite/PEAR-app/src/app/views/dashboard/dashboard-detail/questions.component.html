@@ -1,16 +1,21 @@
-<ngb-accordion #acc="ngbAccordion">
+<!-- <ngb-accordion #acc="ngbAccordion">
   <div *ngFor="let answer of answers | async">
     <ngb-panel title="{{ answer | json }}">
       <ng-template ngbPanelContent>
-        {{ sun | json }}
+        {{ sun | json }} -->
 
         <!-- <div *ngFor="let mercury of mercury">
           {{ mercury | json }}
         </div> -->
-      </ng-template>
+      <!-- </ng-template>
     </ngb-panel>  
   </div>
-</ngb-accordion>
+</ngb-accordion> -->
+
+<div *ngIf="loggedIn">
+  <p>test test Q's</p>
+  <a href="https://pear-f60a2.firebaseio.com/.json">JSON</a>
+</div>
 
 
   <!-- <ngb-panel id="toggle-1" title="First panel">

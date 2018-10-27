@@ -14,8 +14,8 @@ export class DashboardComponent implements OnInit {
   questions: Observable<any>;
 
   constructor(db: AngularFireDatabase) {
-    this.questions = db.list<any>('classrooms/astronomy/modules/solarsystem').valueChanges();
-    db.list<any>('users').valueChanges().subscribe(console.log);
+    // this.questions = db.list<any>('classrooms/astronomy/modules/solarsystem').valueChanges();
+    // db.list<any>('users').valueChanges().subscribe(console.log);
   }
 
   ngOnInit() {
