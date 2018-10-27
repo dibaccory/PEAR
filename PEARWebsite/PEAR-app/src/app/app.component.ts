@@ -13,15 +13,16 @@ export class AppComponent {
   }
 
   title = 'PEAR';
-  loggedIn = this.afAuth.auth.currentUser;
+  // loggedIn = this.afAuth.auth.onAuthStateChanged;
+  loggedIn;
 
-  // loggedInF() {
-  //   this.afAuth.auth.onAuthStateChanged(function(user) {
-  //     if (user) {
-  //       // User is logged in
-  //     } else {
-  //       // User is logged out
-  //     }
-  //   });
-  // }
+  loggedInF() {
+    this.afAuth.auth.onAuthStateChanged(function(user) {
+      if (user) {
+        this.loggedIn = true;
+      } else {
+        this.loggedIn = false;
+      }
+    });
+  }
 }
