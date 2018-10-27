@@ -19,7 +19,7 @@ export class NavbarComponent implements OnInit {
     this.afAuth.auth.signOut()
       .then((res) => {
         console.log(res);
-        this.router.navigate(['/splashpage']);
+        this.router.navigate(['']);
       });
   }
 

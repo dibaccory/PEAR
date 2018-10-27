@@ -1,6 +1,14 @@
  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">  
-  <a class="navbar-brand mr-auto" routerLink="/splashpage">{{ title }}</a>
+   
+  <!-- PEAR title navigation based on auth -->
+  <div *ngIf="afAuth.user | async as user; else loggedOut1">
+    <a class="navbar-brand mr-auto" routerLink="/dashboard">{{ title }}</a>
+  </div>
+  <ng-template #loggedOut1>
+    <a class="navbar-brand mr-auto" routerLink="">{{ title }}</a>
+  </ng-template>
 
+  <!-- Right side button functionality based on auth -->
   <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
     <div *ngIf="afAuth.user | async as user; else loggedOut">
       <ul class="navbar-nav">
@@ -24,7 +32,3 @@
     </ng-template>
   </div>
 </nav>
-
-<main role="main">
-  <router-outlet></router-outlet>
-</main>
