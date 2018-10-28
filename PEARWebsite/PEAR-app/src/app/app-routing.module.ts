@@ -5,7 +5,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from '../app/views/login/login.component';
 import { NavbarComponent } from '../app/components/navbar/navbar.component';
 import { DatabaseTestComponent } from '../app/old/database-test/database-test.component';
-import { NgxChartsComponent } from '../app/old/ngx-charts/ngx-charts.component';
 // import { GoogleChartsComponent } from '../app/old/google-charts/google-charts.component';
 import { RegisterComponent } from '../app/views/register/register.component';
 import { SplashpageComponent } from '../app/views/splashpage/splashpage.component';
@@ -17,7 +16,6 @@ const routes2: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'navbar', component: NavbarComponent },
   { path: 'splashpage', component: SplashpageComponent },
-  { path: 'ngx-charts', component: NgxChartsComponent },
   // { path: 'google-charts', component: GoogleChartsComponent },
   { path: 'register', component: RegisterComponent },
 

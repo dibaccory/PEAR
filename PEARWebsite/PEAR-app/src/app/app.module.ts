@@ -18,7 +18,7 @@ import { LoginComponent } from '../app/views/login/login.component';
 import { NavbarComponent } from '../app/components/navbar/navbar.component';
 import { DatabaseTestComponent } from '../app/old/database-test/database-test.component';
 import { AppRoutingModule } from './app-routing.module';
-import { NgxChartsComponent } from '../app/old/ngx-charts/ngx-charts.component';
+
 import { GoogleChartsComponent } from '../app/old/google-charts/google-charts.component';
 import { RegisterComponent } from '../app/views/register/register.component';
 import { SplashpageComponent } from '../app/views/splashpage/splashpage.component';
@@ -34,7 +34,6 @@ import { DashboardModule } from './views/dashboard/dashboard.module';
     AngularFireModule.initializeApp(environment.firebase, 'PEAR'),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-    NgxChartsModule,
     GoogleChartsModule,
     DashboardModule,
     AppRoutingModule,
@@ -44,7 +43,6 @@ import { DashboardModule } from './views/dashboard/dashboard.module';
     LoginComponent,
     NavbarComponent,
     DatabaseTestComponent,
-    NgxChartsComponent,
     GoogleChartsComponent,
     RegisterComponent,
     SplashpageComponent,
