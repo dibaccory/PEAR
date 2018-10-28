@@ -1,13 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireDatabase, AngularFireObject } from '@angular/fire/database';
-// import { Question } from './questions';
 import { Observable } from 'rxjs';
-// import { ChangeDetectorRef } from '@angular/core';
-// import { RouterOutlet } from '@angular/router';
-// import { database, auth } from 'firebase';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
+import { AngularFireFunctions } from '@angular/fire/functions';
 
 @Component({
   selector: 'app-questions',
@@ -19,26 +16,21 @@ export class QuestionsComponent implements OnInit {
   // using this user id WON"T work because students have different uid!!!! Have to filter by class code? or reorder DB?
   answers: Observable<any>;
   loggedIn = this.afAuth.auth.onAuthStateChanged;
-  report;
-  // @Input() question: Question;
+  data;
 
-  constructor(public afAuth: AngularFireAuth, db: AngularFireDatabase) {
+  constructor(public afAuth: AngularFireAuth, db: AngularFireDatabase, private route: ActivatedRoute, private router: Router,
+  private fns: AngularFireFunctions) {
     this.answers = db.list<any>('answers/' + afAuth.auth.currentUser.uid + '/astronomy/modules/').valueChanges();
 
-    // private route: ActivatedRoute,
-    // private router: Router,
-    // private service: HeroService
-
+    const callable = fns.httpsCallable('csvJsonReport');
+    this.data = callable({ name: 'testData' });
   }
 
-  // json() {
-  //   exports.csvJsonReport = functions.https.onRequest((request, response) => {
-  //     // Your code goes here
-  //     this.report = { 'a': 0, 'b': 1 }; // your object
-  //   });
-  // }
-
   ngOnInit() {
+    // this.hero$ = this.route.paramMap.pipe(
+    //   switchMap((params: ParamMap) =>
+    //     this.service.getHero(params.get('id')))
+    // );
   }
 
 }
