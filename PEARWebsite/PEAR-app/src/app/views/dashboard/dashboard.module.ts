@@ -7,10 +7,12 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
 import { AngularFireFunctionsModule } from '@angular/fire/functions';
 
 // My created components and modules
-import { QuestionsComponent } from './dashboard-detail/questions.component';
+import { QuestionsComponent } from './3-dashboard-questions/questions.component';
 import { DashboardComponent } from './dashboard-list/dashboard.component';
-import { NgxChartsComponent } from './ngx-charts/ngx-charts.component';
+import { NgxChartsComponent } from './2-dashboard-ngx-charts/ngx-charts.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { DefaultComponent } from './1-dashboard-modules/default.component';
+import { DbOutputComponent } from './4-dashboard-export/db-output.component';
 
 @NgModule({
   imports: [
@@ -22,7 +24,9 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
   declarations: [
     QuestionsComponent,
     NgxChartsComponent,
-    DashboardComponent
+    DashboardComponent,
+    DefaultComponent,
+    DbOutputComponent
   ]
 })
 export class DashboardModule { }

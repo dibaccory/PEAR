@@ -26,13 +26,15 @@
       </div>
     </div>
     <div class="col-sm-6 col-md-3">
-      <div class="tile green">
+      <div class="tile green" (click)="export()">
         <h3 class="title">Export</h3>
         <p>Export statistics of {{ title }} as CSV.</p>
       </div>
-    </div>
+    </div> 
   </div>
 </div>
+
+<!-- <button type="submit" (click)="export()" target="_blank">CSV</button> -->
 
 <!-- <div class="component">
   <router-outlet></router-outlet>

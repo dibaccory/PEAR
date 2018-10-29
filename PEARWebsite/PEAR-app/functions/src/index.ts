@@ -1,33 +1,19 @@
 import * as functions from 'firebase-functions';
-import * as json2csv from '../../node_modules/json2csv';
+import * as json2csv from 'json2csv';
 import * as admin from 'firebase-admin';
 
-// // Start writing Firebase Functions
-// // https://firebase.google.com/docs/functions/typescript
-//
-// export const helloWorld = functions.https.onRequest((request, response) => {
-//  response.send("Hello from Firebase!");
+admin.initializeApp()
+// Admin Firebase SDK
+// const serviceAccount = require("../serviceAccountKey.json");
+// admin.initializeApp({
+// 	credential: admin.credential.cert(serviceAccount),
+// 	databaseURL: "https://pear-f60a2.firebaseio.com"
 // });
 
-// Example code to delete later!!
-export const bigben = functions.https.onRequest((req, res) => {
-    const hours = (new Date().getHours() % 12) + 1 // London is UTC + 1hr;
-    res.status(200).send(`<!doctype html>
-    <head>
-      <title>Time</title>
-    </head>
-    <body>
-      ${'BONG '.repeat(hours)}
-    </body>
-  </html>`);
-});
-
-// Admin Firebase SDK
-const serviceAccount = require("../serviceAccountKey.json");
-
-admin.initializeApp({
-	credential: admin.credential.cert(serviceAccount),
-	databaseURL: "https://pear-f60a2.firebaseio.com"
+// Start writing Firebase Functions
+// https://firebase.google.com/docs/functions/typescript
+export const helloWorld = functions.https.onRequest((request, response) => {
+ response.send("Hello from Firebase!");
 });
 
 // json2csv
@@ -35,7 +21,9 @@ export const csvJsonReport = functions.https.onRequest((request, response) => {
 
 	// You should you how to prepare an object
 	// It could be anything that you like from your collections for example.
-	const report = { 'a': 0, 'b': 1 };
+	// const report = { 'a': 0, 'b': 1 };
+
+	const report = admin.database().refFromURL('https://pear-f60a2.firebaseio.com/.json');
 
 	// Return JSON to screen
 	response.status(200).json(report);
