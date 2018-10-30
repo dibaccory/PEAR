@@ -7,9 +7,14 @@ public class AlmanacFormManager : MonoBehaviour {
 
     public Text inventoryLabel;
     public GameObject almanacPanel;
+    public GameObject almanacButton;
+    public GameObject buildSceneButton;
+    public GameObject collectSceneButton;
+    public GameObject logoutButton;
 
     public void Awake()
     {
+        SetButtonVisibility(false);
         EnableGUIElements(false);
     }
     public void InterfaceButtonClick()
@@ -22,6 +27,14 @@ public class AlmanacFormManager : MonoBehaviour {
         {
             EnableGUIElements(false);
         }
+    }
+
+    public void SetButtonVisibility(bool setVisible)
+    {
+        buildSceneButton.SetActive(setVisible);
+        collectSceneButton.SetActive(setVisible);
+        logoutButton.SetActive(setVisible);
+        almanacButton.SetActive(setVisible);
     }
 
     private void EnableGUIElements(bool setEnabled)
