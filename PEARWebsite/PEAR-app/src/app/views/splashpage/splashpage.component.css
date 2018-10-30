@@ -9,3 +9,25 @@
 	max-width: 100%; 
 	overflow: hidden;
 }
+
+.btn {
+	background-color: rgb(31, 59, 43);
+	border: none;
+	position: right;
+}
+
+.btn:hover {
+	background-color: rgb(50, 94, 69);
+}
+
+h1 {
+	color: rgb(31, 59, 43);	
+	text-shadow: 1px 1px black;
+	line-height: 1.5;
+}
+
+p {
+	color: #dbd9d9;
+	text-shadow: 1px 1px black;
+	text-align: right;
+}

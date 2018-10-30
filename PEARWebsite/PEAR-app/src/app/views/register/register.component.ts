@@ -19,11 +19,11 @@ export class RegisterComponent implements OnInit {
 
   user = {
     uid: '',
-    fName: 'Test First',
-    lName: 'Test Last',
+    // fName: 'Test First',
+    // lName: 'Test Last',
     email: '',
     password: '',
-    classCode: 'Astronomy'
+    classCode: 'astronomy'
  };
 
   constructor(public afAuth: AngularFireAuth, private router: Router, db: AngularFireDatabase) {
