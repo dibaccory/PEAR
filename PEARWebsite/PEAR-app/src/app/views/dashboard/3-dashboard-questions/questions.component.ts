@@ -18,12 +18,13 @@ export class QuestionsComponent implements OnInit {
   loggedIn = this.afAuth.auth.onAuthStateChanged;
   data;
 
-  constructor(public afAuth: AngularFireAuth, db: AngularFireDatabase, private route: ActivatedRoute, private router: Router,
-  private fns: AngularFireFunctions) {
-    this.answers = db.list<any>('answers/' + afAuth.auth.currentUser.uid + '/astronomy/modules/').valueChanges();
-
-    const callable = fns.httpsCallable('csvJsonReport');
-    this.data = callable({ name: 'testData' });
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private fns: AngularFireFunctions,
+    public afAuth: AngularFireAuth,
+    db: AngularFireDatabase) {
+    // this.answers = db.list<any>('answers/' + afAuth.auth.currentUser.uid + '/astronomy/modules/').valueChanges();
   }
 
   ngOnInit() {

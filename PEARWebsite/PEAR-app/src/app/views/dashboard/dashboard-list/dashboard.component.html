@@ -8,19 +8,19 @@
   </div>
   <div class="row">
     <div class="col-sm-6 col-md-3">
-      <div class="tile purple">
+      <div class="tile purple" routerLink="default">
         <h3 class="title">Modules</h3>
         <p>View a list of the class modules you're subscribed to.</p>
       </div>
     </div>
     <div class="col-sm-6 col-md-3">
-      <div class="tile red" routerLink="/charts">
+      <div class="tile red" routerLink="test">
         <h3 class="title">Student Statistics</h3>
         <p>Analyze progress of your classes and students.</p>
       </div>
     </div>
     <div class="col-sm-6 col-md-3">
-      <div class="tile orange" routerLink="/questions">
+      <div class="tile orange" routerLink="test2">
         <h3 class="title">Question List</h3>
         <p>See questions from the PEAR mobile app.</p>
       </div>
@@ -34,72 +34,8 @@
   </div>
 </div>
 
-<!-- <button type="submit" (click)="export()" target="_blank">CSV</button> -->
+<router-outlet></router-outlet>
 
 <!-- <div class="component">
   <router-outlet></router-outlet>
 </div> -->
-
-<!-- <div class="container-fluid">
-    <div class="row">
-      <nav class="col-md-2 d-none d-md-block bg-dark sidebar">
-        <div class="sidebar-sticky">
-          <ul class="nav flex-column">
-            <li class="nav-item">
-              <a class="nav-link active" routerLink="/">
-                <span data-feather="home"></span>
-                Dashboard <span class="sr-only">(current)</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" routerLink="/database">
-                <span data-feather="file"></span>
-                Database Test
-              </a>
-            </li>
-          </ul>
-
-          <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-            <span>Charts</span>
-            <a class="d-flex align-items-center text-muted" href="#">
-              <span data-feather="plus-circle"></span>
-            </a>
-          </h6>
-          <ul class="nav flex-column mb-2">
-            <li class="nav-item">
-              <a class="nav-link" routerLink="/ngx-charts">
-                <span data-feather="file-text"></span>
-                Students
-              </a>
-            </li>
-          </ul>
-        </div>
-      </nav>
-
-      <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">   
-        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-          <h1 class="h2">Dashboard</h1>
-          <div class="btn-toolbar mb-2 mb-md-0">
-            <div class="btn-group mr-2">
-              <button class="btn btn-sm btn-outline-secondary">Share</button>
-              <button class="btn btn-sm btn-outline-secondary">Export</button>
-            </div>
-            <button class="btn btn-sm btn-outline-secondary dropdown-toggle">
-              <span data-feather="calendar"></span>
-              {{ className }}
-            </button>
-          </div>
-        </div>
-
-        <h2>Users</h2>
-        <ul>
-          <li *ngFor="let question of questions | async">
-            {{ question | json }}
-          </li>
-        </ul>
-        
-        <router-outlet></router-outlet>
-
-      </main>
-    </div>
-  </div> -->

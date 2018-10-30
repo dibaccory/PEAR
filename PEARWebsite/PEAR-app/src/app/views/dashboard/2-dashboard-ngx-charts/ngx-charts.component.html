@@ -1,14 +1,10 @@
-<p>
-  ngx-charts works!
-</p>
-
-<div class="container">
+<!-- <div class="container">
   <div class="row">
     <div class="col-6">
       <h3>Average Time Spent on Questions</h3>
-      <ngx-charts-bar-vertical
+      <ngx-charts-bar-vertical *ngIf="totalAttempts$ | async as attempts"
         [scheme]="colorScheme"
-        [results]="single"
+        [results]="attempts"
         [gradient]="gradient"
         [xAxis]="showXAxis"
         [yAxis]="showYAxis"
@@ -30,5 +26,9 @@
       </ngx-charts-advanced-pie-chart>
     </div>
   </div>
-</div>"
+</div>" -->
+{{ urlRef }}
 
+<li *ngFor="let planet of planets | async">
+  {{ planet | json }}
+</li>

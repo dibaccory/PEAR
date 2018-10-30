@@ -4,7 +4,6 @@ import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'; // Bootstrap
-import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { GoogleChartsModule } from 'angular-google-charts';
 import { FormsModule } from '@angular/forms';
 
@@ -18,13 +17,13 @@ import { LoginComponent } from '../app/views/login/login.component';
 import { NavbarComponent } from '../app/components/navbar/navbar.component';
 import { DatabaseTestComponent } from '../app/old/database-test/database-test.component';
 import { AppRoutingModule } from './app-routing.module';
-
 import { GoogleChartsComponent } from '../app/old/google-charts/google-charts.component';
 import { RegisterComponent } from '../app/views/register/register.component';
 import { SplashpageComponent } from '../app/views/splashpage/splashpage.component';
 import { PageNotFoundComponent } from '../app/views/page-not-found/page-not-found.component';
-
+import { ProfileComponent } from './views/profile/profile.component';
 import { DashboardModule } from './views/dashboard/dashboard.module';
+import { AuthAF2Service } from './auth-af2.service';
 
 @NgModule({
   imports: [
@@ -46,9 +45,10 @@ import { DashboardModule } from './views/dashboard/dashboard.module';
     GoogleChartsComponent,
     RegisterComponent,
     SplashpageComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    ProfileComponent
   ],
-  providers: [],
+  providers: [AuthAF2Service],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -20,7 +20,6 @@ export class DashboardComponent implements OnInit {
   }
 
   export() {
-    // this.router.navigate(['/externalRedirect']);
     const link = 'https://pear-f60a2.firebaseio.com/answers/.json';
     window.open('https://json-csv.com?u=' + link);
   }
