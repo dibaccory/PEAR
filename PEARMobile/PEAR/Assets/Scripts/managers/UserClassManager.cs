@@ -22,34 +22,13 @@ public class UserClassManager : MonoBehaviour {
     public GameObject moduleItem;
     public GameObject classScroll;
     public GameObject moduleScroll;
-    public string uid;
-    //public string classCode;
+
 
     private void Awake()
     {
         submitButton.interactable = false;
-
-        uid = DatabaseManager.sharedInstance.GetUser().UserId;
-
         classroomList.Clear();
         UpdateClasses();
-
-        //string classCode = "astronomy";
-        //string moduleName = "solar system";
-        //string item = "earth";
-        //string buildOrCollect = "collect";
-        //double timeSpent = 2.54325;
-        //int numAttempts = 4;
-
-
-        // DatabaseManager.sharedInstance.TimeAndAttempts(uid,classCode,moduleName,item,buildOrCollect,timeSpent,numAttempts);
-        //
-        //
-        // DatabaseManager.sharedInstance.GetModules(classCode, (result) =>
-        // {
-        //     moduleList = result;
-        //     InitalizeUI();
-        // });
     }
 
     void CreateClassRow(Classroom classroom)
@@ -73,7 +52,7 @@ public class UserClassManager : MonoBehaviour {
         newRow.GetComponent<Button>().onClick.AddListener(
         delegate()
         {
-          OnModuleClick("CollectScene");
+          OnModuleClick(module);
         });
 
         newRow.transform.SetParent(moduleScroll.transform, false);
@@ -81,14 +60,15 @@ public class UserClassManager : MonoBehaviour {
 
     void UpdateClasses()
     {
-      DatabaseManager.sharedInstance.GetClasses(uid, (c) =>
-      {
-          classroomList = c;
-          foreach (Classroom classroom in classroomList)
-          {
-              CreateClassRow(classroom);
-          }
-      });
+        FirebaseUser user = DatabaseManager.sharedInstance.GetUser();
+        DatabaseManager.sharedInstance.GetClasses(user.UserId, (c) =>
+        {
+            classroomList = c;
+            foreach (Classroom classroom in classroomList)
+            {
+                CreateClassRow(classroom);
+            }
+        });
     }
 
     void UpdateModules(string classCode)
@@ -102,9 +82,6 @@ public class UserClassManager : MonoBehaviour {
          }
      });
     }
-
-
-
 
     public void ValidateClassCode()
     {
@@ -135,12 +112,17 @@ public class UserClassManager : MonoBehaviour {
 
     public void OnClassroomClick(string classCode)
     {
+        FindObjectOfType<SceneController>().classroom = classCode;
+        Debug.Log("Current Class Code is : " + classCode);
         UpdateModules(classCode);
     }
 
     public void OnModuleClick(string module)
     {
-      SceneManager.LoadScene("PersistentScene");
+        FindObjectOfType<SceneController>().module = module;
+        Debug.Log("Current Module is : " + module);
+        FindObjectOfType<AlmanacFormManager>().SetButtonVisibility(true);
+        FindObjectOfType<SceneController>().FadeAndLoadScene("CollectScene");
     }
 
 }

@@ -146,7 +146,7 @@ public class DatabaseManager : MonoBehaviour
           Debug.Log(entry.Key);
           k.Push(entry.Key);
         }
-        lambdaBuster(k);
+          lambdaBuster(k);
       });
     }
     public void SubmitAnswer(string uid,

@@ -31,14 +31,16 @@ public class QandAController : MonoBehaviour {
     private List<GameObject> answerButtonGameObjects = new List<GameObject>();
 
     private Item currentItem;
-    
+
 	// Use this for initialization
 	void Start ()
     {
         // Values hardcoded for testing right now
-        // TODO: Do this dynamically 
-        string classCode = "astronomy";
-        string moduleName = "solar system";
+        // TODO: Do this dynamically
+        // string classCode = "astronomy";
+        string classCode = FindObjectOfType<SceneController>().classroom;
+        // string moduleName = "solar system";
+        string moduleName = FindObjectOfType<SceneController>().module;
         string item = FindObjectOfType<ItemSceneManager>().currentItem.name;
         string buildOrCollect = "build";
 
@@ -57,7 +59,11 @@ public class QandAController : MonoBehaviour {
             ShowQuestion();
             isRoundActive = true;
             firebaseUser = DatabaseManager.sharedInstance.GetUser();
-
+            DatabaseManager.sharedInstance.StoreAttempts("sqG05GXsh7TnGTiby9uMlDAkFz72",
+                                                         FindObjectOfType<SceneController>().classroom,
+                                                         FindObjectOfType<SceneController>().module,
+                                                         FindObjectOfType<ItemSceneManager>().currentItem.name,
+                                                         "collect");
         });
     }
 
@@ -66,7 +72,7 @@ public class QandAController : MonoBehaviour {
         RemoveAnswerButtons();
         Question currentQuestion = questionPool[questionIndex];
         questionText.text = currentQuestion.QuestionText;
-        
+
         for(int i = 0; i < currentQuestion.answers.Count; i++)
         {
             GameObject answerButtonGameObject = answerButtonObjectPool.GetObject();
@@ -94,12 +100,12 @@ public class QandAController : MonoBehaviour {
 
         string questionString = "question" + questionPool[questionIndex].QuestionNumber.ToString();
 
-        DatabaseManager.sharedInstance.SubmitAnswer("sqG05GXsh7TnGTiby9uMlDAkFz72", 
-                                                    "astronomy", 
-                                                    "solar system", 
+        DatabaseManager.sharedInstance.SubmitAnswer("sqG05GXsh7TnGTiby9uMlDAkFz72",
+                                                    FindObjectOfType<SceneController>().classroom,
+                                                    FindObjectOfType<SceneController>().module,
                                                     FindObjectOfType<ItemSceneManager>().currentItem.name,
-                                                    "collect", 
-                                                    questionString, 
+                                                    "collect",
+                                                    questionString,
                                                     answer.answerText);
 
         if(answer.isCorrect)
@@ -185,12 +191,11 @@ public class QandAController : MonoBehaviour {
         //                                               (double)secondCount,
         //                                               1);
         DatabaseManager.sharedInstance.StoreTime("sqG05GXsh7TnGTiby9uMlDAkFz72",
-                                 "astronomy",
-                                 "solar system",
-                                 FindObjectOfType<ItemSceneManager>().currentItem.name,
-                                 "collect",
-                                 secondCount);
-
+                                                 FindObjectOfType<SceneController>().classroom,
+                                                 FindObjectOfType<SceneController>().module,
+                                                 FindObjectOfType<ItemSceneManager>().currentItem.name,
+                                                 "collect",
+                                                 secondCount);
     }
 
     // Update is called once per frame
