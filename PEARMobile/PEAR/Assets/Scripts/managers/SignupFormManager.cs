@@ -58,6 +58,11 @@ public class SignupFormManager : MonoBehaviour {
         Debug.Log("Sign Up");
     }
 
+    public void ReturnToLoginScene()
+    {
+        FindObjectOfType<SceneController>().FadeAndLoadScene("LoginScreen");
+    }
+
     IEnumerator HandleAuthCallback(Task<Firebase.Auth.FirebaseUser> task, string operation)
     {
         if (task.IsCanceled)
