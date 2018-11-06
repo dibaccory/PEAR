@@ -15,3 +15,4 @@ MonoBehaviour:
   tag: sun
   sprite: {fileID: 21300000, guid: fd83642f45835410492ceef51bf9f86b, type: 3}
   material: {fileID: 2100000, guid: 10433f68292a34a93adf04314ad91f47, type: 2}
+  video: {fileID: 32900000, guid: 15758cfe4faa98249a20a217eaacd63a, type: 3}

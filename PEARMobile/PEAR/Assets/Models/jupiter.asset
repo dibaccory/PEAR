@@ -15,3 +15,4 @@ MonoBehaviour:
   tag: jupiter
   sprite: {fileID: 21300000, guid: 2d5cb758c0adb4ecca4ea1016c4ed66b, type: 3}
   material: {fileID: 2100000, guid: 4b37fe6ff2b074849a3fe355b0328206, type: 2}
+  video: {fileID: 32900000, guid: 4cb679f5d932341bba68f37d19a669bd, type: 3}

@@ -35,22 +35,18 @@ public class QandAController : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
-        // Values hardcoded for testing right now
-        // TODO: Do this dynamically
-        // string classCode = "astronomy";
         string classCode = FindObjectOfType<SceneController>().classroom;
-        // string moduleName = "solar system";
         string moduleName = FindObjectOfType<SceneController>().module;
         string item = FindObjectOfType<ItemSceneManager>().currentItem.name;
-        string buildOrCollect = "build";
 
-        DatabaseManager.sharedInstance.StoreAttempts("sqG05GXsh7TnGTiby9uMlDAkFz72",
-                                             "astronomy",
-                                             "solar system",
-                                             FindObjectOfType<ItemSceneManager>().currentItem.name,
-                                             "collect");
+        FirebaseUser user = DatabaseManager.sharedInstance.GetUser();
+        DatabaseManager.sharedInstance.StoreAttempts(user.UserId,
+                                                     classCode,
+                                                     moduleName,
+                                                     FindObjectOfType<ItemSceneManager>().currentItem.tag,
+                                                     "collect");
 
-        DatabaseManager.sharedInstance.getQnA(classCode, moduleName, item, buildOrCollect, (result) =>
+        DatabaseManager.sharedInstance.getQnA(classCode, moduleName, item, "collect", (result) =>
         {
             questionPool = result;
             totalNumQuestions = questionPool.Count;
@@ -59,11 +55,6 @@ public class QandAController : MonoBehaviour {
             ShowQuestion();
             isRoundActive = true;
             firebaseUser = DatabaseManager.sharedInstance.GetUser();
-            DatabaseManager.sharedInstance.StoreAttempts("sqG05GXsh7TnGTiby9uMlDAkFz72",
-                                                         FindObjectOfType<SceneController>().classroom,
-                                                         FindObjectOfType<SceneController>().module,
-                                                         FindObjectOfType<ItemSceneManager>().currentItem.name,
-                                                         "collect");
         });
     }
 
@@ -99,8 +90,8 @@ public class QandAController : MonoBehaviour {
         // var uid = firebaseUser.UserId;
 
         string questionString = "question" + questionPool[questionIndex].QuestionNumber.ToString();
-
-        DatabaseManager.sharedInstance.SubmitAnswer("sqG05GXsh7TnGTiby9uMlDAkFz72",
+        FirebaseUser user = DatabaseManager.sharedInstance.GetUser();
+        DatabaseManager.sharedInstance.SubmitAnswer(user.UserId,
                                                     FindObjectOfType<SceneController>().classroom,
                                                     FindObjectOfType<SceneController>().module,
                                                     FindObjectOfType<ItemSceneManager>().currentItem.name,
@@ -183,14 +174,8 @@ public class QandAController : MonoBehaviour {
 
         Debug.Log("Total time spent on this item: " + secondCount);
         Debug.Log("User answered " + percentCorrect * 100 + "% correctly");
-        //DatabaseManager.sharedInstance.TimeAndAttempts("sqG05GXsh7TnGTiby9uMlDAkFz72",
-        //                                               "astronomy",
-        //                                               "solar system",
-        //                                               "earth",
-        //                                               "build",
-        //                                               (double)secondCount,
-        //                                               1);
-        DatabaseManager.sharedInstance.StoreTime("sqG05GXsh7TnGTiby9uMlDAkFz72",
+        FirebaseUser user = DatabaseManager.sharedInstance.GetUser();
+        DatabaseManager.sharedInstance.StoreTime(user.UserId,
                                                  FindObjectOfType<SceneController>().classroom,
                                                  FindObjectOfType<SceneController>().module,
                                                  FindObjectOfType<ItemSceneManager>().currentItem.name,

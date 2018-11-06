@@ -13,6 +13,7 @@ public class CustomVideoPlayer : MonoBehaviour {
     // Use this for initialization
     void Start () {
         videoPlayer = GetComponent<VideoPlayer>();
+        videoPlayer.clip = FindObjectOfType<SceneController>().activeItem.video;
 
         // Setup Delegates
         videoPlayer.errorReceived += HandleVideoError;
