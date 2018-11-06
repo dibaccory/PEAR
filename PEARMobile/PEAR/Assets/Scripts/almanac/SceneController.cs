@@ -42,7 +42,6 @@ public class SceneController : MonoBehaviour
     //self-explanatory
     public string selectedSceneItemInBuildMode;
 
-
     public IDictionary<string, Item> itemDictionary = new Dictionary<string, Item>();
     public Item sun;
     public Item mercury;

@@ -12,6 +12,7 @@ public class PlanetProperties : MonoBehaviour {
     float resolutionSpeed;
     Vector3 planetScale;
     float planetDistance;
+    bool correctlyPlaced;
 
 
     SceneController controller;
@@ -21,6 +22,12 @@ public class PlanetProperties : MonoBehaviour {
     {
         rotationSpeed = rotation;
         resolutionSpeed = resolution;
+
+        //Check if user already placed this item
+        if(controller.itemDictionary[planetName].isPlaced)
+        {
+            SuccessfulPlacement();
+        }
     }
 
 
@@ -93,17 +100,14 @@ public class PlanetProperties : MonoBehaviour {
 
     private void SuccessfulPlacement()
     {
-        //if orb selected the same item as the active item...
-        if (controller.itemDictionary[planetName] == controller.activeItem)
-        {
-            controller.activeItem = null; //Move out of this nested if-statement so user will have to re-click the almanac item every-time
-            controller.selectedSceneItemInBuildMode = null;
-            controller.itemSelected = false;
+        controller.activeItem = null; //Move out of this nested if-statement so user will have to re-click the almanac item every-time
+        controller.selectedSceneItemInBuildMode = null;
+        controller.itemSelected = false;
+        controller.itemDictionary[planetName].isPlaced = true;
 
-            transform.localPosition.Set(transform.localPosition.x, transform.localScale.y, planetDistance);
-            //transform.localScale = planetScale;  --ISSUE: Gotta move other planet distances if they collide when the map is loaded
-            GetComponent<Renderer>().material = map;
-        }
+        transform.localPosition.Set(transform.localPosition.x, transform.localScale.y, planetDistance);
+        //transform.localScale = planetScale;  --ISSUE: Gotta move other planet distances if they collide when the map is loaded
+        GetComponent<Renderer>().material = map;
     }
 
 
@@ -119,16 +123,23 @@ public class PlanetProperties : MonoBehaviour {
                 FindObjectOfType<AlmanacFormManager>().InterfaceButtonClick();
             }
 
-            SuccessfulPlacement();
+            //if orb selected the same item as the active item...
+            if (controller.itemDictionary[planetName] == controller.activeItem)
+            {
+                SuccessfulPlacement();
+            }
         }
 
         //if user selected an item in the almanac first...
         else if (controller.itemSelected)
         {
-            SuccessfulPlacement();
+            if (controller.itemDictionary[planetName] == controller.activeItem)
+            {
+                SuccessfulPlacement();
+            }
         }
 
-        else
+        else if(!controller.itemDictionary[planetName].isPlaced)
         {
             controller.selectedSceneItemInBuildMode = planetName;
 
@@ -142,7 +153,7 @@ public class PlanetProperties : MonoBehaviour {
         //IDEA: When item is selected, planets organize into a line
 
 
-        if (!(controller.itemSelected && controller.selectedSceneItemInBuildMode == null))
+        if (!(controller.itemSelected && controller.selectedSceneItemInBuildMode.Equals("")))
         {
             transform.RotateAround(GameObject.Find("Mid Air Stage").transform.position, Vector3.up, (float)resolutionSpeed * Time.deltaTime);
             transform.Rotate(rotationSpeed * Vector3.up * Time.deltaTime);

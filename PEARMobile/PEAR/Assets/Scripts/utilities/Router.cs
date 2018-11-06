@@ -68,6 +68,18 @@ public class Router : MonoBehaviour
 
     */
 
+    public static DatabaseReference ItemBuilt(string uid, string classCode, string moduleName, string item)
+    {
+        return baseRef.Child("answers").Child(uid).Child(classCode).Child("modules").Child(moduleName).Child(item).Child("build").Child("done");
+
+    }
+
+    public static DatabaseReference ItemCollected(string uid, string classCode, string moduleName, string item)
+    {
+        return baseRef.Child("answers").Child(uid).Child(classCode).Child("modules").Child(moduleName).Child(item).Child("collect").Child("done");
+
+    }
+
     public static DatabaseReference StoreUserAnswers(string uid, string classCode, string moduleName, string item, string buildOrCollect, string attemptNum, string questionNumber)
     {
         return baseRef.Child("answers").Child(uid).Child(classCode).Child("modules").Child(moduleName).Child(item).Child(buildOrCollect).Child("attempts").Child(attemptNum).Child(questionNumber).Child("answer given");
@@ -87,5 +99,6 @@ public class Router : MonoBehaviour
     {
         return baseRef.Child("answers").Child(uid).Child(classCode).Child("modules").Child(moduleName);
     }
+
 
 }

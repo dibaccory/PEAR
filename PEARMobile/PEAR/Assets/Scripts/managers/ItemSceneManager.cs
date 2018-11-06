@@ -21,11 +21,12 @@ public class ItemSceneManager : MonoBehaviour
 
     public Item currentItem;
     Almanac almanac;
+    SceneController controller;
 
     void Awake()
     {
         ToggleVideo(true);
-        var controller = FindObjectOfType<SceneController>();
+        controller = FindObjectOfType<SceneController>();
         currentItem = controller.activeItem;
         itemModel.GetComponent<MeshRenderer>().material = currentItem.material;
         itemLabel.GetComponent<TextMesh>().text = currentItem.itemName;
@@ -34,6 +35,7 @@ public class ItemSceneManager : MonoBehaviour
     public void OnAddItemButtonClick()
     {
         almanac = FindObjectOfType<Almanac>();
+        controller.itemDictionary[currentItem.tag].isCollected = true; //
         almanac.AddItem(currentItem);
     }
     public void OnQuestionButtonClick()
