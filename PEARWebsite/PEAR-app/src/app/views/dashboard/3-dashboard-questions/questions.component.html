@@ -1,28 +1,22 @@
-<h2>Coming Soon!</h2>
+<div class="container">
 
-<!-- <ngb-accordion #acc="ngbAccordion">
-  <div *ngFor="let answer of answers | async">
-    <ngb-panel title="{{ answer | json }}"> -->
-      <!-- <ng-template ngbPanelContent>
-        {{ sun | json }} -->
+  tester: {{ tester }}
+  <br>
 
-        <!-- <div *ngFor="let mercury of mercury">
-          {{ mercury | json }}
-        </div> -->
-      <!-- </ng-template> -->
-    <!-- </ngb-panel>  
+  <div class="card">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">astronomy</li>
+      <li class="list-group-item">test class</li>
+      <li class="list-group-item">earth: {{ planetBuildQ.earth }}</li>
+      <li class="list-group-item">venus: {{ planetBuildQ.venus }}</li>
+      <li class="list-group-item">mercury: {{ planetBuildQ.mercury }}</li>
+      <li class="list-group-item">mars: {{ planetBuildQ.mars }}</li>
+      <li class="list-group-item">jupiter: {{ planetBuildQ.jupiter }}</li>
+      <li class="list-group-item">saturn: {{ planetBuildQ.saturn }}</li>
+      <li class="list-group-item">uranus: {{ planetBuildQ.uranus }}</li>
+      <li class="list-group-item">neptune: {{ planetBuildQ.neptune }}</li>
+      <li class="list-group-item">sun: {{ planetBuildQ.sun }}</li>
+    </ul>
   </div>
-</ngb-accordion> -->
 
-<!-- <div *ngIf="afAuth.user | async as user">
-  <a href="https://pear-f60a2.firebaseio.com/.json">JSON</a>
-</div>  -->
-
-
-<!-- <div *ngIf="loggedIn; else #loggedOut">
-  <p>test test Q's</p>
-  <a href="https://pear-f60a2.firebaseio.com/.json">JSON</a>
-</div> -->
-<!-- <div *ngFor="let d of data | async">
-  {{ data | json }}
-</div>   -->
+</div>  

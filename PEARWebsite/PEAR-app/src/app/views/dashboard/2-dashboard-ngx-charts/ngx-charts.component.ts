@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { attempts, timeSpent } from './sample-data';
+
 import { AngularFireAuth } from '@angular/fire/auth';
-import { AngularFireDatabase, AngularFireAction } from '@angular/fire/database';
+import { AngularFireDatabase, AngularFireAction, snapshotChanges } from '@angular/fire/database';
 import { Observable, Subscription, BehaviorSubject } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
-
-// import { single } from './sample-data';
 
 @Component({
   selector: 'app-ngx-charts',
@@ -13,65 +14,68 @@ import { switchMap } from 'rxjs/operators';
   styleUrls: ['./ngx-charts.component.css']
 })
 export class NgxChartsComponent implements OnInit {
-  // single: any[];
-  // users: any[];
-  planets: Observable<any[]>;
-  urlRef;
-  user;
-  cellNum;
-  totalAttempts;
 
-  // modules$: Observable<AngularFireAction<firebase.database.DataSnapshot>[]>;
-  // totalAttempts$: BehaviorSubject<string | null>;
+  totalAttempts: number[] = [];
+  key;
+  solarSystem;
+  userID;
+  testEarth;
+
+  planetAttempt = {
+    earth: '',
+    jupiter: '',
+    mars: '',
+    mercury: '',
+    neptune: '',
+    saturn: '',
+    sun: '',
+    uranus: '',
+    venus: '',
+  };
+
+  // ngcx-charts ==========================
+  attempts: any[];
+  timeSpent: any[];
 
   // Options
-  // showXAxis = true;
-  // showYAxis = true;
-  // gradient = false;
-  // showLegend = true;
-  // showXAxisLabel = true;
-  // xAxisLabel = 'Student';
-  // showYAxisLabel = true;
-  // yAxisLabel = '# of Attempts';
+  showXAxis = true;
+  showYAxis = true;
+  gradient = false;
+  showLegend = true;
+  showXAxisLabel = true;
+  xAxisLabel = 'Student';
+  showYAxisLabel = true;
+  yAxisLabel = '# of Attempts';
 
-  // colorScheme = {
-  //   domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
-  // };
+  colorScheme = {
+    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
+  };
+  // =======================================
 
-  // have to change from current user to array of all student users and cycle through for each...somehow
   constructor(public afAuth: AngularFireAuth, db: AngularFireDatabase) {
 
-    this.user = afAuth.auth.currentUser.uid;
-    this.urlRef = db.database.ref('answers/' + this.user + '/astronomy/modules/solar system/');
-    this.planets = db.list<any>(this.urlRef).valueChanges();
+    this.userID = afAuth.auth.currentUser.uid;
+    this.solarSystem = db.database.ref('answers/' + this.userID + '/astronomy/modules/solar system/').orderByKey();
 
-    // this.totalAttempts$ = new BehaviorSubject(null);
+    this.solarSystem.once('value')
+      .then((snapshot) => {
+        // this.testEarth = snapshot.child('earth/collect').exists(); // check path exists; debugging
 
-    // this.planets = this.totalAttempts$.pipe(
-    //   switchMap(sfsd =>
-    //     db.list(this.urlRef, ref =>
-    //       sfsd ? ref.orderByChild('sdsf').equalTo(sfsd) : ref
-    //     ).snapshotChanges()
-    //     )
-    // );
+        snapshot.forEach((childSnapshot) => {
+          this.key = childSnapshot.key; // each key is a planet
+          const attempt = childSnapshot.child('collect/totalAttempts').val(); // totalAttempts value
 
-    // db.list(this.urlRef, ref => ref.orderByChild('totalAttempts'));
+          this.totalAttempts.push(attempt);
+          this.planetAttempt[this.key] = attempt;
+        });
+      });
 
-    // this.urlRef.once('value', function(snapshot) {
-    //   snapshot.forEach(function(child) {
-    //     console.log(child.key + ': ' + child.val());
-    //   });
-    // });
-
-  // this.answers$ = db.list('answers/' + afAuth.auth.currentUser.uid + '/astronomy/modules/',
-  //   ref => ref.orderByChild('solar system').equalTo('time spent')).snapshotChanges();
-
-    // Object.assign(this, { answers$ });
+    Object.assign(this, { attempts, timeSpent });
   }
 
-  // onSelect(event) {
-  //   console.log(event);
-  // }
+  onSelect(event) {
+    console.log(event);
+  }
 
   ngOnInit() {
   }

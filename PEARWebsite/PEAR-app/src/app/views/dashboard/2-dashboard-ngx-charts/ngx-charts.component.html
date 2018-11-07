@@ -1,8 +1,8 @@
-<!-- <div class="container">
+<div class="container">
   <div class="row">
     <div class="col-6">
-      <h3>Average Time Spent on Questions</h3>
-      <ngx-charts-bar-vertical *ngIf="totalAttempts$ | async as attempts"
+      <h3>Total Attempts</h3>
+      <ngx-charts-bar-vertical
         [scheme]="colorScheme"
         [results]="attempts"
         [gradient]="gradient"
@@ -17,18 +17,33 @@
       </ngx-charts-bar-vertical>
     </div>
     <div class="col-6">
-      <h3>Percentage Correct</h3>
-      <ngx-charts-advanced-pie-chart
+      <h3>Average Time Spent</h3>
+      <ngx-charts-line-chart
         [scheme]="colorScheme"
-        [results]="single"
+        [results]="timeSpent"
         [gradient]="gradient"
+        [xAxis]="showXAxis"
+        [yAxis]="showYAxis"
+        [legend]="showLegend"
+        [showXAxisLabel]="showXAxisLabel"
+        [showYAxisLabel]="showYAxisLabel"
+        [xAxisLabel]="xAxisLabel"
+        [yAxisLabel]="yAxisLabel"
         (select)="onSelect($event)">
-      </ngx-charts-advanced-pie-chart>
+      </ngx-charts-line-chart>
     </div>
   </div>
-</div>" -->
-{{ urlRef }}
 
-<li *ngFor="let planet of planets | async">
-  {{ planet | json }}
-</li>
+  <!-- DB access -->
+  <li *ngFor="let t of totalAttempts">
+    {{ t }}
+  </li>
+  
+  <hr>
+  
+  earth: {{ planetAttempt.earth }}
+  <br>
+  venus: {{ planetAttempt.venus }}
+  <br>
+  uranus: {{planetAttempt.uranus }}
+</div>
