@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireDatabase } from '@angular/fire/database';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-default',
@@ -7,7 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DefaultComponent implements OnInit {
 
-  constructor() { }
+  classClode: Observable<any[]>;
+
+  constructor(db: AngularFireDatabase) {
+    this.classClode = db.list<any>('classrooms').valueChanges();
+  }
 
   ngOnInit() {
   }

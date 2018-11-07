@@ -12,19 +12,21 @@ export class ProfileComponent implements OnInit {
   constructor(public afAuth: AngularFireAuth, private router: Router) {
   }
 
-  userEmail = this.afAuth.auth.currentUser.email;
-  user = this.afAuth.auth.currentUser;
-  // email = this.afAuth.auth.currentUser.email;
+  // userEmail = this.afAuth.auth.currentUser.email;
+  // user = this.afAuth.auth.currentUser;
+  // newEmail = '';
+  email = this.afAuth.auth.currentUser.email;
 
   updateEmail() {
-      this.user.updateEmail('test2@test.com');
-        // .then(function () {
-        //   // Update successful
-        //   // this.email = this.afAuth.auth.currentUser.email;
-        //   this.router.navigate(['/dashboard']);
-        // }).catch(function (error) {
-        //   // Error happened
-        // });
+    this.afAuth.auth.currentUser.updateEmail(this.email)
+    .then((res) => {
+      console.log(res);
+      alert('Succesfully changed email');
+    })
+    .catch((err) => {
+      console.log('error: ' + err);
+      alert('Email already exists');
+    });
   }
 
   updatePassword() {

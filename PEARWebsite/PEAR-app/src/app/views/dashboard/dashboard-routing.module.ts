@@ -13,13 +13,8 @@ const routes: Routes = [
     component: DashboardComponent,
     children: [
       { path: 'default', component: DefaultComponent },
-      { path: 'test', component: QuestionsComponent },
-      { path: 'test2', component: NgxChartsComponent },
-
-      // { path: 'test', component: DefaultComponent },
-      // { path: 'test', component: QuestionsComponent, outlet: 'questions' },
-      // { path: 'test', component: NgxChartsComponent, outlet: 'stats' },
-      // { path: '', component: DbOutputComponent },
+      { path: 'questions', component: QuestionsComponent },
+      { path: 'stats', component: NgxChartsComponent },
     ]
   },
 ];

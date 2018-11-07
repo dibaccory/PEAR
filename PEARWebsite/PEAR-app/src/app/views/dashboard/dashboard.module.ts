@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 // Angularfire2
 import { AngularFireFunctionsModule } from '@angular/fire/functions';
@@ -17,6 +18,7 @@ import { DbOutputComponent } from './4-dashboard-export/db-output.component';
 @NgModule({
   imports: [
     CommonModule,
+    NgbModule,
     AngularFireFunctionsModule,
     NgxChartsModule,
     DashboardRoutingModule,

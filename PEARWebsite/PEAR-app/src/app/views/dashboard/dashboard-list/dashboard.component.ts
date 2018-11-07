@@ -20,7 +20,7 @@ export class DashboardComponent implements OnInit {
   }
 
   export() {
-    const link = 'https://pear-f60a2.firebaseio.com/answers/.json';
+    const link = 'https://pear-f60a2.firebaseio.com/.json';
     window.open('https://json-csv.com?u=' + link);
   }
 
