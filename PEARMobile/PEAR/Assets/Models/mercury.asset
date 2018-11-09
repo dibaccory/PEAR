@@ -15,4 +15,5 @@ MonoBehaviour:
   tag: mercury
   sprite: {fileID: 21300000, guid: d078f539c5a304f0894ecd8228c9b45e, type: 3}
   material: {fileID: 2100000, guid: a9ba09e05f0e34d1090ca4a190af6443, type: 2}
-  video: {fileID: 32900000, guid: 15758cfe4faa98249a20a217eaacd63a, type: 3}
+  video: {fileID: 32900000, guid: 33781e4020e39c440a5a51c721f755a9, type: 3}
+  audio: {fileID: 8300000, guid: f846bc3725d9e54409565732e4a387a0, type: 3}
