@@ -15,4 +15,5 @@ MonoBehaviour:
   tag: earth
   sprite: {fileID: 21300000, guid: a1f45638869784945a36c4aff278e9b3, type: 3}
   material: {fileID: 2100000, guid: fd2010aa746f34a16a1d67fe63f63da7, type: 2}
-  video: {fileID: 32900000, guid: 15758cfe4faa98249a20a217eaacd63a, type: 3}
+  video: {fileID: 32900000, guid: bf2ef7809e45eca4c9a1b2237bb392a1, type: 3}
+  audio: {fileID: 8300000, guid: bf30844083a562148b0f9a5d92d4af93, type: 3}
