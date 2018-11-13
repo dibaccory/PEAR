@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { Observable } from 'rxjs';
+import { stringify } from '@angular/compiler/src/util';
 
 @Component({
   selector: 'app-questions',
@@ -12,48 +13,49 @@ export class QuestionsComponent implements OnInit {
 
   module;
   key;
-  tester;
-  tester2;
+  questions;
 
-  planetBuildQ = {
-    earth: '',
-    jupiter: '',
-    mars: '',
-    mercury: '',
-    neptune: '',
-    saturn: '',
-    sun: '',
-    uranus: '',
-    venus: '',
-  };
-
-  planetCollectQ = {
-    earth: '',
-    jupiter: '',
-    mars: '',
-    mercury: '',
-    neptune: '',
-    saturn: '',
-    sun: '',
-    uranus: '',
-    venus: '',
+  planetQ = {
+    earth: [],
+    jupiter: [],
+    mars: [],
+    mercury: [],
+    neptune: [],
+    saturn: [],
+    sun: [],
+    uranus: [],
+    venus: [],
   };
 
   constructor(public afAuth: AngularFireAuth, db: AngularFireDatabase) {
 
-    this.module = db.database.ref('classrooms/astronomy/modules/solar system/').orderByKey();
+    this.module = db.database.ref('classrooms/astronomy/modules/solar system/').orderByChild('question');
 
     this.module.once('value')
       .then((snapshot) => {
         snapshot.forEach((childSnapshot) => {
-          this.key = childSnapshot.key; // planet
+          this.key = childSnapshot.key; // planet - earth
+          // const key2 = childSnapshot.child('collect').key; // collect
 
-          // const collect = childSnapshot.child('collect').val();
-          const build = childSnapshot.child('build/question1/question').val();
+          console.log('key: ' + this.key);
 
-          this.planetBuildQ[this.key] = build;
+          this.setQuestions(childSnapshot);
+
+          this.planetQ[this.key] = this.questions;
         });
       });
+
+  }
+
+  setQuestions(childSnapshot) {
+    this.questions = [
+      childSnapshot.child('/collect/question1/question').val(),
+      childSnapshot.child('/collect/question2/question').val(),
+      childSnapshot.child('/collect/question3/question').val(),
+      childSnapshot.child('/collect/question4/question').val(),
+      childSnapshot.child('/collect/question5/question').val()
+    ];
+    console.log(this.questions);
   }
 
   ngOnInit() {
