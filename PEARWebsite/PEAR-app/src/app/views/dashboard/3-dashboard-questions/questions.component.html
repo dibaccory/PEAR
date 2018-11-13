@@ -1,6 +1,6 @@
 <div class="container">
 
-  <ngb-accordion [closeOthers]="true" activeIds="static-1">
+  <ngb-accordion  activeIds="static-1">
 
     <ngb-panel id="static-1">
       <ng-template ngbPanelTitle><span> <b>Mercury</b> </span></ng-template>
@@ -86,38 +86,5 @@
   </ngb-accordion>
 
   <br><br><br>
-
-
-  <!-- <div class="card">
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item" *ngFor="let planetQ of planetQ.earth">
-        <p *ngIf='planetQ != null'>earth: {{ planetQ }}</p>
-      </li>
-      <div *ngFor="let planetQ of planetQ.venus">
-        <li class="list-group-item" *ngIf='planetQ != null'>venus: {{ planetQ }}</li>
-      </div>
-      <li class="list-group-item" *ngFor="let planetQ of planetQ.mercury">
-        <p *ngIf='planetQ != null'>mercury: {{ planetQ }}</p>
-      </li>
-      <li class="list-group-item" *ngFor="let planetQ of planetQ.mars">
-        <p *ngIf='planetQ != null'>mars: {{ planetQ }}</p>
-      </li>
-      <li class="list-group-item" *ngFor="let planetQ of planetQ.jupiter">
-        <p *ngIf='planetQ != null'>jupiter: {{ planetQ }}</p>
-      </li>
-      <li class="list-group-item" *ngFor="let planetQ of planetQ.saturn">
-        <p *ngIf='planetQ != null'>saturn: {{ planetQ }}</p>
-      </li>
-      <li class="list-group-item" *ngFor="let planetQ of planetQ.uranus">
-        <p *ngIf='planetQ != null'>uranus: {{ planetQ }}</p>
-      </li>
-      <li class="list-group-item" *ngFor="let planetQ of planetQ.neptune">
-        <p *ngIf='planetQ != null'>neptune: {{ planetQ }}</p>
-      </li>
-      <li class="list-group-item" *ngFor="let planetQ of planetQ.sun">
-        <p *ngIf='planetQ != null'>sun: {{ planetQ }}</p>
-      </li>
-    </ul>
-  </div> -->
 
 </div>  

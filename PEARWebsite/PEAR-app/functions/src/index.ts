@@ -2,9 +2,6 @@ import * as functions from 'firebase-functions';
 import * as json2csv from 'json2csv';
 import * as admin from 'firebase-admin';
 
-// admin.initializeApp()
-// Admin Firebase SDK
-// const serviceAccount = require("../serviceAccountKey.json");
 admin.initializeApp({
 	// credential: admin.credential.cert(serviceAccount),
 	databaseURL: "https://pear-f60a2.firebaseio.com"
@@ -38,4 +35,24 @@ export const csvJsonReport = functions.https.onRequest((request, response) => {
 	// );
 	// response.set('Content-Type', 'text/csv');
 	// response.status(200).send(csv);
+});
+
+// Add teachers to database when register account
+export const addTeacherToDatabase = functions.auth.user().onCreate((user) => {
+
+	console.log(user.email);
+	console.log(user.displayName);
+	
+	const userObject = {
+		email: user.email,
+		displayName: user.displayName
+		// classCode: user.classCode
+	};
+	admin.database().ref('teachers/' + user.uid).set(userObject);
+});
+
+// Delete teacher from database when delete account
+export const deleteTeacherFromDatabase = functions.auth.user().onDelete((user) => {
+	// ...
+	admin.database().ref('teachers/' + user.uid).remove();
 });

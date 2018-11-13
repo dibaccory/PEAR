@@ -12,32 +12,36 @@ import { Observable } from 'rxjs';
 })
 export class RegisterComponent implements OnInit {
 
-  itemRef: AngularFireObject<any>;
-  item: Observable<any>;
+  user;
+  email;
+  password;
+  name;
+  classCode = '';
 
-  database;
+//   user = {
+//     fName: 'Test First',
+//     lName: 'Test Last',
+//     email: '',
+//     password: '',
+//     classCode: 'astronomy'
+//  };
 
-  user = {
-    uid: '',
-    // fName: 'Test First',
-    // lName: 'Test Last',
-    email: '',
-    password: '',
-    classCode: 'astronomy'
- };
-
-  constructor(public afAuth: AngularFireAuth, private router: Router, db: AngularFireDatabase) {
-    this.database = db;
-    this.itemRef = db.object('users/buzbVbcYZwdjU04yT6l7xAkLkwk2');
-    this.item = this.itemRef.valueChanges();
+  constructor(public afAuth: AngularFireAuth, private router: Router, public db: AngularFireDatabase) {
+    // this.itemRef = db.object('teachers/');
+    // this.item = this.itemRef.valueChanges();
+    // this.user = this.afAuth.user;
   }
 
-  register() {
-    this.afAuth.auth.createUserWithEmailAndPassword(this.user.email, this.user.password)
-    // this.afAuth.auth.signInWithCustomToken(token)
+  register(name, email, password) {
+    this.user = null;
+    this.afAuth.auth.createUserWithEmailAndPassword(email, password)
       .then((res) => {
+        // console.log(name);
+        // console.log(email);
+        // console.log(password);
+
+        this.afAuth.auth.currentUser.updateProfile({ displayName: name, photoURL: '' });
         console.log(res);
-        // this.writeUserData(res.user.uid, this.user.fName, this.user.lName, this.user.email, this.user.password, this.user.classCode);
         this.router.navigate(['/dashboard']);
       })
       .catch((err) => {
@@ -46,19 +50,6 @@ export class RegisterComponent implements OnInit {
         this.router.navigate(['/register']);
       });
   }
-
-//   writeUserData(userId, fName, lName, email, password, classCode) {
-//     this.itemRef = this.database.object('users/' + userId);
-//     // firebase.database().ref('users/' + userId).update({
-//       this.itemRef.update({
-//       uid: userId,
-//       firstName: fName,
-//       lastName: lName,
-//       email: email,
-//       password: password,
-//       class: classCode,
-//   });
-// }
 
   ngOnInit() {
   }

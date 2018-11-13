@@ -1,19 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireDatabase } from '@angular/fire/database';
-import { Observable } from 'rxjs';
-import { stringify } from '@angular/compiler/src/util';
+import { NgbAccordionConfig } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-questions',
   templateUrl: './questions.component.html',
-  styleUrls: ['./questions.component.css']
+  styleUrls: ['./questions.component.css'],
+  providers: [NgbAccordionConfig]
 })
 export class QuestionsComponent implements OnInit {
 
   module;
   key;
-  questions;
+  questions: any[];
 
   planetQ = {
     earth: [],
@@ -27,7 +27,7 @@ export class QuestionsComponent implements OnInit {
     venus: [],
   };
 
-  constructor(public afAuth: AngularFireAuth, db: AngularFireDatabase) {
+  constructor(public afAuth: AngularFireAuth, db: AngularFireDatabase, config: NgbAccordionConfig) {
 
     this.module = db.database.ref('classrooms/astronomy/modules/solar system/').orderByChild('question');
 
@@ -45,6 +45,8 @@ export class QuestionsComponent implements OnInit {
         });
       });
 
+    config.closeOthers = false;
+    // config.type = '#ffffff';
   }
 
   setQuestions(childSnapshot) {
