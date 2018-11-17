@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { AngularFireDatabase } from '@angular/fire/database';
+import { ClassCodesService } from '../../services/class-code.service';
 
 @Component({
   selector: 'app-register',
@@ -15,23 +16,11 @@ export class RegisterComponent implements OnInit {
   classCode;
 
   classCodes: string[] = [];
-  key;
-  module;
   isAValidClass = false;
 
-  constructor(public afAuth: AngularFireAuth, private router: Router, public db: AngularFireDatabase) {
-    this.module = this.db.database.ref('classrooms').orderByKey();
-
-    this.module.once('value')
-      .then((snapshot) => {
-        snapshot.forEach((childSnapshot) => {
-          this.key = childSnapshot.key; // classCode name
-
-          this.classCodes.push(this.key.toString());
-
-          console.log('classCodes ' + this.classCodes);
-        });
-      });
+  constructor(public afAuth: AngularFireAuth, private router: Router, public db: AngularFireDatabase,
+    public classCodeService: ClassCodesService) {
+      this.classCodes = classCodeService.classCodes;
   }
 
   register() {
@@ -54,8 +43,7 @@ export class RegisterComponent implements OnInit {
       }
     }
 
-    console.log('isValidClassCode ' + this.isAValidClass);
-
+    // console.log('isValidClassCode ' + this.isAValidClass);
     const user = this.afAuth.auth.currentUser;
 
     if (this.isAValidClass === true) {

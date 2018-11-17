@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireDatabase } from '@angular/fire/database';
-import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
-import * as admin from 'firebase-admin';
+import { TeachersService } from 'src/app/services/teachers.service';
 
 @Component({
   selector: 'app-login',
@@ -21,18 +20,9 @@ export class LoginComponent implements OnInit {
   email;
   password;
 
-  constructor(public afAuth: AngularFireAuth, public db: AngularFireDatabase, private router: Router) {
-    this.module = this.db.database.ref('teachers').orderByChild('uid');
-
-    this.module.once('value')
-      .then((snapshot) => {
-        snapshot.forEach((childSnapshot) => {
-          this.key = childSnapshot.key; // UID
-          this.teacherUIDs.push(this.key.toString());
-
-          console.log('uids ' + this.teacherUIDs);
-        });
-      });
+  constructor(public afAuth: AngularFireAuth, public db: AngularFireDatabase, private router: Router,
+    public teacherService: TeachersService) {
+      this.teacherUIDs = teacherService.teacherUIDs;
   }
 
   login() {
@@ -56,7 +46,7 @@ export class LoginComponent implements OnInit {
       }
     }
 
-    console.log('isATeacher ' + this.isATeacher);
+    const user = this.afAuth.auth.currentUser;
 
     if (this.isATeacher === true) {
       this.router.navigate(['/dashboard']);
