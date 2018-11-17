@@ -37,7 +37,7 @@ public class AlmanacFormManager : MonoBehaviour {
         almanacButton.SetActive(setVisible);
     }
 
-    private void EnableGUIElements(bool setEnabled)
+    public void EnableGUIElements(bool setEnabled)
     {
         almanacPanel.SetActive(setEnabled);
         inventoryLabel.enabled = setEnabled;
