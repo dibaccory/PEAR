@@ -49,6 +49,7 @@ export class LoginComponent implements OnInit {
   }
 
   checkIfTeacher() {
+    // tslint:disable-next-line:prefer-const
     for (let uid of this.teacherUIDs) {
       if (this.UID === uid) {
         this.isATeacher = true;

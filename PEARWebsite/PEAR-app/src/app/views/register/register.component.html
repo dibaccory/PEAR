@@ -28,14 +28,14 @@
 					<input type="password" class="form-control" [(ngModel)]="password" name="password" placeholder="Minimum 6 characters" required>
 				</div>
 				<div class="form-group">
-					<fieldset disabled>
+					<!-- <fieldset disabled> -->
 						<label for="exampleInputClassCode1">Class Code</label>
-						<input type="classCode" class="form-control" [(ngModel)]="classCode" name="classCode" placeholder="astronomy">
-					</fieldset>
+						<input type="classCode" class="form-control" [(ngModel)]="classCode" name="classCode" placeholder="astronomy" required>
+					<!-- </fieldset> -->
 				</div>
 
 				<div class="form-group"> 
-					<button type="buton" class="btn btn-primary btn-block" (click)="register(name, email, password)">
+					<button type="buton" class="btn btn-primary btn-block" (click)="register()">
 						Register
 					</button>
 				</div>

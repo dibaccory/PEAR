@@ -14,6 +14,7 @@ export class QuestionsComponent implements OnInit {
   module;
   key;
   questions: any[];
+  keys: any[] = [];
 
   planetQ = {
     earth: [],
@@ -35,9 +36,10 @@ export class QuestionsComponent implements OnInit {
       .then((snapshot) => {
         snapshot.forEach((childSnapshot) => {
           this.key = childSnapshot.key; // planet - earth
-          // const key2 = childSnapshot.child('collect').key; // collect
 
           console.log('key: ' + this.key);
+
+          // this.keys.push(this.key.toString());
 
           this.setQuestions(childSnapshot);
 
@@ -46,7 +48,6 @@ export class QuestionsComponent implements OnInit {
       });
 
     config.closeOthers = false;
-    // config.type = '#ffffff';
   }
 
   setQuestions(childSnapshot) {
@@ -57,7 +58,7 @@ export class QuestionsComponent implements OnInit {
       childSnapshot.child('/collect/question4/question').val(),
       childSnapshot.child('/collect/question5/question').val()
     ];
-    console.log(this.questions);
+    // console.log(this.questions);
   }
 
   ngOnInit() {

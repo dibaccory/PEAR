@@ -7,8 +7,7 @@ admin.initializeApp({
 	databaseURL: "https://pear-f60a2.firebaseio.com"
 });
 
-// Start writing Firebase Functions
-// https://firebase.google.com/docs/functions/typescript
+// Start writing Firebase Functions - https://firebase.google.com/docs/functions/typescript
 export const helloWorld = functions.https.onRequest((request, response) => {
  response.send("Hello from Firebase!");
 });
@@ -37,22 +36,17 @@ export const csvJsonReport = functions.https.onRequest((request, response) => {
 	// response.status(200).send(csv);
 });
 
-// Add teachers to database when register account
-export const addTeacherToDatabase = functions.auth.user().onCreate((user) => {
-
-	console.log(user.email);
-	console.log(user.displayName);
-	
-	const userObject = {
-		email: user.email,
-		displayName: user.displayName
-		// classCode: user.classCode
-	};
-	admin.database().ref('teachers/' + user.uid).set(userObject);
-});
-
-// Delete teacher from database when delete account
+// Delete auth teacher from database when delete account
 export const deleteTeacherFromDatabase = functions.auth.user().onDelete((user) => {
-	// ...
 	admin.database().ref('teachers/' + user.uid).remove();
 });
+
+// Add teachers to database when register account - adds both mobile and web to same DB location
+// export const addTeacherToDatabase = functions.auth.user().onCreate((user) => {	
+// 	const userObject = {
+// 		email: user.email,
+// 		uid: user.uid,
+// 		displayName: user.displayName
+// 	};
+// 	admin.database().ref('teachers/' + user.uid).set(userObject);
+// });
