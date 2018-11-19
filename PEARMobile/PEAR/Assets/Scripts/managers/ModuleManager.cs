@@ -9,7 +9,7 @@ using Firebase.Database;
 
 public class ModuleManager : MonoBehaviour {
 
-    public List<string> moduleList = new List<string>();
+    public List<Module> moduleList = new List<Module>();
 
     public GameObject rowPrefab;
     public GameObject scrollContainer;
@@ -18,7 +18,7 @@ public class ModuleManager : MonoBehaviour {
     {
         moduleList.Clear();
         string classCode = "astronomy";
-
+        /*
 
         Router.GetModules(classCode).GetValueAsync().ContinueWith((task) =>
         {
@@ -26,12 +26,13 @@ public class ModuleManager : MonoBehaviour {
 
             foreach (DataSnapshot module in moduleSnapshot.Children)
             {
-                var moduleKey = module.Key;
+                var moduleKey = (IDictionary<string, object>)module.Value;
                 moduleList.Add(moduleKey);
             }
             InitalizeUI();
 
         });
+        */
 
         //DatabaseManager.sharedInstance.GetModules(classCode, (result) =>
         //{
@@ -43,13 +44,13 @@ public class ModuleManager : MonoBehaviour {
 
     void InitalizeUI()
     {
-        foreach (string moduleKey in moduleList)
+        foreach (Module moduleKey in moduleList)
         {
             CreateRow(moduleKey);
         }
     }
 
-    void CreateRow(string moduleKey)
+    void CreateRow(Module moduleKey)
     {
         GameObject newRow = Instantiate(rowPrefab) as GameObject;
         newRow.GetComponent<RowConfig>().Initalize(moduleKey);

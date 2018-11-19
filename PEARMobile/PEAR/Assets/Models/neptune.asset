@@ -10,10 +10,12 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bcbab50924ea846888d97698a29387b4, type: 3}
   m_Name: neptune
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier:
   itemName: Neptune
   tag: neptune
   sprite: {fileID: 21300000, guid: 1b111c4c8520c4d628f700f5ade3cf6c, type: 3}
   material: {fileID: 2100000, guid: e1f034a00a7fc464ebdcf393bd7f8c51, type: 2}
+  isPlaced: 0
+  isCollected: 0
   video: {fileID: 32900000, guid: 6fd6db259c5239544a2ba4da29503c4b, type: 3}
   audio: {fileID: 8300000, guid: e9b9366c2832e074b9cd9c3a732af949, type: 3}

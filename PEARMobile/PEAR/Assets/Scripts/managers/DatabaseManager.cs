@@ -14,12 +14,14 @@ public class DatabaseManager : MonoBehaviour
     Firebase.Auth.FirebaseAuth auth;
 
     public static DatabaseManager sharedInstance = null;
+    SceneController controller;
 
     /// <summary>
     /// Awake this instance and initialize sharedInstance for Singleton pattern
     /// </summary>
     void Awake()
     {
+        controller = FindObjectOfType<SceneController>();
         if (sharedInstance == null)
         {
             sharedInstance = this;
@@ -80,9 +82,9 @@ public class DatabaseManager : MonoBehaviour
         });
     }
 
-    public void GetModules(string classCode, Action<List<string>> completionBlock)
+    public void GetModules(string classCode, Action<List<Module>> completionBlock)
     {
-        List<string> tempList = new List<string>();
+        List<Module> tempList = new List<Module>();
 
         Router.GetModules(classCode).GetValueAsync().ContinueWith((task) =>
         {
@@ -91,8 +93,9 @@ public class DatabaseManager : MonoBehaviour
 
             foreach (DataSnapshot module in moduleSnapshot.Children)
             {
-                var moduleKey = module.Key;
-                tempList.Add(moduleKey);
+                var moduleDict = module.Key;    //(IDictionary<string, object>) module.Value; //Why doesn't this work???
+                Module newModule = new Module(moduleDict);
+                tempList.Add(newModule);
             }
             completionBlock(tempList);
         });
@@ -136,15 +139,17 @@ public class DatabaseManager : MonoBehaviour
     public void getMaterialNames(Action<Stack<string>> lambdaBuster)
     {
       //Debug.Log("we in");
-      Stack<string> k = new Stack<string>();
-
-      Router.ModuleMaterials("astronomy", "solar system").GetValueAsync().ContinueWith((task) =>
+        Stack<string> k = new Stack<string>();
+        Router.ModuleMaterials(controller.classroom, controller.module).GetValueAsync().ContinueWith((task) =>
       {
         DataSnapshot materials = task.Result;
         foreach (DataSnapshot entry in materials.Children)
         {
-          Debug.Log(entry.Key);
-          k.Push(entry.Key);
+              //if this material hasn't been gathered yet...
+              if (!controller.itemDictionary[entry.Key].isCollected)
+              {
+                  k.Push(entry.Key);
+              }
         }
           lambdaBuster(k);
       });
@@ -157,7 +162,7 @@ public class DatabaseManager : MonoBehaviour
                              string questionNumber,
                              string submittedAnswer)
     {
-
+        //Submit answer for the nth attempt
         Router.StoreAttempts(uid, classCode, moduleName, item, buildOrCollect).GetValueAsync().ContinueWith((task) =>
         {
             DataSnapshot snapshot = task.Result;
@@ -241,7 +246,8 @@ public class DatabaseManager : MonoBehaviour
             }
             else
             {
-                num = Convert.ToInt32(snapshot.Value.ToString());
+                Debug.Log((int)snapshot.Value);
+                num = (int) snapshot.Value;
                 num++;
             }
             Router.StoreAttempts(uid, classCode, moduleName, item, buildOrCollect).SetValueAsync(num.ToString());
@@ -272,11 +278,58 @@ public class DatabaseManager : MonoBehaviour
         return user;
     }
 
-    public void Logout()
+    public void SaveModuleState()
     {
         Debug.Log("Logout function invoked");
         // TODO: This might not be the best place for this function
         //       Needs to determine everything the user has gathered
         //       and/or built and upload it to the database
+        foreach (Item item in controller.itemDictionary.Values)
+        {
+            if (item.isCollected)
+            {
+                Router.ItemCollected(DatabaseManager.sharedInstance.GetUser().UserId, controller.classroom, controller.module, item.tag).SetValueAsync(true);
+            }
+            if (item.isPlaced)
+            {
+                Router.ItemBuilt(DatabaseManager.sharedInstance.GetUser().UserId, controller.classroom, controller.module, item.tag).SetValueAsync(true);
+            }
+        }
+
+        controller.FadeAndLoadScene("LoginScreen");
+
+    }
+
+    public void LoadModuleState()
+    {
+        foreach (Item item in controller.itemDictionary.Values)
+        {
+            Router.ItemCollected(DatabaseManager.sharedInstance.GetUser().UserId, controller.classroom, controller.module, item.tag).GetValueAsync().ContinueWith(task =>
+            {
+                if((bool)task.Result.Value)
+                {
+                    item.isCollected = true;
+                }
+                else
+                {
+                    item.isCollected = false;
+                }
+                FindObjectOfType<Almanac>().AddItem(item);
+            });
+
+            Router.ItemBuilt(DatabaseManager.sharedInstance.GetUser().UserId, controller.classroom, controller.module, item.tag).GetValueAsync().ContinueWith(task =>
+            {
+                if ((bool)task.Result.Value)
+                {
+                    item.isPlaced = true;
+                }
+                else
+                {
+                    item.isPlaced = false;
+                }
+
+            });
+
+        }
     }
 }

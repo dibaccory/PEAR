@@ -46,6 +46,7 @@ public class QandAController : MonoBehaviour {
                                                      FindObjectOfType<ItemSceneManager>().currentItem.tag,
                                                      "collect");
 
+
         DatabaseManager.sharedInstance.getQnA(classCode, moduleName, item, "collect", (result) =>
         {
             questionPool = result;

@@ -29,6 +29,6 @@ PEARMobile/PEAR/PEAR.sln
 *.user
 *.unityproj
 *.booproj
-
+PEARMobile/PEAR/*.apk
 PEARMobile/PEAR/*.sln
 PEARMobile/PEAR/*.csproj

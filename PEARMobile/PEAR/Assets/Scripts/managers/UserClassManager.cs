@@ -14,7 +14,7 @@ public class UserClassManager : MonoBehaviour {
     public Button submitButton;
 
     public List<Classroom> classroomList = new List<Classroom>();
-    public List<string> moduleList      = new List<string>();
+    public List<Module> moduleList      = new List<Module>();
     public List<string> loginItemList = new List<string>();
 
 
@@ -44,18 +44,18 @@ public class UserClassManager : MonoBehaviour {
        newRow.transform.SetParent(classScroll.transform, false);
     }
 
-    void CreateModuleRow(string module)
+    void CreateModuleRow(Module module)
     {
         
-        GameObject newRow = Instantiate(moduleItem) as GameObject;
-        newRow.GetComponent<RowConfig>().Initalize(module);
-        newRow.GetComponent<Button>().onClick.AddListener(
+        GameObject moduleRow = Instantiate(moduleItem) as GameObject;
+        moduleRow.GetComponent<RowConfig>().Initalize(module);
+        moduleRow.GetComponent<Button>().onClick.AddListener(
         delegate()
         {
-          OnModuleClick(module);
+          OnModuleClick( moduleRow.GetComponent<RowConfig>().text.text );
         });
 
-        newRow.transform.SetParent(moduleScroll.transform, false);
+        moduleRow.transform.SetParent(moduleScroll.transform, false);
     }
 
     void UpdateClasses()
@@ -73,14 +73,24 @@ public class UserClassManager : MonoBehaviour {
 
     void UpdateModules(string classCode)
     {
-      DatabaseManager.sharedInstance.GetModules(classCode, (m) =>
-     {
-         moduleList = m;
-         foreach (string module in moduleList)
-         {
-             CreateModuleRow(module);
-         }
-     });
+        //Destroy all currently listed
+
+        foreach (Transform child in moduleScroll.transform)
+        {
+            Destroy(child.gameObject);
+        }
+
+        //update module
+        DatabaseManager.sharedInstance.GetModules(classCode, (m) =>
+        {
+            moduleList = m;
+            foreach (Module module in moduleList)
+            {
+                CreateModuleRow(module);
+            }
+        });
+
+      
     }
 
     public void ValidateClassCode()
@@ -121,6 +131,9 @@ public class UserClassManager : MonoBehaviour {
     {
         FindObjectOfType<SceneController>().module = module;
         Debug.Log("Current Module is : " + module);
+
+        DatabaseManager.sharedInstance.LoadModuleState();
+        FindObjectOfType<AlmanacFormManager>().SetButtonVisibility(true);
         FindObjectOfType<SceneController>().FadeAndLoadScene("CollectScene");
     }
 

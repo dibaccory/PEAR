@@ -29,9 +29,14 @@ public class InventorySlotManager : MonoBehaviour {
                 // for that particular item
                 // TODO: Implement this
                 controller.activeItem = item;
-                controller.itemSelected = true;
                 FindObjectOfType<AlmanacFormManager>().InterfaceButtonClick(); //close almanac
                 Debug.Log("You used: " + item.itemName + " in build mode");
+
+                if(!string.IsNullOrEmpty(controller.selectedSceneItemInBuildMode))
+                {
+                    var objectInScene = GameObject.Find(controller.selectedSceneItemInBuildMode).GetComponent<PlanetProperties>();
+                    objectInScene.validatePlacement();
+                }
             }
             else
             {

@@ -8,15 +8,17 @@ using Firebase.Unity.Editor;
 public class init_orb : MonoBehaviour {
 
 
-	int count = 9; //Should get this from the database; i.e. How many things do we need to collect for this module
+	int count; //Should get this from the database; i.e. How many things do we need to collect for this module
 	public GameObject orb;
 	public Stack<string> keys = new Stack<string>();
-	// Use this for initialization
-	void Start ()
-	{
-		DatabaseManager.sharedInstance.getMaterialNames((result) =>
+    // Use this for initialization
+    SceneController controller;
+    void Start ()
+    {
+		DatabaseManager.sharedInstance.getMaterialNames((k) =>
 		{
-			keys = result;
+			keys = k;
+            count = keys.Count;
 			populateOrbs();
 		});
 

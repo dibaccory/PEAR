@@ -36,6 +36,10 @@ public class Almanac : MonoBehaviour
         if (items.Count < 9 && !items.Contains(itemToAdd))
         {
             items.Add(itemToAdd);
+            Router.ItemCollected( DatabaseManager.sharedInstance.GetUser().UserId,
+                                  SceneController.controller.classroom, 
+                                  SceneController.controller.module,
+                                  itemToAdd.tag).SetValueAsync(true);
         }
         else if(items.Contains(itemToAdd))
         {
