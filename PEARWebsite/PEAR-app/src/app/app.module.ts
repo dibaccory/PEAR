@@ -23,7 +23,11 @@ import { SplashpageComponent } from '../app/views/splashpage/splashpage.componen
 import { PageNotFoundComponent } from '../app/views/page-not-found/page-not-found.component';
 import { ProfileComponent } from './views/profile/profile.component';
 import { DashboardModule } from './views/dashboard/dashboard.module';
-import { AuthAF2Service } from './auth-af2.service';
+
+// Services
+import { ClassCodesService } from './services/class-code.service';
+import { TeachersService } from './services/teachers.service';
+import { StudentsService } from './services/students.service';
 
 @NgModule({
   imports: [
@@ -48,7 +52,11 @@ import { AuthAF2Service } from './auth-af2.service';
     PageNotFoundComponent,
     ProfileComponent
   ],
-  providers: [AuthAF2Service],
+  providers: [
+    ClassCodesService,
+    TeachersService,
+    StudentsService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

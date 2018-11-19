@@ -11,6 +11,7 @@ import { NgbAccordionConfig } from '@ng-bootstrap/ng-bootstrap';
 })
 export class QuestionsComponent implements OnInit {
 
+  registeredClassCode;
   module;
   key;
   questions: any[];

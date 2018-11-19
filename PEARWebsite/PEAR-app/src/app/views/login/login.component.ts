@@ -51,8 +51,12 @@ export class LoginComponent implements OnInit {
     if (this.isATeacher === true) {
       this.router.navigate(['/dashboard']);
     } else {
-      alert('This is not a registered teacher account');
-      this.router.navigate(['/login']);
+      this.afAuth.auth.signOut()
+        .then((res) => {
+          console.log(res);
+          alert('This is not a registered teacher account');
+          this.router.navigate(['/login']);
+        });
     }
   }
 
