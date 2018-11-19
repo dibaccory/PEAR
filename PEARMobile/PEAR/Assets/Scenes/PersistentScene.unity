@@ -306,10 +306,17 @@ MonoBehaviour:
   m_EditorClassIdentifier:
   faderCanvasGroup: {fileID: 521956155}
   fadeDuration: 1
+<<<<<<< HEAD
   currentScene:
   playerSaveData: {fileID: 11400000, guid: bc56ef5dc3097ab4994da357be65e89b, type: 2}
   itemSelected: 0
   selectedSceneItemInBuildMode:
+=======
+  currentScene:
+  playerSaveData: {fileID: 11400000, guid: bc56ef5dc3097ab4994da357be65e89b, type: 2}
+  itemSelected: 0
+  selectedSceneItemInBuildMode:
+>>>>>>> 59dd34b3cc50553569616b8a2ce918f0a432b6e7
   sun: {fileID: 11400000, guid: 60cb74570a8084843b72f4330181c21f, type: 2}
   mercury: {fileID: 11400000, guid: 5895787a6b6b6ab42a9aa6136740f88e, type: 2}
   venus: {fileID: 11400000, guid: 00f901f9405bc434a8dc825b877fd82c, type: 2}
@@ -319,8 +326,13 @@ MonoBehaviour:
   saturn: {fileID: 11400000, guid: e39b7b7530db6bd4c87209a788f1ca52, type: 2}
   neptune: {fileID: 11400000, guid: 0f91e571cc01d1b458b9922cce0e5ad9, type: 2}
   uranus: {fileID: 11400000, guid: 53c09149e420bc747b285f615063459e, type: 2}
+<<<<<<< HEAD
   classroom:
   module:
+=======
+  classroom:
+  module:
+>>>>>>> 59dd34b3cc50553569616b8a2ce918f0a432b6e7
   activeItem: {fileID: 0}
 --- !u!4 &228081076
 Transform:
@@ -2071,8 +2083,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dfe99ecf2a1a249b2b35a7b82f8ce9dd, type: 3}
+<<<<<<< HEAD
   m_Name:
   m_EditorClassIdentifier:
+=======
+  m_Name:
+  m_EditorClassIdentifier:
+>>>>>>> 59dd34b3cc50553569616b8a2ce918f0a432b6e7
   items: []
   almanacPanel: {fileID: 1550726280}
 --- !u!1 &1987168917

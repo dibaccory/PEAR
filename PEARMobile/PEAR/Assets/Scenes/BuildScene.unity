@@ -154,8 +154,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c8251cf4b011a468aa21ce707c998518, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   originalPosition: {x: 0, y: 0, z: 0}
   map: {fileID: 2100000, guid: 10433f68292a34a93adf04314ad91f47, type: 2}
 --- !u!135 &234805087
@@ -251,8 +251,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 36e6979673d93441fa6c3360337adbdc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   segments: 50
   xradius: 7
   zradius: 7
@@ -418,8 +418,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 2020821747, guid: bab6fa851cf5a1a4bba3cec5f191cb8e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   AnchorStage: {fileID: 926883810}
   DuplicateStage: 0
   OnContentPlaced:
@@ -437,8 +437,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 996249435, guid: bab6fa851cf5a1a4bba3cec5f191cb8e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   DistanceToCamera: 100
   MidAirIndicator: {fileID: 1527064403990174, guid: e5581564ca4d5f2479d5f1694371ef2f,
     type: 2}
@@ -450,10 +450,10 @@ MonoBehaviour:
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName:
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument:
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: Vuforia.MidAirPositionerBehaviour+AnchorPositionConfirmedEvent, Vuforia.UnityExtensions,
@@ -468,8 +468,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 1027344429, guid: bab6fa851cf5a1a4bba3cec5f191cb8e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   OnInputReceivedEvent:
     m_PersistentCalls:
       m_Calls:
@@ -478,10 +478,10 @@ MonoBehaviour:
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName:
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument:
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: Vuforia.AnchorInputListenerBehaviour+InputReceivedEvent, Vuforia.UnityExtensions,
@@ -541,8 +541,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c8251cf4b011a468aa21ce707c998518, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   originalPosition: {x: 0, y: 0, z: 0}
   map: {fileID: 2100000, guid: fd2010aa746f34a16a1d67fe63f63da7, type: 2}
 --- !u!135 &385646847
@@ -640,8 +640,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c8251cf4b011a468aa21ce707c998518, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   originalPosition: {x: 0, y: 0, z: 0}
   map: {fileID: 2100000, guid: a040389a97c644f5cabd504cfaa6b8fd, type: 2}
 --- !u!135 &403270792
@@ -737,8 +737,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 36e6979673d93441fa6c3360337adbdc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   segments: 50
   xradius: 8
   zradius: 8
@@ -882,8 +882,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c8251cf4b011a468aa21ce707c998518, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   originalPosition: {x: 0, y: 0, z: 0}
   map: {fileID: 2100000, guid: 4b37fe6ff2b074849a3fe355b0328206, type: 2}
 --- !u!135 &685169749
@@ -1017,8 +1017,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 36e6979673d93441fa6c3360337adbdc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   segments: 50
   xradius: 5
   zradius: 5
@@ -1160,8 +1160,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 36e6979673d93441fa6c3360337adbdc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   segments: 50
   xradius: 2
   zradius: 2
@@ -1290,9 +1290,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 697333272, guid: bab6fa851cf5a1a4bba3cec5f191cb8e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mTrackableName: 
+  m_Name:
+  m_EditorClassIdentifier:
+  mTrackableName:
   mPreserveChildSize: 0
   mInitializedInEditor: 0
   mSelectedStageType: 1
@@ -1307,8 +1307,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5a917f0af64a6423093132dab321c15f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
 --- !u!4 &926883812
 Transform:
   m_ObjectHideFlags: 0
@@ -1364,8 +1364,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c8251cf4b011a468aa21ce707c998518, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   originalPosition: {x: 0, y: 0, z: 0}
   map: {fileID: 2100000, guid: 05e1a5bc8740345e69a60afbfede8912, type: 2}
 --- !u!135 &1102219813
@@ -1463,8 +1463,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c8251cf4b011a468aa21ce707c998518, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   originalPosition: {x: 0, y: 0, z: 0}
   map: {fileID: 2100000, guid: ea4b8bd38e70747538bfdd20ae641e6d, type: 2}
 --- !u!135 &1137376158
@@ -1562,8 +1562,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c8251cf4b011a468aa21ce707c998518, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   originalPosition: {x: 0, y: 0, z: 0}
   map: {fileID: 2100000, guid: 65b5cf4e11f30487c81a380db698c6ba, type: 2}
 --- !u!135 &1170383240
@@ -1724,8 +1724,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 36e6979673d93441fa6c3360337adbdc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   segments: 50
   xradius: 4
   zradius: 4
@@ -1869,8 +1869,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c8251cf4b011a468aa21ce707c998518, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   originalPosition: {x: 0, y: 0, z: 0}
   map: {fileID: 2100000, guid: e1f034a00a7fc464ebdcf393bd7f8c51, type: 2}
 --- !u!135 &1450664399
@@ -1968,8 +1968,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c8251cf4b011a468aa21ce707c998518, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   originalPosition: {x: 0, y: 0, z: 0}
   map: {fileID: 2100000, guid: a9ba09e05f0e34d1090ca4a190af6443, type: 2}
 --- !u!135 &1566612479
@@ -2054,8 +2054,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c47f92041efbb4b429a4eafca855ebe3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
 --- !u!114 &1567268488
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2065,8 +2065,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -1826476478, guid: bab6fa851cf5a1a4bba3cec5f191cb8e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   mWorldCenterMode: 1
   mWorldCenter: {fileID: 0}
 --- !u!81 &1567268489
@@ -2164,8 +2164,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 36e6979673d93441fa6c3360337adbdc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   segments: 50
   xradius: 3
   zradius: 3
@@ -2307,8 +2307,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 36e6979673d93441fa6c3360337adbdc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   segments: 50
   xradius: 1
   zradius: 1
@@ -2450,8 +2450,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 36e6979673d93441fa6c3360337adbdc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   segments: 50
   xradius: 6
   zradius: 6
