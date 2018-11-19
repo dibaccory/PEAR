@@ -12,6 +12,7 @@ using System.Collections.Generic;
 // the player leaves them.
 public class SceneController : MonoBehaviour
 {
+    public static SceneController controller = null;
     // Event delegate that is called just before a scene is unloaded.
     public event Action BeforeSceneUnload;
 
@@ -25,7 +26,7 @@ public class SceneController : MonoBehaviour
     public float fadeDuration = 1f;
 
     // The name of the scene that should be loaded first.
-    public string startingSceneName = "CollectScene";
+    private string startingSceneName = "LoginScreen";
 
     // Keeps track of the current scene loaded
     public string currentScene = "";
@@ -36,11 +37,9 @@ public class SceneController : MonoBehaviour
     // Flag used to determine if the Image is currently fading to or from black.
     private bool isFading;
 
-    //(Build mode only) check if item in the almanac has been clicked
-    public bool itemSelected = false;
-
     //self-explanatory
-    public string selectedSceneItemInBuildMode;
+    public string selectedSceneItemInBuildMode = null;
+
 
 
     public IDictionary<string, Item> itemDictionary = new Dictionary<string, Item>();
@@ -54,11 +53,21 @@ public class SceneController : MonoBehaviour
     public Item neptune;
     public Item uranus;
 
+    public string classroom;
+    public string module;
 
     public Item activeItem;
 
+    private void Awake()
+    {
+        controller = this;
+    }
+
     private IEnumerator Start()
     {
+
+        // Hide buttons for initial login scene
+        FindObjectOfType<AlmanacFormManager>().SetButtonVisibility(false);
         // Setup all available items
         SetupItemDictionary();
 
@@ -175,4 +184,11 @@ public class SceneController : MonoBehaviour
         // Stop the CanvasGroup from blocking raycasts so input is no longer ignored.
         faderCanvasGroup.blocksRaycasts = false;
     }
+
+    private void OnApplicationQuit()
+    {
+        DatabaseManager.sharedInstance.SaveModuleState();
+    }
+
+
 }

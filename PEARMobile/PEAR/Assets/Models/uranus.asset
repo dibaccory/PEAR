@@ -15,3 +15,5 @@ MonoBehaviour:
   tag: uranus
   sprite: {fileID: 21300000, guid: f46c58b1ca0564198a86586068381125, type: 3}
   material: {fileID: 2100000, guid: a040389a97c644f5cabd504cfaa6b8fd, type: 2}
+  video: {fileID: 32900000, guid: b44e4980fc43359498b5cf6b61636c90, type: 3}
+  audio: {fileID: 8300000, guid: 454a84745bfbd2848ab03a17d53691d8, type: 3}

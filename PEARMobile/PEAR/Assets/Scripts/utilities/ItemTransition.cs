@@ -18,7 +18,7 @@ public class ItemTransition : MonoBehaviour {
         // this object was clicked - do something
         //Destroy (this.gameObject);
         var controller = FindObjectOfType<SceneController>();
-        controller.activeItem = controller.itemDictionary[this.name];
+        controller.activeItem = controller.itemDictionary[this.gameObject.name];
         controller.FadeAndLoadScene("ItemDisplay");
     }
 }

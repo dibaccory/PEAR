@@ -31,17 +31,24 @@ public class QandAController : MonoBehaviour {
     private List<GameObject> answerButtonGameObjects = new List<GameObject>();
 
     private Item currentItem;
-    
+
 	// Use this for initialization
 	void Start ()
     {
-        // Values hardcoded for testing right now
-        // TODO: Do this dynamically 
-        string classCode = "astronomy";
-        string moduleName = "solar system";
+        string classCode = FindObjectOfType<SceneController>().classroom;
+        string moduleName = FindObjectOfType<SceneController>().module;
         string item = FindObjectOfType<ItemSceneManager>().currentItem.name;
-        string buildOrCollect = "build";
-        DatabaseManager.sharedInstance.getQnA(classCode, moduleName, item, buildOrCollect, (result) =>
+
+        FirebaseUser user = DatabaseManager.sharedInstance.GetUser();
+
+        DatabaseManager.sharedInstance.StoreAttempts(user.UserId,
+                                                     classCode,
+                                                     moduleName,
+                                                     FindObjectOfType<ItemSceneManager>().currentItem.tag,
+                                                     "collect");
+
+
+        DatabaseManager.sharedInstance.getQnA(classCode, moduleName, item, "collect", (result) =>
         {
             questionPool = result;
             totalNumQuestions = questionPool.Count;
@@ -58,7 +65,7 @@ public class QandAController : MonoBehaviour {
         RemoveAnswerButtons();
         Question currentQuestion = questionPool[questionIndex];
         questionText.text = currentQuestion.QuestionText;
-        
+
         for(int i = 0; i < currentQuestion.answers.Count; i++)
         {
             GameObject answerButtonGameObject = answerButtonObjectPool.GetObject();
@@ -85,13 +92,13 @@ public class QandAController : MonoBehaviour {
         // var uid = firebaseUser.UserId;
 
         string questionString = "question" + questionPool[questionIndex].QuestionNumber.ToString();
-
-        DatabaseManager.sharedInstance.SubmitAnswer("sqG05GXsh7TnGTiby9uMlDAkFz72", 
-                                                    "astronomy", 
-                                                    "solar system", 
+        FirebaseUser user = DatabaseManager.sharedInstance.GetUser();
+        DatabaseManager.sharedInstance.SubmitAnswer(user.UserId,
+                                                    FindObjectOfType<SceneController>().classroom,
+                                                    FindObjectOfType<SceneController>().module,
                                                     FindObjectOfType<ItemSceneManager>().currentItem.name,
-                                                    "build", 
-                                                    questionString, 
+                                                    "collect",
+                                                    questionString,
                                                     answer.answerText);
 
         if(answer.isCorrect)
@@ -151,12 +158,13 @@ public class QandAController : MonoBehaviour {
         questionAnsweredPanel.SetActive(false);
         questionText.enabled = false;
 
-        foreach(var item in userAnswers)
+        foreach (var item in userAnswers)
         {
             Debug.Log("User answered " + item.Value.answerText + " for the following question: ");
             Debug.Log("Question Text: " + item.Key.QuestionText);
         }
         float percentCorrect = (float)numberCorrectlyAnswered / (float)totalNumQuestions;
+
         if (percentCorrect > .50)
         {
             roundEndPanel.SetActive(true);
@@ -168,13 +176,13 @@ public class QandAController : MonoBehaviour {
 
         Debug.Log("Total time spent on this item: " + secondCount);
         Debug.Log("User answered " + percentCorrect * 100 + "% correctly");
-        DatabaseManager.sharedInstance.TimeAndAttempts("sqG05GXsh7TnGTiby9uMlDAkFz72",
-                                                       "astronomy",
-                                                       "solar system",
-                                                       FindObjectOfType<ItemSceneManager>().currentItem.name,
-                                                       "build",
-                                                       (double)secondCount,
-                                                       1);
+        FirebaseUser user = DatabaseManager.sharedInstance.GetUser();
+        DatabaseManager.sharedInstance.StoreTime(user.UserId,
+                                                 FindObjectOfType<SceneController>().classroom,
+                                                 FindObjectOfType<SceneController>().module,
+                                                 FindObjectOfType<ItemSceneManager>().currentItem.name,
+                                                 "collect",
+                                                 secondCount);
     }
 
     // Update is called once per frame

@@ -14,12 +14,14 @@ public class DatabaseManager : MonoBehaviour
     Firebase.Auth.FirebaseAuth auth;
 
     public static DatabaseManager sharedInstance = null;
+    SceneController controller;
 
     /// <summary>
     /// Awake this instance and initialize sharedInstance for Singleton pattern
     /// </summary>
     void Awake()
     {
+        controller = FindObjectOfType<SceneController>();
         if (sharedInstance == null)
         {
             sharedInstance = this;
@@ -80,9 +82,9 @@ public class DatabaseManager : MonoBehaviour
         });
     }
 
-    public void GetModules(string classCode, Action<List<string>> completionBlock)
+    public void GetModules(string classCode, Action<List<Module>> completionBlock)
     {
-        List<string> tempList = new List<string>();
+        List<Module> tempList = new List<Module>();
 
         Router.GetModules(classCode).GetValueAsync().ContinueWith((task) =>
         {
@@ -91,8 +93,9 @@ public class DatabaseManager : MonoBehaviour
 
             foreach (DataSnapshot module in moduleSnapshot.Children)
             {
-                var moduleKey = module.Key;
-                tempList.Add(moduleKey);
+                var moduleDict = module.Key;    //(IDictionary<string, object>) module.Value; //Why doesn't this work???
+                Module newModule = new Module(moduleDict);
+                tempList.Add(newModule);
             }
             completionBlock(tempList);
         });
@@ -136,20 +139,21 @@ public class DatabaseManager : MonoBehaviour
     public void getMaterialNames(Action<Stack<string>> lambdaBuster)
     {
       //Debug.Log("we in");
-      Stack<string> k = new Stack<string>();
-
-      Router.ModuleMaterials("astronomy", "solar system").GetValueAsync().ContinueWith((task) =>
+        Stack<string> k = new Stack<string>();
+        Router.ModuleMaterials(controller.classroom, controller.module).GetValueAsync().ContinueWith((task) =>
       {
         DataSnapshot materials = task.Result;
         foreach (DataSnapshot entry in materials.Children)
         {
-          Debug.Log(entry.Key);
-          k.Push(entry.Key);
+              //if this material hasn't been gathered yet...
+              if (!controller.itemDictionary[entry.Key].isCollected)
+              {
+                  k.Push(entry.Key);
+              }
         }
-        lambdaBuster(k);
+          lambdaBuster(k);
       });
     }
-
     public void SubmitAnswer(string uid,
                              string classCode,
                              string moduleName,
@@ -158,27 +162,97 @@ public class DatabaseManager : MonoBehaviour
                              string questionNumber,
                              string submittedAnswer)
     {
-        Router.StoreUserAnswers(uid,
-                                classCode,
-                                moduleName,
-                                item,
-                                buildOrCollect,
-                                questionNumber).SetValueAsync(submittedAnswer);
+        //Submit answer for the nth attempt
+        Router.StoreAttempts(uid, classCode, moduleName, item, buildOrCollect).GetValueAsync().ContinueWith((task) =>
+        {
+            DataSnapshot snapshot = task.Result;
+
+            string attemptNum = snapshot.Value.ToString();
+
+            //if (snapshot.Value == null)
+            //{
+            //    //Debug.Log("null as fuvk");
+            //    attemptNum = "1";
+            //}
+            //else
+            //{
+            //    int num = Convert.ToInt32(snapshot.Value.ToString());
+            //    attemptNum = (num + 1).ToString();
+            //}
+
+
+
+            Router.StoreUserAnswers(uid,
+                                    classCode,
+                                    moduleName,
+                                    item,
+                                    buildOrCollect,
+                                    attemptNum,
+                                    questionNumber).SetValueAsync(submittedAnswer);
+
+        });
+
+
+    }
+    //add attempt number
+    public void StoreTime(string uid, 
+                                string classCode, 
+                                string moduleName, 
+                                string item, 
+                                string buildOrCollect,
+                                double timeSpent)
+    {
+
+        Router.StoreAttempts(uid, classCode, moduleName, item, buildOrCollect).GetValueAsync().ContinueWith((task) =>
+        {
+            DataSnapshot snapshot = task.Result;
+
+            string attemptNum = snapshot.Value.ToString();
+            Debug.Log("store time attempt number" + attemptNum);
+            Debug.Log("setting time to" + timeSpent);
+
+
+            //if (snapshot.Value == null)
+            //{
+            //    //Debug.Log("null as fuvk");
+            //    attemptNum = "1";
+            //}
+            //else
+            //{
+            //    int num = Convert.ToInt32(snapshot.Value.ToString());
+            //    attemptNum = (num + 1).ToString();
+            //}
+
+            Router.StoreTime(uid, classCode, moduleName, item, buildOrCollect, attemptNum).SetValueAsync(timeSpent);
+
+        });
+
     }
 
-    //Code to use this function:
-    //DatabaseManager.sharedInstance.TimeAndAttempts(uid,classCode,moduleName,item,buildOrCollect,timeSpent,numAttempts);
-
-    public void TimeAndAttempts(string uid,
+    public void StoreAttempts(string uid,
                                 string classCode,
                                 string moduleName,
                                 string item,
-                                string buildOrCollect,
-                                double timeSpent,
-                                int numAttempts)
+                                string buildOrCollect)
     {
-        Router.StoreTime(uid, classCode, moduleName, item, buildOrCollect).SetValueAsync(timeSpent);
-        Router.StoreAttempts(uid, classCode, moduleName, item, buildOrCollect).SetValueAsync(numAttempts);
+        Router.StoreAttempts(uid, classCode, moduleName, item, buildOrCollect).GetValueAsync().ContinueWith((task) =>
+        {
+            DataSnapshot snapshot = task.Result;
+            int num = 0;
+            if (snapshot == null)
+            {
+                //Debug.Log("null as fuvk");
+                num = 1;
+            }
+            else
+            {
+                Debug.Log((int)snapshot.Value);
+                num = (int) snapshot.Value;
+                num++;
+            }
+            Router.StoreAttempts(uid, classCode, moduleName, item, buildOrCollect).SetValueAsync(num);
+        });
+
     }
 
     public void ListItemsCollected(string uid,string classCode, string moduleName, Action<List<string>> completionBlock)
@@ -205,11 +279,58 @@ public class DatabaseManager : MonoBehaviour
         return user;
     }
 
-    public void Logout()
+    public void SaveModuleState()
     {
         Debug.Log("Logout function invoked");
         // TODO: This might not be the best place for this function
         //       Needs to determine everything the user has gathered
         //       and/or built and upload it to the database
+        foreach (Item item in controller.itemDictionary.Values)
+        {
+            if (item.isCollected)
+            {
+                Router.ItemCollected(DatabaseManager.sharedInstance.GetUser().UserId, controller.classroom, controller.module, item.tag).SetValueAsync(true);
+            }
+            if (item.isPlaced)
+            {
+                Router.ItemBuilt(DatabaseManager.sharedInstance.GetUser().UserId, controller.classroom, controller.module, item.tag).SetValueAsync(true);
+            }
+        }
+
+        controller.FadeAndLoadScene("LoginScreen");
+
+    }
+
+    public void LoadModuleState()
+    {
+        foreach (Item item in controller.itemDictionary.Values)
+        {
+            Router.ItemCollected(DatabaseManager.sharedInstance.GetUser().UserId, controller.classroom, controller.module, item.tag).GetValueAsync().ContinueWith(task =>
+            {
+                if((bool)task.Result.Value)
+                {
+                    item.isCollected = true;
+                }
+                else
+                {
+                    item.isCollected = false;
+                }
+                FindObjectOfType<Almanac>().AddItem(item);
+            });
+
+            Router.ItemBuilt(DatabaseManager.sharedInstance.GetUser().UserId, controller.classroom, controller.module, item.tag).GetValueAsync().ContinueWith(task =>
+            {
+                if ((bool)task.Result.Value)
+                {
+                    item.isPlaced = true;
+                }
+                else
+                {
+                    item.isPlaced = false;
+                }
+
+            });
+
+        }
     }
 }

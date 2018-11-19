@@ -12,9 +12,9 @@ public class RowConfig : MonoBehaviour {
         Debug.Log("classroom init");
         this.text.text = classroom.classCode;
     }
-    public void Initalize(string moduleKey)
+    public void Initalize(Module moduleKey)
     {
         Debug.Log("module init");
-        this.text.text = moduleKey;
+        this.text.text = moduleKey.moduleName;
     }
 }

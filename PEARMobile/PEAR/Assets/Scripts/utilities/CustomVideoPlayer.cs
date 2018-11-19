@@ -13,6 +13,7 @@ public class CustomVideoPlayer : MonoBehaviour {
     // Use this for initialization
     void Start () {
         videoPlayer = GetComponent<VideoPlayer>();
+        videoPlayer.clip = FindObjectOfType<SceneController>().activeItem.video;
 
         // Setup Delegates
         videoPlayer.errorReceived += HandleVideoError;
@@ -62,7 +63,7 @@ public class CustomVideoPlayer : MonoBehaviour {
             ShowPlayButton(true);
         }
     }
-
+    
     private void ShowPlayButton(bool enable)
     {
         if(playButton != null)
@@ -76,7 +77,7 @@ public class CustomVideoPlayer : MonoBehaviour {
     {
         for (ushort trackNumber = 0; trackNumber < videoPlayer.audioTrackCount; ++trackNumber)
         {
-            if(videoPlayer.GetTargetAudioSource(trackNumber))
+            if (videoPlayer.GetTargetAudioSource(trackNumber))
             {
                 if (pause)
                     videoPlayer.GetTargetAudioSource(trackNumber).Pause();
