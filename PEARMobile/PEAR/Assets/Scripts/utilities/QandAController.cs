@@ -40,6 +40,7 @@ public class QandAController : MonoBehaviour {
         string item = FindObjectOfType<ItemSceneManager>().currentItem.name;
 
         FirebaseUser user = DatabaseManager.sharedInstance.GetUser();
+<<<<<<< HEAD
 
         DatabaseManager.sharedInstance.StoreAttempts(user.UserId,
                                                      classCode,
@@ -48,6 +49,14 @@ public class QandAController : MonoBehaviour {
                                                      "collect");
 
 
+=======
+        DatabaseManager.sharedInstance.StoreAttempts(user.UserId,
+                                                     classCode,
+                                                     moduleName,
+                                                     FindObjectOfType<ItemSceneManager>().currentItem.tag,
+                                                     "collect");
+
+>>>>>>> 9a6e52d8ec20ad42784f63460ca495869e9c107d
         DatabaseManager.sharedInstance.getQnA(classCode, moduleName, item, "collect", (result) =>
         {
             questionPool = result;

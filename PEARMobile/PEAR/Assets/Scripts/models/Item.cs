@@ -12,8 +12,5 @@ public class Item : ScriptableObject {
     public Material material;
     public bool isPlaced = false;
     public bool isCollected = false;
-<<<<<<< HEAD
     public VideoClip video;
-=======
->>>>>>> 59dd34b3cc50553569616b8a2ce918f0a432b6e7
 }

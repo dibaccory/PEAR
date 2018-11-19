@@ -125,9 +125,16 @@ public class SceneController : MonoBehaviour
 
         // Unload the current active scene.
         yield return SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+        FindObjectOfType<AlmanacFormManager>().SetButtonVisibility(false);
+        FindObjectOfType<AlmanacFormManager>().EnableGUIElements(false);
 
         // Start loading the given scene and wait for it to finish.
         yield return StartCoroutine(LoadSceneAndSetActive(sceneName));
+
+        if(sceneName == "BuildScene" || sceneName == "CollectScene" || sceneName == "ItemDisplay")
+        {
+            FindObjectOfType<AlmanacFormManager>().SetButtonVisibility(true);
+        }
 
         // If this event has any subscribers, call it.
         if (AfterSceneLoad != null)

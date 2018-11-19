@@ -11,6 +11,7 @@ public class AlmanacFormManager : MonoBehaviour {
     public GameObject buildSceneButton;
     public GameObject collectSceneButton;
     public GameObject logoutButton;
+    public GameObject helpButton;
 
     public void Awake()
     {
@@ -35,12 +36,20 @@ public class AlmanacFormManager : MonoBehaviour {
         collectSceneButton.SetActive(setVisible);
         logoutButton.SetActive(setVisible);
         almanacButton.SetActive(setVisible);
+        helpButton.SetActive(setVisible);
     }
 
-    private void EnableGUIElements(bool setEnabled)
+    public void EnableGUIElements(bool setEnabled)
     {
         almanacPanel.SetActive(setEnabled);
         inventoryLabel.enabled = setEnabled;
 
+    }
+
+    public void OnHelpButtonClick()
+    {
+        Handheld.PlayFullScreenMovie("tutoria_video_placeholder.mp4", Color.black, 
+                                    FullScreenMovieControlMode.CancelOnInput, 
+                                    FullScreenMovieScalingMode.AspectFill);
     }
 }

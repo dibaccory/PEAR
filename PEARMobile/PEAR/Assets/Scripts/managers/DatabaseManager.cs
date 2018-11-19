@@ -238,7 +238,7 @@ public class DatabaseManager : MonoBehaviour
         Router.StoreAttempts(uid, classCode, moduleName, item, buildOrCollect).GetValueAsync().ContinueWith((task) =>
         {
             DataSnapshot snapshot = task.Result;
-            int num = 0;
+            int num = 1;
             if (snapshot == null)
             {
                 //Debug.Log("null as fuvk");
@@ -250,9 +250,8 @@ public class DatabaseManager : MonoBehaviour
                 num = (int) snapshot.Value;
                 num++;
             }
-            Router.StoreAttempts(uid, classCode, moduleName, item, buildOrCollect).SetValueAsync(num);
+            Router.StoreAttempts(uid, classCode, moduleName, item, buildOrCollect).SetValueAsync(num.ToString());
         });
-
     }
 
     public void ListItemsCollected(string uid,string classCode, string moduleName, Action<List<string>> completionBlock)

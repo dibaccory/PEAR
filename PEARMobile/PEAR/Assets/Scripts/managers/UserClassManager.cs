@@ -131,6 +131,7 @@ public class UserClassManager : MonoBehaviour {
     {
         FindObjectOfType<SceneController>().module = module;
         Debug.Log("Current Module is : " + module);
+
         DatabaseManager.sharedInstance.LoadModuleState();
         FindObjectOfType<AlmanacFormManager>().SetButtonVisibility(true);
         FindObjectOfType<SceneController>().FadeAndLoadScene("CollectScene");
