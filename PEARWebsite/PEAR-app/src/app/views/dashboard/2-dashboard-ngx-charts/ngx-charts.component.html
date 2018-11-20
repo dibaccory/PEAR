@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-6">
+    <div class="col-12">
       <h3>Total Attempts</h3>
       <ngx-charts-bar-vertical
         [scheme]="colorScheme"
@@ -16,7 +16,8 @@
         (select)="onSelect($event)">
       </ngx-charts-bar-vertical>
     </div>
-    <div class="col-6">
+    
+    <div class="col-12">
       <h3>Average Time Spent</h3>
       <ngx-charts-line-chart
         [scheme]="colorScheme"

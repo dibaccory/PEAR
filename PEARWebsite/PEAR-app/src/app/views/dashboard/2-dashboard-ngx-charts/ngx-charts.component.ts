@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+// import { BrowserModule } from '@angular/platform-browser';
 import { attempts, timeSpent } from './sample-data';
+import { StudentsService } from '../../../services/students.service';
 
 import { AngularFireAuth } from '@angular/fire/auth';
-import { AngularFireDatabase, AngularFireAction, snapshotChanges } from '@angular/fire/database';
-import { Observable, Subscription, BehaviorSubject } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { AngularFireDatabase } from '@angular/fire/database';
 
 @Component({
   selector: 'app-ngx-charts',
@@ -16,10 +15,10 @@ import { switchMap } from 'rxjs/operators';
 export class NgxChartsComponent implements OnInit {
 
   totalAttempts: number[] = [];
+  studentUIDs: string[] = [];
   key;
   solarSystem;
   userID;
-  testEarth;
 
   planetAttempt = {
     earth: '',
@@ -34,8 +33,6 @@ export class NgxChartsComponent implements OnInit {
   };
 
   // ngcx-charts ==========================
-  attempts: any[];
-  timeSpent: any[];
 
   // Options
   showXAxis = true;
@@ -52,15 +49,15 @@ export class NgxChartsComponent implements OnInit {
   };
   // =======================================
 
-  constructor(public afAuth: AngularFireAuth, db: AngularFireDatabase) {
+  constructor(public afAuth: AngularFireAuth, db: AngularFireDatabase, public studentService: StudentsService) {
+
+    this.studentUIDs = studentService.studentUIDs;
 
     this.userID = afAuth.auth.currentUser.uid;
     this.solarSystem = db.database.ref('answers/' + this.userID + '/astronomy/modules/solar system/').orderByKey();
 
     this.solarSystem.once('value')
       .then((snapshot) => {
-        // this.testEarth = snapshot.child('earth/collect').exists(); // check path exists; debugging
-
         snapshot.forEach((childSnapshot) => {
           this.key = childSnapshot.key; // each key is a planet
           const attempt = childSnapshot.child('collect/totalAttempts').val(); // totalAttempts value

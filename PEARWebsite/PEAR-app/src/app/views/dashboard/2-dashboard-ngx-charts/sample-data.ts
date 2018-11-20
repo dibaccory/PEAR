@@ -1,10 +1,38 @@
 export let attempts = [
   {
-    'name': 'User 1',
-    'value': 1,
+    'name': 'Mercury',
+    'value': 5,
   },
   {
-    'name': 'User 2',
+    'name': 'Venus',
+    'value': 4,
+  },
+  {
+    'name': 'Earth',
+    'value': 4,
+  },
+  {
+    'name': 'Mars',
+    'value': 4,
+  },
+  {
+    'name': 'Jupiter',
+    'value': 4,
+  },
+  {
+    'name': 'Saturn',
+    'value': 4,
+  },
+  {
+    'name': 'Uranus',
+    'value': 4,
+  },
+  {
+    'name': 'Neptune',
+    'value': 4,
+  },
+  {
+    'name': 'Pluto',
     'value': 4,
   },
 ];
