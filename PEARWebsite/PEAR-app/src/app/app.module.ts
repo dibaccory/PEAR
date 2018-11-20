@@ -15,9 +15,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 // My created components and modules
 import { LoginComponent } from '../app/views/login/login.component';
 import { NavbarComponent } from '../app/components/navbar/navbar.component';
-import { DatabaseTestComponent } from '../app/old/database-test/database-test.component';
 import { AppRoutingModule } from './app-routing.module';
-import { GoogleChartsComponent } from '../app/old/google-charts/google-charts.component';
 import { RegisterComponent } from '../app/views/register/register.component';
 import { SplashpageComponent } from '../app/views/splashpage/splashpage.component';
 import { PageNotFoundComponent } from '../app/views/page-not-found/page-not-found.component';
@@ -45,8 +43,6 @@ import { StudentsService } from './services/students.service';
     AppComponent,
     LoginComponent,
     NavbarComponent,
-    DatabaseTestComponent,
-    GoogleChartsComponent,
     RegisterComponent,
     SplashpageComponent,
     PageNotFoundComponent,
