@@ -332,4 +332,10 @@ public class DatabaseManager : MonoBehaviour
 
         }
     }
+
+    public void OnLogoutClick()
+    {
+        auth.SignOut();
+        FindObjectOfType<SceneController>().FadeAndLoadScene("LoginScreen");
+    }
 }
