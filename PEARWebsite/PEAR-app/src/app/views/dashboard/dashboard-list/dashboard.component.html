@@ -1,0 +1,37 @@
+<!-- Bootstrap snippet for Metro tiles by Ace Subido -->
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h1><strong>Welcome to {{ title }}!</strong></h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6 col-md-3">
+      <div class="tile purple" routerLink="default">
+        <h3 class="title">Classes</h3>
+        <p>View a list of the class modules you're subscribed to.</p>
+      </div>
+    </div>
+    <div class="col-sm-6 col-md-3">
+      <div class="tile red" routerLink="stats">
+        <h3 class="title">Student Statistics</h3>
+        <p>Analyze progress of your classes and students.</p>
+      </div>
+    </div>
+    <div class="col-sm-6 col-md-3">
+      <div class="tile orange" routerLink="questions">
+        <h3 class="title">Question List</h3>
+        <p>See questions from the PEAR mobile app.</p>
+      </div>
+    </div>
+    <div class="col-sm-6 col-md-3">
+      <div class="tile green" (click)="export()">
+        <h3 class="title">Export</h3>
+        <p>Export statistics of {{ title }} as CSV.</p>
+      </div>
+    </div> 
+  </div>
+</div>
+
+<router-outlet></router-outlet>

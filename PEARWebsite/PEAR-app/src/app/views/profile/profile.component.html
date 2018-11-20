@@ -1,0 +1,25 @@
+<div class="row">
+  <div class="col-3"></div>
+    <div class="col-6">
+      <form name="userform" method="post" #formCtrl="ngForm">
+        <h3 align="center">Update your profile information</h3>
+
+        <div class="form-group">
+          <label for="exampleInputEmail1">Email</label>
+          <input type="email" class="form-control" [(ngModel)]="email" name="email" placeholder="userEmail" required>
+        </div>
+        <button type="button" class="btn btn-primary btn-block" (click)="updateEmail()">Update Email</button>
+        
+        <!-- Disabled for now -->
+        <div class="form-group">
+          <fieldset disabled>
+            <label for="exampleInputPassword1">Password</label>
+            <!-- <input type="password" class="form-control" [(ngModel)]="user.password" name="password" placeholder="******" required> -->
+            <input type="password" class="form-control" name="password" placeholder="******" required>
+          </fieldset>
+        </div>
+        <button type="button" class="btn btn-primary btn-block" (click)="updatePassword()" disabled>Update Password</button>
+
+      </form>       
+    </div>
+</div>

@@ -1,0 +1,93 @@
+<div class="container">
+
+  <!-- <li *ngFor="let k of keys">{{ k }}</li> -->
+  <!-- <hr> -->
+
+  <ngb-accordion  activeIds="static-1">
+
+    <ngb-panel id="static-1">
+      <ng-template ngbPanelTitle><span> <b>Mercury</b> </span></ng-template>
+      <ng-template ngbPanelContent>
+        <div *ngFor="let planetQ of planetQ.mercury">
+          <li *ngIf='planetQ != null'>{{ planetQ }}</li>
+        </div>
+      </ng-template>
+    </ngb-panel>
+
+    <ngb-panel id="static-2">
+      <ng-template ngbPanelTitle><span> <b>Venus</b> </span></ng-template>
+      <ng-template ngbPanelContent>
+        <div *ngFor="let planetQ of planetQ.venus">
+          <li *ngIf='planetQ != null'>{{ planetQ }}</li>
+        </div>
+      </ng-template>
+    </ngb-panel>
+
+    <ngb-panel id="static-3">
+      <ng-template ngbPanelTitle> <span> <b>Earth</b> </span></ng-template>
+      <ng-template ngbPanelContent>
+        <div *ngFor="let planetQ of planetQ.earth">
+          <li *ngIf='planetQ != null'>{{ planetQ }}</li>
+        </div>
+      </ng-template>
+    </ngb-panel>
+
+    <ngb-panel id="static-4">
+      <ng-template ngbPanelTitle> <span> <b>Mars</b> </span></ng-template>
+      <ng-template ngbPanelContent>
+        <div *ngFor="let planetQ of planetQ.mars">
+          <li *ngIf='planetQ != null'>{{ planetQ }}</li>
+        </div>
+      </ng-template>
+    </ngb-panel>
+
+    <ngb-panel id="static-5">
+      <ng-template ngbPanelTitle> <span> <b>Jupiter</b> </span></ng-template>
+      <ng-template ngbPanelContent>
+        <div *ngFor="let planetQ of planetQ.jupiter">
+          <li *ngIf='planetQ != null'>{{ planetQ }}</li>
+        </div>
+      </ng-template>
+    </ngb-panel>
+
+    <ngb-panel id="static-6">
+      <ng-template ngbPanelTitle> <span> <b>Saturn</b> </span></ng-template>
+      <ng-template ngbPanelContent>
+        <div *ngFor="let planetQ of planetQ.saturn">
+          <li *ngIf='planetQ != null'>{{ planetQ }}</li>
+        </div>
+      </ng-template>
+    </ngb-panel>
+
+    <ngb-panel id="static-7">
+      <ng-template ngbPanelTitle> <span> <b>Uranus</b> </span></ng-template>
+      <ng-template ngbPanelContent>
+        <div *ngFor="let planetQ of planetQ.uranus">
+          <li *ngIf='planetQ != null'>{{ planetQ }}</li>
+        </div>
+      </ng-template>
+    </ngb-panel>
+
+    <ngb-panel id="static-8">
+      <ng-template ngbPanelTitle> <span> <b>Neptune</b> </span></ng-template>
+      <ng-template ngbPanelContent>
+        <div *ngFor="let planetQ of planetQ.neptune">
+          <li *ngIf='planetQ != null'>{{ planetQ }}</li>
+        </div>
+      </ng-template>
+    </ngb-panel>
+
+    <ngb-panel id="static-9">
+      <ng-template ngbPanelTitle> <span> <b>Sun</b> </span></ng-template>
+      <ng-template ngbPanelContent>
+        <div *ngFor="let planetQ of planetQ.sun">
+          <li *ngIf='planetQ != null'>{{ planetQ }}</li>
+        </div>
+      </ng-template>
+    </ngb-panel>
+
+  </ngb-accordion>
+
+  <br><br><br>
+
+</div>  

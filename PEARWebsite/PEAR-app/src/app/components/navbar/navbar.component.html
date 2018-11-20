@@ -1,0 +1,34 @@
+ <nav class="navbar navbar-expand-lg navbar-dark bg-dark">  
+   
+  <!-- PEAR title navigation based on auth -->
+  <div *ngIf="afAuth.user | async as user; else loggedOut1">
+    <a class="navbar-brand mr-auto" routerLink="/dashboard">{{ title }}</a>
+  </div>
+  <ng-template #loggedOut1>
+    <a class="navbar-brand mr-auto" routerLink="">{{ title }}</a>
+  </ng-template>
+
+  <!-- Right side button functionality based on auth -->
+  <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
+    <div *ngIf="afAuth.user | async as user; else loggedOut">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" (click)="logout()">Logout <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/profile">Profile</a>
+        </li>
+      </ul>
+    </div>
+    <ng-template #loggedOut>
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/login">Login <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/register">Sign up</a>
+        </li>
+      </ul>
+    </ng-template>
+  </div>
+</nav>

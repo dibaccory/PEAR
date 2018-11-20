@@ -1,0 +1,50 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h3>Total Attempts</h3>
+      <ngx-charts-bar-vertical
+        [scheme]="colorScheme"
+        [results]="attempts"
+        [gradient]="gradient"
+        [xAxis]="showXAxis"
+        [yAxis]="showYAxis"
+        [legend]="showLegend"
+        [showXAxisLabel]="showXAxisLabel"
+        [showYAxisLabel]="showYAxisLabel"
+        [xAxisLabel]="xAxisLabel"
+        [yAxisLabel]="yAxisLabel"
+        (select)="onSelect($event)">
+      </ngx-charts-bar-vertical>
+    </div>
+    
+    <div class="col-12">
+      <h3>Average Time Spent</h3>
+      <ngx-charts-line-chart
+        [scheme]="colorScheme"
+        [results]="timeSpent"
+        [gradient]="gradient"
+        [xAxis]="showXAxis"
+        [yAxis]="showYAxis"
+        [legend]="showLegend"
+        [showXAxisLabel]="showXAxisLabel"
+        [showYAxisLabel]="showYAxisLabel"
+        [xAxisLabel]="xAxisLabel"
+        [yAxisLabel]="yAxisLabel"
+        (select)="onSelect($event)">
+      </ngx-charts-line-chart>
+    </div>
+  </div>
+
+  <!-- DB access -->
+  <li *ngFor="let t of totalAttempts">
+    {{ t }}
+  </li>
+  
+  <hr>
+  
+  earth: {{ planetAttempt.earth }}
+  <br>
+  venus: {{ planetAttempt.venus }}
+  <br>
+  uranus: {{planetAttempt.uranus }}
+</div>
