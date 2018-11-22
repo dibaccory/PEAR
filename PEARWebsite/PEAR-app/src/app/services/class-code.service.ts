@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { Router } from '@angular/router';
 import { AngularFireDatabase } from '@angular/fire/database';
 
 @Injectable({
@@ -9,17 +8,15 @@ import { AngularFireDatabase } from '@angular/fire/database';
 export class ClassCodesService {
 
   classCodes: string[] = [];
-  key;
-  module;
 
-  constructor(public afAuth: AngularFireAuth, private router: Router, public db: AngularFireDatabase) {
-    this.module = this.db.database.ref('classrooms').orderByKey();
+  constructor(public afAuth: AngularFireAuth, public db: AngularFireDatabase) {
+    const module = this.db.database.ref('classrooms').orderByKey();
 
-    this.module.once('value')
+    module.once('value')
       .then((snapshot) => {
         snapshot.forEach((childSnapshot) => {
-          this.key = childSnapshot.key; // classCode name
-          this.classCodes.push(this.key.toString());
+          const key = childSnapshot.key; // classCode name
+          this.classCodes.push(key.toString());
         });
       });
     console.log(this.classCodes);
