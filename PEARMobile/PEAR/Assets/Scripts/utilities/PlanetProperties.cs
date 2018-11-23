@@ -12,14 +12,17 @@ public class PlanetProperties : MonoBehaviour {
     int rotationSpeed;
     float resolutionSpeed;
     Vector3 planetScale;
-    float planetDistance;
+    public float planetDistance;
     bool correctlyPlaced;
     Vector3[] initPosition;
-    Vector3 initScale;
+    float initScale;
     Item trueItem; //this item
     FirebaseUser user;
     int attempts = 0;
     float timeSpent;
+    string[] planets;
+
+    static Vector3 sunScale;
 
     Transform origin;
     float initXRotation;
@@ -50,21 +53,23 @@ public class PlanetProperties : MonoBehaviour {
         initPosition = new Vector3[] 
         {
                 new Vector3(0, 0, 0),
-                new Vector3(5  * Mathf.Cos((Mathf.PI / 3)),    0, 5  * Mathf.Sin((Mathf.PI / 3)) ),
-                new Vector3(10 * Mathf.Cos((Mathf.PI / 4)),    0, 10 * Mathf.Sin((Mathf.PI / 4)) ),
-                new Vector3(15 * Mathf.Cos((Mathf.PI / 6)),    0, 15 * Mathf.Sin((Mathf.PI / 6)) ),
-                new Vector3(20 * Mathf.Cos(0),                 0, 20 * Mathf.Sin(0) ),
-                new Vector3(25 * Mathf.Cos((11*Mathf.PI / 6)), 0, 25 * Mathf.Sin((11*Mathf.PI / 6)) ),
-                new Vector3(30 * Mathf.Cos((7 *Mathf.PI / 4)), 0, 30 * Mathf.Sin((7 *Mathf.PI / 4)) ),
-                new Vector3(35 * Mathf.Cos((5 *Mathf.PI / 3)), 0, 35 * Mathf.Sin((5 *Mathf.PI / 3)) ),
-                new Vector3(40 * Mathf.Cos((3 *Mathf.PI / 2)), 0, 40 * Mathf.Sin((3 *Mathf.PI / 2)) )
+                new Vector3(1  * Mathf.Cos((Mathf.PI / 3)),    0, 1  * Mathf.Sin((Mathf.PI / 3)) ),
+                new Vector3(2 * Mathf.Cos((Mathf.PI / 4)),    0, 2 * Mathf.Sin((Mathf.PI / 4)) ),
+                new Vector3(3 * Mathf.Cos((Mathf.PI / 6)),    0, 3 * Mathf.Sin((Mathf.PI / 6)) ),
+                new Vector3(4 * Mathf.Cos(0),                 0, 4 * Mathf.Sin(0) ),
+                new Vector3(5 * Mathf.Cos((11*Mathf.PI / 6)), 0, 5 * Mathf.Sin((11*Mathf.PI / 6)) ),
+                new Vector3(6 * Mathf.Cos((7 *Mathf.PI / 4)), 0, 6 * Mathf.Sin((7 *Mathf.PI / 4)) ),
+                new Vector3(7 * Mathf.Cos((5 *Mathf.PI / 3)), 0, 7 * Mathf.Sin((5 *Mathf.PI / 3)) ),
+                new Vector3(8 * Mathf.Cos((3 *Mathf.PI / 2)), 0, 8 * Mathf.Sin((3 *Mathf.PI / 2)) )
         };
-        initScale = transform.localScale;
+        sunScale = GameObject.Find("sun").transform.localScale;
+        initScale = transform.localScale.x; //scale is uniform so just store one
         planetName = transform.name;
         controller = FindObjectOfType<SceneController>();
         controller.activeItem = null;
         trueItem = controller.itemDictionary[planetName];
-
+        planets = new string[] { "mercury", "venus", "earth", "mars", "jupiter", "saturn", "uranus", "neptune" };
+        
         originalColor = GetComponent<Renderer>().material.color;
         highlightedColor = new Color(0.5F, 0.5F, 0F);
 
@@ -80,62 +85,62 @@ public class PlanetProperties : MonoBehaviour {
                 SetProperties(2, 8.0F);
                 transform.localPosition = initPosition[1];
                 planetScale = new Vector3(0.5F, 0.5F, 0.5F);
-                planetDistance = 55.0F;
+                planetDistance = 30.0F;
                 break;
 
             case "venus":
                 SetProperties(2, -5.3F);
                 transform.localPosition = initPosition[2];
                 planetScale = new Vector3(1.0F, 1.0F, 1.0F);
-                planetDistance = 60.0F;
+                planetDistance = 35.0F;
                 break;
 
             case "earth":
                 SetProperties(4, 5.5F);
                 transform.localPosition = initPosition[3];
                 planetScale = new Vector3(1.5F, 1.5F, 1.5F); 
-                planetDistance = 65.0F;
+                planetDistance = 40.0F;
                 break;
 
             case "mars":
                 SetProperties(2, 3.0F);
                 transform.localPosition = initPosition[4];
                 planetScale = new Vector3(0.7F, 0.7F, 0.7F); 
-                planetDistance = 70.0F;
+                planetDistance = 45.0F;
                 break;
 
             case "jupiter":
                 SetProperties(6, 4.1F);
                 transform.localPosition = initPosition[5];
                 planetScale = new Vector3(7.0F, 7.0F, 7.0F); 
-                planetDistance = 62.0F;
+                planetDistance = 50.0F;
                 break;
 
             case "saturn":
                 SetProperties(2, 8.0F);
                 transform.localPosition = initPosition[6];
                 planetScale = new Vector3(6.0F, 6.0F, 6.0F);
-                planetDistance = 50.0F;
+                planetDistance = 55.0F;
                 break;
 
             case "uranus":
                 SetProperties(2, 8.0F);
                 transform.localPosition = initPosition[7];
                 planetScale = new Vector3(5.0F, 5.0F, 5.0F);
-                planetDistance = 44.0F;
+                planetDistance = 60.0F;
                 break;
 
             case "neptune":
                 SetProperties(2, 8.0F);
                 transform.localPosition = initPosition[8];
                 planetScale = new Vector3(4.0F, 4.0F, 4.0F);
-                planetDistance = 40.0F;
+                planetDistance = 65.0F;
                 break;
 
             default: //sun
                 SetProperties(7, 0.0F);
                 transform.localPosition = initPosition[0];
-                planetScale = new Vector3(50.0F, 50.0F, 50.0F);
+                planetScale = new Vector3(25.0F, 25.0F, 25.0F);
                 planetDistance = 0.0F;
                 break;
 
@@ -162,7 +167,7 @@ public class PlanetProperties : MonoBehaviour {
         controller.selectedSceneItemInBuildMode = null;
         controller.itemDictionary[planetName].isPlaced = true;
 
-        transform.localPosition.Set(transform.localPosition.x, transform.localScale.y, planetDistance);
+        //transform.localPosition.Set(transform.localPosition.x, transform.localScale.y, planetDistance);
         //transform.localScale = planetScale;  --ISSUE: Gotta move other planet distances if they collide when the map is loaded
         GetComponent<Renderer>().material = map;
 
@@ -227,8 +232,6 @@ public class PlanetProperties : MonoBehaviour {
 
         //IDEA: When item is selected, planets organize into a line
         transform.Rotate(rotationSpeed * Vector3.up * Time.deltaTime);
-        Debug.Log("is active item null: " + (controller.activeItem == null));
-        Debug.Log("is sceneitem null" + (string.IsNullOrEmpty(controller.selectedSceneItemInBuildMode)));
         if (controller.activeItem == null && string.IsNullOrEmpty(controller.selectedSceneItemInBuildMode))
         {
             //if not correctly placed yet, set color back to original color
@@ -238,14 +241,32 @@ public class PlanetProperties : MonoBehaviour {
             }
 
             transform.RotateAround(origin.transform.position, Vector3.up, (float)resolutionSpeed * Time.deltaTime);
-            transform.localPosition = Vector3.MoveTowards(transform.localPosition, new Vector3(transform.localPosition.x, 0, transform.localPosition.z), 8 * Time.deltaTime);
+            //transform.localPosition = Vector3.MoveTowards(transform.localPosition, new Vector3(transform.localPosition.x, 0, transform.localPosition.z), 8 * Time.deltaTime);
 
             //origin.rotation = Quaternion.RotateTowards(origin.rotation, new Quaternion(initXRotation, 0, 0, 1), 8 * Time.deltaTime);
-            //if(controller.itemDictionary[planetName].isPlaced && !transform.localScale.Equals(planetScale))
-            //{
-            //    //Vector3 tempScale = this.transform.
-            //    transform.localScale = Vector3.MoveTowards(transform.localScale, planetScale, 5*Time.deltaTime);
-            //}
+            if(controller.itemDictionary[planetName].isPlaced && !transform.localScale.Equals(planetScale))
+            {
+
+
+                if (planetName == "sun")
+                {
+                    transform.localScale = Vector3.MoveTowards(transform.localScale, planetScale, 8 * Time.deltaTime);
+                    sunScale = transform.localScale;
+                }
+                else
+                {
+                    //Vector3 tempScale = this.transform.y
+                    Vector3 scaleNorm = new Vector3(planetScale.x / sunScale.x, planetScale.y / sunScale.y, planetScale.z / sunScale.z);
+                    transform.localScale = Vector3.MoveTowards(transform.localScale, scaleNorm, 8 * Time.deltaTime);
+                }
+                //Vector3 posNorm = new Vector3(planetScale.x / transform.parent.localScale.x, planetScale.y / transform.parent.localScale.y, planetScale.z / transform.parent.localScale.z);
+                //transform.localScale = Vector3.MoveTowards(transform.localScale, scaleNorm, 8 * Time.deltaTime);
+                //if(transform.GetChild(0))
+                //transform.GetChild(0).transform.localScale = Vector3.MoveTowards(
+                //transform.GetChild(0).transform.localScale,
+                //new Vector3(initScale / transform.localScale.x, initScale / transform.localScale.y, initScale / transform.localScale.z),
+                //5*Time.deltaTime);
+            }
         }
         else
         {
