@@ -18,8 +18,7 @@ public class PlanetProperties : MonoBehaviour {
     float initScale;
     Item trueItem; //this item
     FirebaseUser user;
-    int attempts = 0;
-    float timeSpent;
+    private double timeSpent;
     string[] planets;
 
     static Vector3 sunScale;
@@ -68,8 +67,6 @@ public class PlanetProperties : MonoBehaviour {
         controller = FindObjectOfType<SceneController>();
         controller.activeItem = null;
         trueItem = controller.itemDictionary[planetName];
-        planets = new string[] { "mercury", "venus", "earth", "mars", "jupiter", "saturn", "uranus", "neptune" };
-        
         originalColor = GetComponent<Renderer>().material.color;
         highlightedColor = new Color(0.5F, 0.5F, 0F);
 
@@ -150,15 +147,16 @@ public class PlanetProperties : MonoBehaviour {
 
     private void SuccessfulPlacement()
     {
+        Debug.Log("TIME SPENT ON " + controller.activeItem.name + " : " + timeSpent);
         //store time
-        DatabaseManager.sharedInstance.StoreTime(user.UserId,
+        DatabaseManager.sharedInstance.StoreTime(DatabaseManager.sharedInstance.GetUser().UserId,
                                                  controller.classroom,
                                                  controller.module,
                                                  controller.activeItem.name,
                                                  "build",
                                                  timeSpent);
         //Store "is placed"
-        Router.ItemBuilt(user.UserId, 
+        Router.ItemBuilt(DatabaseManager.sharedInstance.GetUser().UserId, 
                          controller.classroom, 
                          controller.module, 
                          controller.activeItem.name).SetValueAsync(true);
@@ -176,8 +174,12 @@ public class PlanetProperties : MonoBehaviour {
 
     public void validatePlacement()
     {
+        Debug.Log("controller var " + controller.activeItem.name);
+        Debug.Log("controller module " + controller.module);
+        Debug.Log("controller class " + controller.classroom);
+        Debug.Log("username " + user.UserId);
 
-        DatabaseManager.sharedInstance.StoreAttempts(user.UserId,
+        DatabaseManager.sharedInstance.StoreAttempts(DatabaseManager.sharedInstance.GetUser().UserId,
                                                      controller.classroom,
                                                      controller.module,
                                                      controller.activeItem.name,
@@ -185,6 +187,7 @@ public class PlanetProperties : MonoBehaviour {
 
         if (planetName == controller.activeItem.name)
         {
+            Debug.Log("success!!!!");
             SuccessfulPlacement();
         }
         else
@@ -198,8 +201,8 @@ public class PlanetProperties : MonoBehaviour {
 
     private void OnMouseUp()
     {
-         //if this item hasn't been correctly placed yet
-        if (!trueItem.isPlaced)
+        //if this item hasn't been correctly placed yet
+        if (!controller.itemDictionary[planetName].isPlaced)
         {
             controller.selectedSceneItemInBuildMode = planetName;
         }
@@ -224,16 +227,11 @@ public class PlanetProperties : MonoBehaviour {
     // Update is called once per frame
     void Update () 
     {
-        //storing time for individual items
-        if(controller.activeItem == trueItem && !trueItem.isPlaced)
-        {
-            timeSpent += Time.deltaTime;
-        }
 
-        //IDEA: When item is selected, planets organize into a line
-        transform.Rotate(rotationSpeed * Vector3.up * Time.deltaTime);
+
         if (controller.activeItem == null && string.IsNullOrEmpty(controller.selectedSceneItemInBuildMode))
         {
+            transform.Rotate(rotationSpeed * Vector3.up * Time.deltaTime);
             //if not correctly placed yet, set color back to original color
             if (!trueItem.isPlaced && GetComponent<Renderer>().material.color != originalColor)
             {
@@ -270,6 +268,12 @@ public class PlanetProperties : MonoBehaviour {
         }
         else
         {
+            //storing time for individual items
+            if ( (controller.activeItem == trueItem || controller.selectedSceneItemInBuildMode == planetName ) && !controller.itemDictionary[planetName].isPlaced)
+            {
+                timeSpent += Time.deltaTime;
+                Debug.Log("does this do a thing " + timeSpent);
+            }
             //if not correctly placed yet, highlight item yellow
             if (!trueItem.isPlaced && GetComponent<Renderer>().material.color != highlightedColor)
             {

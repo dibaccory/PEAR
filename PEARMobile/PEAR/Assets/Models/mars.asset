@@ -15,5 +15,6 @@ MonoBehaviour:
   tag: mars
   sprite: {fileID: 21300000, guid: 70c1fac2f2fac4ab3a8b974afdfe58c1, type: 3}
   material: {fileID: 2100000, guid: 65b5cf4e11f30487c81a380db698c6ba, type: 2}
+  isPlaced: 0
+  isCollected: 0
   video: {fileID: 32900000, guid: 316b55e61989cc34c9a6385218384904, type: 3}
-  audio: {fileID: 8300000, guid: 59102eca768a2054da741342fb354d4b, type: 3}
