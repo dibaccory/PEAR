@@ -207,19 +207,8 @@ public class DatabaseManager : MonoBehaviour
         {
             DataSnapshot snapshot = task.Result;
 
-            //string attemptNum = snapshot.Value.ToString();
-            int num = 1;
-            if (snapshot == null)
-            {
-                num = 1;
-                Router.StoreAttempts(uid, classCode, moduleName, item, buildOrCollect).SetValueAsync(num);
-            }
-            else
-            {
-                num = Convert.ToInt32(snapshot.Value.ToString());
-                num++;
-            }
-            string attemptNum = num.ToString();
+            string attemptNum = snapshot.Value.ToString();
+
             Router.StoreTime(uid, classCode, moduleName, item, buildOrCollect, attemptNum).SetValueAsync(timeSpent);
 
         });
