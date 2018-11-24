@@ -10,7 +10,7 @@ export class StudentsService {
   studentUIDs: string[] = [];
 
   constructor(public afAuth: AngularFireAuth, public db: AngularFireDatabase) {
-    const module = this.db.database.ref('users').orderByKey();
+    const module = this.db.database.ref('answers').orderByKey();
 
     module.once('value')
       .then((snapshot) => {

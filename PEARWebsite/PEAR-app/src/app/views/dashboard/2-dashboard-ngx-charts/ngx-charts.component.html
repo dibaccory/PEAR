@@ -1,10 +1,10 @@
 <div class="container">
   <div class="row">
     <div class="col-12">
-      <h3>Total Attempts</h3>
+      <h3>Total Attempts: {{ studentUIDs[0] }} </h3>
       <ngx-charts-bar-vertical
         [scheme]="colorScheme"
-        [results]="attempts"
+        [results]="attempts2"
         [gradient]="gradient"
         [xAxis]="showXAxis"
         [yAxis]="showYAxis"
@@ -18,7 +18,7 @@
     </div>
     
     <div class="col-12">
-      <h3>Average Time Spent</h3>
+      <h3>Average Time Spent </h3>
       <ngx-charts-line-chart
         [scheme]="colorScheme"
         [results]="timeSpent"
@@ -29,22 +29,22 @@
         [showXAxisLabel]="showXAxisLabel"
         [showYAxisLabel]="showYAxisLabel"
         [xAxisLabel]="xAxisLabel"
-        [yAxisLabel]="yAxisLabel"
+        [yAxisLabel]="yAxisLabel2"
         (select)="onSelect($event)">
       </ngx-charts-line-chart>
     </div>
   </div>
 
   <!-- DB access -->
-  <li *ngFor="let t of totalAttempts">
+  <!-- <li *ngFor="let t of totalAttempts">
     {{ t }}
   </li>
   
-  <hr>
+  <hr> -->
   
-  earth: {{ planetAttempt.earth }}
+  <!-- earth: {{ planetAttempt.earth }}
   <br>
   venus: {{ planetAttempt.venus }}
   <br>
-  uranus: {{planetAttempt.uranus }}
+  uranus: {{planetAttempt.uranus }} -->
 </div>

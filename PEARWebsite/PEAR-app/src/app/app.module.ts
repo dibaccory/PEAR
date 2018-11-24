@@ -4,8 +4,8 @@ import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'; // Bootstrap
-import { GoogleChartsModule } from 'angular-google-charts';
 import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // Angularfire2
 import { AngularFireModule } from '@angular/fire';
@@ -35,7 +35,7 @@ import { StudentsService } from './services/students.service';
     AngularFireModule.initializeApp(environment.firebase, 'PEAR'),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-    GoogleChartsModule,
+    BrowserAnimationsModule,
     DashboardModule,
     AppRoutingModule,
   ],
