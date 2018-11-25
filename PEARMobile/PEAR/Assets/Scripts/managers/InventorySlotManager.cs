@@ -15,6 +15,7 @@ public class InventorySlotManager : MonoBehaviour {
             var controller = FindObjectOfType<SceneController>();
             if(controller.currentScene == "CollectScene" || controller.currentScene == "ItemDisplay")
             {
+                GameObject.Find("Notification").GetComponent<Text>().text = "";
                 // If we're in the collect scene, and the item is in the inventory,
                 // then we've already collected the item. If the user clicks on the item
                 // in the inventory then bring them back to the item display scene
@@ -30,7 +31,7 @@ public class InventorySlotManager : MonoBehaviour {
                 // TODO: Implement this
                 controller.activeItem = item;
                 FindObjectOfType<AlmanacFormManager>().InterfaceButtonClick(); //close almanac
-                Debug.Log("You used: " + item.itemName + " in build mode");
+                GameObject.Find("Notification").GetComponent<Text>().text = "Currently selected: " + item.itemName;
 
                 if(!string.IsNullOrEmpty(controller.selectedSceneItemInBuildMode))
                 {

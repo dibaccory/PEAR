@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
@@ -103,6 +104,7 @@ public class SceneController : MonoBehaviour
     // This will be called by a SceneReaction when the player wants to switch scenes.
     public void FadeAndLoadScene(string sceneName)
     {
+        GameObject.Find("Notification").GetComponent<Text>().text = "";
         // If a fade isn't happening then start fading and switching scenes.
         if (!isFading)
         {
