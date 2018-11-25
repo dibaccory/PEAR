@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
-    <div class="col-12">
-      <h3>Total Attempts: {{ studentUIDs[0] }} </h3>
+    <div class="col-9">
+      <h3>Total Attempts</h3>
       <ngx-charts-bar-vertical
         [scheme]="colorScheme"
         [results]="single"
@@ -16,7 +16,19 @@
         (select)="onSelect($event)">
       </ngx-charts-bar-vertical>
     </div>
-    
+    <div class="col-3">
+      <div ngbDropdown class="d-inline-block">
+        <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Students</button>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+          <div *ngFor="let student of studentUIDs">
+            <button (click)="collectAttempts(student)" class="dropdown-item">{{ student }}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="row">
     <div class="col-12">
       <h3>Average Time Spent </h3>
       <ngx-charts-line-chart
@@ -39,7 +51,6 @@
   <!-- <li *ngFor="let t of totalAttempts">
     {{ t }}
   </li> -->
-  
 
 </div>
 

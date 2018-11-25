@@ -70,7 +70,7 @@ export class NgxChartsComponent implements OnInit {
 
     console.log('uid:' + uid);
 
-    this.solarSystem = this.db.database.ref('answers/' + uid.toString() + '/astronomy/modules/solar system/').orderByKey();
+    this.solarSystem = this.db.database.ref('answers/' + uid + '/astronomy/modules/solar system/').orderByKey();
 
     this.solarSystem.once('value')
       .then((snapshot) => {
