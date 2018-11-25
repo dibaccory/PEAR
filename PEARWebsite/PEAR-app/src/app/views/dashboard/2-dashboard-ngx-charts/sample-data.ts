@@ -1,7 +1,7 @@
-export let attempts2 = [
+export let single = [
   {
-    'name': 'Mercury',
-    'value': 6,
+    'name': '',
+    'value': 0,
   },
 ];
 

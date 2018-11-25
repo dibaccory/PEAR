@@ -38,10 +38,7 @@ export class QuestionsComponent implements OnInit {
         snapshot.forEach((childSnapshot) => {
           this.key = childSnapshot.key; // planet - earth
 
-          console.log('key: ' + this.key);
-
-          // this.keys.push(this.key.toString());
-
+          // console.log('key: ' + this.key);
           this.setQuestions(childSnapshot);
 
           this.planetQ[this.key] = this.questions;
