@@ -14,6 +14,7 @@ public class SignupFormManager : MonoBehaviour {
     public InputField firstNameInput, lastNameInput, emailInput, passwordInput,
                       confirmPasswordInput;
     public InputField classroomInput;
+    public Text loginStatusText;
 
     public Button signUpButton;
     public AuthManager authManager;
@@ -43,19 +44,25 @@ public class SignupFormManager : MonoBehaviour {
             signUpButton.interactable = false;
         }
     }
-    // TODO: Validate all text fields. Ensure appropriate values are entered 
-    // for all fields. 
-
     public void OnSignUp()
     {
-        if(passwordInput.text != confirmPasswordInput.text)
+        if (passwordInput.text != confirmPasswordInput.text)
         {
-            // TODO: Handle this a bit better eventually
-            Debug.Log("Error. Passwords do not match");
+            UpdateStatus("Passwords do not match.");
         }
-        // TODO: Setup the database to handle more than just a username and password
-        authManager.SignUpNewUser(emailInput.text, passwordInput.text);
-        Debug.Log("Sign Up");
+        else if (classroomInput.text != "astronomy")
+        {
+            UpdateStatus("Please enter a valid classroom");
+        }
+        else if(firstNameInput.text.Length == 0 || lastNameInput.text.Length == 0)
+        {
+            UpdateStatus("Please enter a valid first and last name");
+        }
+        else
+        {
+            authManager.SignUpNewUser(emailInput.text, passwordInput.text);
+        }
+        
     }
 
     public void ReturnToLoginScene()
@@ -71,7 +78,7 @@ public class SignupFormManager : MonoBehaviour {
         }
         else if (task.IsFaulted)
         {
-            UpdateStatus("sorry, error! Error: " + task.Exception);
+            UpdateStatus("Sorry, there was an error! Please try again");
             Debug.Log(task.Exception);
         }
         else if (task.IsCompleted)
@@ -88,16 +95,10 @@ public class SignupFormManager : MonoBehaviour {
                 DatabaseManager.sharedInstance.CreateNewUser(user, newUser.UserId, classroom);
 
             }
-
             FirebaseUser player = task.Result;
-            UpdateStatus("User: " + player.Email);
-
-            // UpdateStatus("Loading the game scene");
-
+            UpdateStatus("User created successfully!");
             yield return new WaitForSeconds(1.5f);
-            SceneManager.LoadScene("UserProfile");
-
-            // SceneManager.LoadScene("VuforiaTesting");
+            FindObjectOfType<SceneController>().FadeAndLoadScene("LoginScreen");
         }
     }
 
@@ -108,7 +109,6 @@ public class SignupFormManager : MonoBehaviour {
 
     void UpdateStatus(string message)
     {
-        // TODO: Handle this. Need to add pop-ups or a status text text box
-        // statusText.text = message;
+        loginStatusText.text = message;
     }
 }

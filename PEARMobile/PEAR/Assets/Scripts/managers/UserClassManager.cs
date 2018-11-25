@@ -61,6 +61,10 @@ public class UserClassManager : MonoBehaviour {
     void UpdateClasses()
     {
         FirebaseUser user = DatabaseManager.sharedInstance.GetUser();
+        if(user == null)
+        {
+            FindObjectOfType<SceneController>().FadeAndLoadScene("LoginScreen");
+        }
         DatabaseManager.sharedInstance.GetClasses(user.UserId, (c) =>
         {
             classroomList = c;
