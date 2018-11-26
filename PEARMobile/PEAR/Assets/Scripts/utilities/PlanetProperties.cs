@@ -270,7 +270,15 @@ public class PlanetProperties : MonoBehaviour {
             }
             else if(controller.itemDictionary["sun"].isPlaced && planetName != "sun")
             {
-                Vector3 scaleNorm = new Vector3(1.3F * planetScale.x / sunScale.x, 1.3F * planetScale.y / sunScale.y, 1.3F * planetScale.z / sunScale.z);
+                Vector3 scaleNorm;
+                if (controller.itemDictionary[planetName].isPlaced)
+                {
+                    scaleNorm = new Vector3(1.3F * planetScale.x / sunScale.x, 1.3F * planetScale.y / sunScale.y, 1.3F * planetScale.z / sunScale.z);
+                }
+                else
+                {
+                    scaleNorm = new Vector3(1.3F * initScale / sunScale.x, 1.3F * initScale / sunScale.y, 1.3F * initScale / sunScale.z);
+                }
                 transform.localScale = Vector3.MoveTowards(transform.localScale, scaleNorm, 8 * Time.deltaTime);
             }
         }
