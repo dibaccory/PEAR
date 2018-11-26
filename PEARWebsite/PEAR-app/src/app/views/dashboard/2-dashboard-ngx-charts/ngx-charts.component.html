@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
-    <div class="col-9">
-      <h3>Total Attempts</h3>
+    <!-- <div class="col-9">
+      <h3>Total Attempts: {{ currentStudent }} </h3>
       <ngx-charts-bar-vertical
         [scheme]="colorScheme"
         [results]="single"
@@ -15,8 +15,8 @@
         [yAxisLabel]="yAxisLabel"
         (select)="onSelect($event)">
       </ngx-charts-bar-vertical>
-    </div>
-    <div class="col-3">
+    </div> -->
+    <div class="col">
       <div ngbDropdown class="d-inline-block">
         <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Students</button>
         <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
@@ -27,13 +27,35 @@
       </div>
     </div>
   </div>
+
+  <div class="row">
+    <div class="col-12">
+      <h3>Total Attempts: {{ currentStudent }}</h3>
+      <ngx-charts-bar-vertical-2d
+      [view]="view"
+      [scheme]="colorScheme"
+      [results]="single2"
+      [gradient]="gradient"
+      [xAxis]="showXAxis"
+      [yAxis]="showYAxis"
+      [legend]="showLegend"
+      [showXAxisLabel]="showXAxisLabel"
+      [showYAxisLabel]="showYAxisLabel"
+      [xAxisLabel]="xAxisLabel"
+      [yAxisLabel]="yAxisLabel"
+      [barPadding]="barPadding"
+      (select)="onSelect($event)">
+    </ngx-charts-bar-vertical-2d>
+    </div>
+  </div>
   
   <div class="row">
     <div class="col-12">
       <h3>Average Time Spent </h3>
       <ngx-charts-line-chart
+        [view]="view"
         [scheme]="colorScheme"
-        [results]="timeSpent"
+        [results]="multi"
         [gradient]="gradient"
         [xAxis]="showXAxis"
         [yAxis]="showYAxis"
@@ -46,11 +68,6 @@
       </ngx-charts-line-chart>
     </div>
   </div>
-
-  <!-- DB access -->
-  <!-- <li *ngFor="let t of totalAttempts">
-    {{ t }}
-  </li> -->
 
 </div>
 

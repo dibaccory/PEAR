@@ -1,51 +1,243 @@
 export let single = [
   {
-    'name': '',
+    'name': 'earth',
+    'value': 0,
+  },
+  {
+    'name': 'jupiter',
+    'value': 0,
+  },
+  {
+    'name': 'mars',
+    'value': 0,
+  },
+  {
+    'name': 'mercury',
+    'value': 0,
+  },
+  {
+    'name': 'neptune',
+    'value': 0,
+  },
+  {
+    'name': 'saturn',
+    'value': 0,
+  },
+  {
+    'name': 'sun',
+    'value': 0,
+  },
+  {
+    'name': 'uranus',
+    'value': 0,
+  },
+  {
+    'name': 'venus',
     'value': 0,
   },
 ];
 
-export let timeSpent = [
+export let single2 = [
   {
-    'name': 'Cqgkn1hpngSOM01Q859LMg36gBE2',
+    'name': 'earth',
     'series': [
       {
-        'name': 'Earth',
-        'value': 12.840459823608398
-      },
-      {
-        'name': 'Mars',
-        'value': 6.644228935241699
-      },
-      {
-        'name': 'Jupiter',
+        'name': 'collect mode',
         'value': 0
       },
       {
-        'name': 'Saturn',
+        'name': 'build mode',
         'value': 0
       }
     ]
   },
   {
-    'name': 'P5z0G4G740fDrfcUqwD9qvpYSwi2',
+    'name': 'jupiter',
     'series': [
       {
-        'name': 'Earth',
-        'value': 8.840459823608398
+        'name': 'collect mode',
+        'value': 0
       },
       {
-        'name': 'Mars',
-        'value': 6.934672675
-      },
-      {
-        'name': 'Jupiter',
-        'value': 9.346837449
-      },
-      {
-        'name': 'Saturn',
+        'name': 'build mode',
         'value': 0
       }
+    ]
+  },
+  {
+    'name': 'mars',
+    'series': [
+      {
+        'name': 'collect mode',
+        'value': 0
+      },
+      {
+        'name': 'build mode',
+        'value': 0
+      }
+    ]
+  },
+  {
+    'name': 'mercury',
+    'series': [
+      {
+        'name': 'collect mode',
+        'value': 0
+      },
+      {
+        'name': 'build mode',
+        'value': 0
+      }
+    ]
+  },
+  {
+    'name': 'neptune',
+    'series': [
+      {
+        'name': 'collect mode',
+        'value': 0
+      },
+      {
+        'name': 'build mode',
+        'value': 0
+      }
+    ]
+  },
+  {
+    'name': 'saturn',
+    'series': [
+      {
+        'name': 'collect mode',
+        'value': 0
+      },
+      {
+        'name': 'build mode',
+        'value': 0
+      }
+    ]
+  },
+  {
+    'name': 'sun',
+    'series': [
+      {
+        'name': 'collect mode',
+        'value': 0
+      },
+      {
+        'name': 'build mode',
+        'value': 0
+      }
+    ]
+  },
+  {
+    'name': 'uranus',
+    'series': [
+      {
+        'name': 'collect mode',
+        'value': 0
+      },
+      {
+        'name': 'build mode',
+        'value': 0
+      }
+    ]
+  },
+  {
+    'name': 'venus',
+    'series': [
+      {
+        'name': 'collect mode',
+        'value': 0
+      },
+      {
+        'name': 'build mode',
+        'value': 0
+      }
+    ]
+  },
+];
+
+export let multi = [
+  {
+    'name': 'User 1',
+    'series': [
+      {
+        'name': 'earth',
+        'value': 0,
+      },
+      {
+        'name': 'jupiter',
+        'value': 0,
+      },
+      {
+        'name': 'mars',
+        'value': 0,
+      },
+      {
+        'name': 'mercury',
+        'value': 0,
+      },
+      {
+        'name': 'neptune',
+        'value': 0,
+      },
+      {
+        'name': 'saturn',
+        'value': 0,
+      },
+      {
+        'name': 'sun',
+        'value': 0,
+      },
+      {
+        'name': 'uranus',
+        'value': 0,
+      },
+      {
+        'name': 'venus',
+        'value': 0,
+      },
+    ]
+  },
+  {
+    'name': 'User 2',
+    'series': [
+      {
+        'name': 'earth',
+        'value': 0,
+      },
+      {
+        'name': 'jupiter',
+        'value': 0,
+      },
+      {
+        'name': 'mars',
+        'value': 0,
+      },
+      {
+        'name': 'mercury',
+        'value': 0,
+      },
+      {
+        'name': 'neptune',
+        'value': 0,
+      },
+      {
+        'name': 'saturn',
+        'value': 0,
+      },
+      {
+        'name': 'sun',
+        'value': 0,
+      },
+      {
+        'name': 'uranus',
+        'value': 0,
+      },
+      {
+        'name': 'venus',
+        'value': 0,
+      },
     ]
   },
 ];

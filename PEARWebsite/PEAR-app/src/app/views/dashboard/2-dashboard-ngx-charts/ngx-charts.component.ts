@@ -1,14 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { NgxChartsModule } from '@swimlane/ngx-charts';
-import { single, timeSpent } from './sample-data';
-import { Observable, Subscription, BehaviorSubject } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
-
+import { single, single2, multi } from './sample-data';
 import { StudentsService } from '../../../services/students.service';
 import { ClassCodesService } from '../../../services/class-code.service';
-
 import { AngularFireAuth } from '@angular/fire/auth';
-import { AngularFireDatabase, AngularFireAction } from '@angular/fire/database';
+import { AngularFireDatabase } from '@angular/fire/database';
 
 @Component({
   selector: 'app-ngx-charts',
@@ -22,16 +17,18 @@ export class NgxChartsComponent implements OnInit {
   classCodes: string[] = [];
 
   key;
-  attemptCollect;
+  buildAttempt;
   attemptBuild;
+  attemptCollect;
   solarSystem;
-
-  single: any[];
-  multi: any[];
-
-  temp: Observable<any[]>;
+  currentStudent;
+  time: any[] = [];
 
   // ============ ngcx-charts ============== //
+  single: any[];
+  single2: any[];
+  multi: any[];
+  view: any[] = [700, 400];
 
   showXAxis = true;
   showYAxis = true;
@@ -42,6 +39,7 @@ export class NgxChartsComponent implements OnInit {
   showYAxisLabel = true;
   yAxisLabel = '# of Attempts';
   yAxisLabel2 = 'Time (sec)';
+  barPadding = 5;
 
   colorScheme = {
     domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
@@ -54,21 +52,13 @@ export class NgxChartsComponent implements OnInit {
     this.studentUIDs = students.studentUIDs;
     this.classCodes = codes.classCodes;
 
-    // tslint:disable-next-line:prefer-const
-    // for (let uid of this.studentUIDs) {
+    // this.collectAttempts(this.studentUIDs[0]);
 
-    // this.solarSystem = this.db.list('answers/Cqgkn1hpngSOM01Q859LMg36gBE2/astronomy/modules/solar system/', ref => ref.orderByKey());
-    // }
-
-    this.collectAttempts(this.studentUIDs[0]);
-
-    console.log(single);
-    Object.assign(this, { single, timeSpent });
+    Object.assign(this, { single, single2, multi });
   }
 
   collectAttempts(uid) {
-
-    console.log('uid:' + uid);
+    this.currentStudent = uid;
 
     this.solarSystem = this.db.database.ref('answers/' + uid + '/astronomy/modules/solar system/').orderByKey();
 
@@ -78,9 +68,14 @@ export class NgxChartsComponent implements OnInit {
           this.key = childSnapshot.key; // each key is a planet
 
           this.attemptCollect = childSnapshot.child('collect/totalAttempts').val();
-          // this.attemptBuild = childSnapshot.child('build/totalAttempts').val();
+          this.attemptBuild = childSnapshot.child('build/totalAttempts').val();
 
-          console.log('total attemtpt collect' + '|' + this.attemptCollect);
+          if (this.attemptBuild === null) {
+            this.attemptBuild = 0;
+          }
+          if (this.attemptCollect === null) {
+            this.attemptCollect = 0;
+          }
 
           const entry = {
             name: this.key.toString(),
@@ -88,14 +83,49 @@ export class NgxChartsComponent implements OnInit {
           };
           this.single = [...this.single, entry];
 
-          // this.single.push({'name': this.key.toString(), 'value': this.attemptCollect});
+          const entry2 = {
+            name: this.key.toString(),
+            series: [
+              {
+                name: 'collect mode',
+                value: this.attemptCollect
+              },
+              {
+                name: 'build mode',
+                value: this.attemptBuild
+              }
+            ]
+          };
+          this.single2 = [...this.single2, entry2];
+
           // tslint:disable-next-line:curly
           if (this.single.length > 9) this.single.splice(0, 1);
+          // tslint:disable-next-line:curly
+          if (this.single2.length > 9) this.single2.splice(0, 1);
         });
       });
-
-    // return this.single;
   }
+
+  // timeSpent(uid) {
+
+  //   const ref = this.db.database.ref('answers/' + uid + '/astronomy/modules/solar system/').orderByKey();
+
+  //   ref.once('value')
+  //     .then((snapshot) => {
+  //       snapshot.forEach((childSnapshot) => {
+  //         const key = childSnapshot.key; // each key is a planet
+
+  //         const newRef = this.db.database.ref(key).once('value')
+  //           .then((snapshot2) => {
+  //             snapshot2.forEach((childSnapshot2) => {
+  //               const key2 = childSnapshot2.key;
+  //               console.log('test:' + key2.toString());
+  //               // this.time = childSnapshot.child('attempts');
+  //             });
+  //           });
+  //       });
+  //     });
+  // }
 
   onSelect(event) {
     console.log(event);
