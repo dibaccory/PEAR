@@ -277,7 +277,7 @@ public class PlanetProperties : MonoBehaviour {
                 }
                 else
                 {
-                    scaleNorm = new Vector3(1.3F * initScale / sunScale.x, 1.3F * initScale / sunScale.y, 1.3F * initScale / sunScale.z);
+                    scaleNorm = new Vector3(4.0F * initScale / sunScale.x, 4.0F * initScale / sunScale.y, 4.0F * initScale / sunScale.z);
                 }
                 transform.localScale = Vector3.MoveTowards(transform.localScale, scaleNorm, 8 * Time.deltaTime);
             }
