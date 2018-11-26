@@ -17,12 +17,15 @@ export class NgxChartsComponent implements OnInit {
   classCodes: string[] = [];
 
   key;
-  buildAttempt;
-  attemptBuild;
-  attemptCollect;
   solarSystem;
   currentStudent;
-  time: any[] = [];
+
+  attemptBuild;
+  attemptCollect;
+  numBuildTimeSpent;
+  numCollectTimeSpent;
+  timeSpentBuild;
+  timeSpentCollect;
 
   // ============ ngcx-charts ============== //
   single: any[];
@@ -52,8 +55,6 @@ export class NgxChartsComponent implements OnInit {
     this.studentUIDs = students.studentUIDs;
     this.classCodes = codes.classCodes;
 
-    // this.collectAttempts(this.studentUIDs[0]);
-
     Object.assign(this, { single, single2, multi });
   }
 
@@ -69,6 +70,8 @@ export class NgxChartsComponent implements OnInit {
 
           this.attemptCollect = childSnapshot.child('collect/totalAttempts').val();
           this.attemptBuild = childSnapshot.child('build/totalAttempts').val();
+          this.numCollectTimeSpent = childSnapshot.child('collect/attempts').numChildren();
+          this.numBuildTimeSpent = childSnapshot.child('build/attempts').numChildren();
 
           if (this.attemptBuild === null) {
             this.attemptBuild = 0;
@@ -77,22 +80,24 @@ export class NgxChartsComponent implements OnInit {
             this.attemptCollect = 0;
           }
 
+          // single bar graph
           const entry = {
             name: this.key.toString(),
             value: this.attemptCollect
           };
           this.single = [...this.single, entry];
 
+          // double bar graph
           const entry2 = {
             name: this.key.toString(),
             series: [
               {
-                name: 'collect mode',
-                value: this.attemptCollect
-              },
-              {
                 name: 'build mode',
                 value: this.attemptBuild
+              },
+              {
+                name: 'collect mode',
+                value: this.attemptCollect
               }
             ]
           };
@@ -102,30 +107,36 @@ export class NgxChartsComponent implements OnInit {
           if (this.single.length > 9) this.single.splice(0, 1);
           // tslint:disable-next-line:curly
           if (this.single2.length > 9) this.single2.splice(0, 1);
+
+          console.log('collect num:' + this.numCollectTimeSpent);
+          // console.log('build num:' + this.numBuildTimeSpent);
+
+          for (let j = 1; j <= this.numCollectTimeSpent; j++) {
+            this.timeSpentCollect = childSnapshot.child('collect/attempts/' + j.toString() + '/time spent').val();
+
+            if (this.timeSpentCollect === null) {
+              this.timeSpentCollect = 0;
+            }
+
+            const name = 'Attempt' + ' ' + j.toString();
+
+            const entry3 = {
+              name: name,
+              series: [
+                {
+                  name: this.key.toString(),
+                  value: this.timeSpentCollect
+                }
+              ]
+            };
+            this.multi = [...this.multi, entry3];
+
+            // tslint:disable-next-line:curly
+            // if (this.multi.length > 9) this.multi.splice(0, 1);
+          }
         });
       });
   }
-
-  // timeSpent(uid) {
-
-  //   const ref = this.db.database.ref('answers/' + uid + '/astronomy/modules/solar system/').orderByKey();
-
-  //   ref.once('value')
-  //     .then((snapshot) => {
-  //       snapshot.forEach((childSnapshot) => {
-  //         const key = childSnapshot.key; // each key is a planet
-
-  //         const newRef = this.db.database.ref(key).once('value')
-  //           .then((snapshot2) => {
-  //             snapshot2.forEach((childSnapshot2) => {
-  //               const key2 = childSnapshot2.key;
-  //               console.log('test:' + key2.toString());
-  //               // this.time = childSnapshot.child('attempts');
-  //             });
-  //           });
-  //       });
-  //     });
-  // }
 
   onSelect(event) {
     console.log(event);
