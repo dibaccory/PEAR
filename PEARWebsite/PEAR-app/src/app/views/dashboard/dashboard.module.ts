@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -21,6 +22,7 @@ import { DbOutputComponent } from './4-dashboard-export/db-output.component';
     NgbModule,
     AngularFireFunctionsModule,
     NgxChartsModule,
+    BrowserAnimationsModule,
     DashboardRoutingModule,
   ],
   declarations: [

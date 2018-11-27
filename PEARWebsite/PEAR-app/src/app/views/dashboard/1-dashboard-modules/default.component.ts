@@ -18,10 +18,12 @@ export class DefaultComponent implements OnInit {
   teacherClassCode;
   ref;
   registeredStudents: any[] = [];
+  studentInfo;
 
-  constructor(public afAuth: AngularFireAuth, public db: AngularFireDatabase, public studentUIDs: StudentsService,
+  constructor(public afAuth: AngularFireAuth, public db: AngularFireDatabase, public students: StudentsService,
     public codes: ClassCodesService) {
-    this.allStudents = studentUIDs.studentUIDs;
+    this.allStudents = students.studentUIDs;
+    this.studentInfo = students.studentsInfo;
     this.classCodes = codes.classCodes;
 
     this.getRegisteredStudents();

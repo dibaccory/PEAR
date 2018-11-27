@@ -1,20 +1,21 @@
 <div class="container">
+  <h5><strong>Class Code:</strong> {{ getTeacherClassCode()  }} </h5>
 
-  <h4><strong>User ID:</strong> {{ this.teacher }}</h4>
-  <h4><strong>Class Code:</strong> {{ getTeacherClassCode()  }} </h4>
-
-  <h4><strong>Registered students:</strong></h4>
-  <li *ngFor="let student of allStudents">
-    {{student}}
-  </li>
-  <!-- <div class="card">
-    <ul class="list-group list-group-flush">
-      <div *ngFor="let student of allStudents">
-        <li class="list-group-item">{{ student }}</li>
-      </div>
-      <li class="list-group-item">astronomy</li>
-      <li class="list-group-item">test class</li>
-    </ul>
-  </div> -->
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Email</th>
+        <th scope="col">User ID</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let student of studentInfo; let i = index">
+        <th scope="row">{{i+1}}</th>
+        <td>{{student.email}}</td>
+        <td>{{student.uid}}</td>
+      </tr>
+    </tbody>
+  </table>
 
 </div>
