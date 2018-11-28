@@ -2,8 +2,26 @@
   <a href="json-csv.com/?u=https://pear-f60a2.firebaseio.com/answers/.json">TESt</a>
 </button> -->
 
-<div *ngFor="let student of allStudents">
-  <button (click)="getOutput(student.uid)" class="dropdown-item">{{ student.email }}</button>
-</div>
+<div class="container">
 
-result: {{ result }}
+  <div class="row">
+    <div class="col-2"></div>
+    <div class="col-8 list-group">
+      <h4>Click on a student to export their data:</h4>
+      <div *ngFor="let student of allStudents">
+        <div (click)="getOutput(student.uid)" class="list-group-item list-group-item-action">{{ student.email }}</div>
+      </div>
+      <br>
+      <h4>Click to export all answer data:</h4>
+      <div (click)="getOutputAll()" class="list-group-item list-group-item-action">All Students</div>
+    </div>
+    <div class="col-2"></div>
+  </div>
+  <br><br>
+
+</div>
+<!-- 
+result: {{ result | json }}
+<hr> -->
+<!--
+result2: {{ result2 | json }} -->

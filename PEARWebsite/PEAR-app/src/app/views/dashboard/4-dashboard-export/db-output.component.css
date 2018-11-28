@@ -1,0 +1,8 @@
+.list-group-item { 
+    background: rgb(244, 245, 244); 
+}
+
+.list-group {
+    overflow-y: auto;
+    height: 500px;
+}

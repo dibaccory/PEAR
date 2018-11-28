@@ -2,14 +2,26 @@
 
   <!-- <li *ngFor="let k of keys">{{ k }}</li> -->
   <!-- <hr> -->
+  <div class="row">
+    <div class="col-9"></div>
+    <div class="col-3">
+      <button class="btn btn-sm btn-outline-primary mr-2 float-md-right btn-outline-danger" (click)="acc.collapseAll()">Collapse all</button>
+      <button class="btn btn-sm btn-outline-primary mr-2 float-md-right btn-outline-danger" (click)="acc.expandAll()">Expand all</button>
+    </div>
+  </div>
+  <br>
 
-  <ngb-accordion  activeIds="static-1">
+  <ngb-accordion #acc="ngbAccordion" activeIds="static-1">
 
     <ngb-panel id="static-1">
       <ng-template ngbPanelTitle><span> <b>Mercury</b> </span></ng-template>
       <ng-template ngbPanelContent>
         <div *ngFor="let planetQ of planetQ.mercury">
-          <li *ngIf='planetQ != null'>{{ planetQ }}</li>
+          <li *ngIf="planetQ.question != null">{{ planetQ.question }}
+            <ul>
+              <li *ngIf="planetQ.answer != null">{{ planetQ.answer }}</li>
+            </ul>
+          </li>
         </div>
       </ng-template>
     </ngb-panel>
@@ -18,7 +30,11 @@
       <ng-template ngbPanelTitle><span> <b>Venus</b> </span></ng-template>
       <ng-template ngbPanelContent>
         <div *ngFor="let planetQ of planetQ.venus">
-          <li *ngIf='planetQ != null'>{{ planetQ }}</li>
+          <li *ngIf="planetQ.question != null">{{ planetQ.question }} 
+            <ul>
+              <li *ngIf="planetQ.answer != null">{{ planetQ.answer }}</li>
+            </ul>
+          </li>
         </div>
       </ng-template>
     </ngb-panel>
@@ -27,7 +43,11 @@
       <ng-template ngbPanelTitle> <span> <b>Earth</b> </span></ng-template>
       <ng-template ngbPanelContent>
         <div *ngFor="let planetQ of planetQ.earth">
-          <li *ngIf='planetQ != null'>{{ planetQ }}</li>
+          <li *ngIf="planetQ.question != null">{{ planetQ.question }}
+            <ul>
+              <li *ngIf="planetQ.answer != null">{{ planetQ.answer }}</li>
+            </ul>
+          </li>
         </div>
       </ng-template>
     </ngb-panel>
@@ -36,7 +56,11 @@
       <ng-template ngbPanelTitle> <span> <b>Mars</b> </span></ng-template>
       <ng-template ngbPanelContent>
         <div *ngFor="let planetQ of planetQ.mars">
-          <li *ngIf='planetQ != null'>{{ planetQ }}</li>
+          <li *ngIf="planetQ.question != null">{{ planetQ.question }}
+            <ul>
+              <li *ngIf="planetQ.answer != null">{{ planetQ.answer }}</li>
+            </ul>
+          </li>
         </div>
       </ng-template>
     </ngb-panel>
@@ -45,7 +69,11 @@
       <ng-template ngbPanelTitle> <span> <b>Jupiter</b> </span></ng-template>
       <ng-template ngbPanelContent>
         <div *ngFor="let planetQ of planetQ.jupiter">
-          <li *ngIf='planetQ != null'>{{ planetQ }}</li>
+          <li *ngIf="planetQ.question != null">{{ planetQ.question }}
+            <ul>
+              <li *ngIf="planetQ.answer != null">{{ planetQ.answer }}</li>
+            </ul>
+          </li>
         </div>
       </ng-template>
     </ngb-panel>
@@ -54,7 +82,11 @@
       <ng-template ngbPanelTitle> <span> <b>Saturn</b> </span></ng-template>
       <ng-template ngbPanelContent>
         <div *ngFor="let planetQ of planetQ.saturn">
-          <li *ngIf='planetQ != null'>{{ planetQ }}</li>
+          <li *ngIf="planetQ.question != null">{{ planetQ.question }}
+            <ul>
+              <li *ngIf="planetQ.answer != null">{{ planetQ.answer }}</li>
+            </ul>
+          </li>
         </div>
       </ng-template>
     </ngb-panel>
@@ -63,7 +95,11 @@
       <ng-template ngbPanelTitle> <span> <b>Uranus</b> </span></ng-template>
       <ng-template ngbPanelContent>
         <div *ngFor="let planetQ of planetQ.uranus">
-          <li *ngIf='planetQ != null'>{{ planetQ }}</li>
+          <li *ngIf="planetQ.question != null">{{ planetQ.question }}
+            <ul>
+              <li *ngIf="planetQ.answer != null">{{ planetQ.answer }}</li>
+            </ul>
+          </li>
         </div>
       </ng-template>
     </ngb-panel>
@@ -72,7 +108,11 @@
       <ng-template ngbPanelTitle> <span> <b>Neptune</b> </span></ng-template>
       <ng-template ngbPanelContent>
         <div *ngFor="let planetQ of planetQ.neptune">
-          <li *ngIf='planetQ != null'>{{ planetQ }}</li>
+          <li *ngIf="planetQ.question != null">{{ planetQ.question }}
+            <ul>
+              <li *ngIf="planetQ.answer != null">{{ planetQ.answer }}</li>
+            </ul>
+          </li>
         </div>
       </ng-template>
     </ngb-panel>
@@ -81,7 +121,11 @@
       <ng-template ngbPanelTitle> <span> <b>Sun</b> </span></ng-template>
       <ng-template ngbPanelContent>
         <div *ngFor="let planetQ of planetQ.sun">
-          <li *ngIf='planetQ != null'>{{ planetQ }}</li>
+          <li *ngIf="planetQ.question != null">{{ planetQ.question }}
+            <ul>
+              <li *ngIf="planetQ.answer != null">{{ planetQ.answer }}</li>
+            </ul>
+          </li>
         </div>
       </ng-template>
     </ngb-panel>

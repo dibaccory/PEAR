@@ -6,6 +6,7 @@
       <tr>
         <th scope="col">#</th>
         <th scope="col">Email</th>
+        <th scope="col">Name</th>
         <th scope="col">User ID</th>
       </tr>
     </thead>
@@ -13,7 +14,8 @@
       <tr *ngFor="let student of studentInfo; let i = index">
         <th scope="row">{{i+1}}</th>
         <td>{{student.email}}</td>
-        <td>{{student.uid}}</td>
+        <td>{{student.name}}</td>
+        <td>{{student.uid}}</td>        
       </tr>
     </tbody>
   </table>

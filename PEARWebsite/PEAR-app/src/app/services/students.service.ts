@@ -20,7 +20,7 @@ export class StudentsService {
           const key = childSnapshot.key; // UID
           this.studentUIDs.push(key.toString());
           this.studentEmails.push(childSnapshot.child('email').val());
-          this.studentsInfo.push({uid: key.toString(), email: childSnapshot.child('email').val()});
+          this.studentsInfo.push({uid: key.toString(), email: childSnapshot.child('email').val(), name: childSnapshot.child('name').val()});
         });
       });
     // console.log(this.studentUIDs);

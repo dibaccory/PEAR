@@ -12,3 +12,8 @@ b {
 li {
     font-family: "Open Sans", "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
 }
+
+.btn {
+    background-color: #DC572E;
+    color: #ffffff;
+}

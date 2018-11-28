@@ -14,7 +14,7 @@ export class QuestionsComponent implements OnInit {
   registeredClassCode;
   module;
   key;
-  questions: any[];
+  questions = [];
   keys: any[] = [];
 
   planetQ = {
@@ -39,7 +39,7 @@ export class QuestionsComponent implements OnInit {
           this.key = childSnapshot.key; // planet - earth
 
           // console.log('key: ' + this.key);
-          this.setQuestions(childSnapshot);
+          this.setQandA(childSnapshot);
 
           this.planetQ[this.key] = this.questions;
         });
@@ -48,13 +48,33 @@ export class QuestionsComponent implements OnInit {
     config.closeOthers = false;
   }
 
-  setQuestions(childSnapshot) {
+  setQandA(childSnapshot) {
     this.questions = [
-      childSnapshot.child('/collect/question1/question').val(),
-      childSnapshot.child('/collect/question2/question').val(),
-      childSnapshot.child('/collect/question3/question').val(),
-      childSnapshot.child('/collect/question4/question').val(),
-      childSnapshot.child('/collect/question5/question').val()
+      {
+        question: childSnapshot.child('/collect/question1/question').val(),
+        answer: childSnapshot.child('/collect/question1/answers/A1').val()
+      },
+      {
+        question: childSnapshot.child('/collect/question2/question').val(),
+        answer: childSnapshot.child('/collect/question2/answers/A1').val()
+      },
+      {
+        question: childSnapshot.child('/collect/question3/question').val(),
+        answer: childSnapshot.child('/collect/question3/answers/A1').val()
+      },
+      {
+        question: childSnapshot.child('/collect/question4/question').val(),
+        answer: childSnapshot.child('/collect/question4/answers/A1').val()
+      },
+      {
+        question: childSnapshot.child('/collect/question5/question').val(),
+        answer: childSnapshot.child('/collect/question5/answers/A1').val()
+      }
+      // childSnapshot.child('/collect/question1/question').val(),
+      // childSnapshot.child('/collect/question2/question').val(),
+      // childSnapshot.child('/collect/question3/question').val(),
+      // childSnapshot.child('/collect/question4/question').val(),
+      // childSnapshot.child('/collect/question5/question').val()
     ];
     console.log(this.questions);
   }
