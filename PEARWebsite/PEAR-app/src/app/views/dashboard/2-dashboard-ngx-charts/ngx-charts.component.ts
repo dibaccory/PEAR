@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { single, single2, multi } from './sample-data';
+import { multiBar, multiLine } from './sample-data';
 import { StudentsService } from '../../../services/students.service';
 import { ClassCodesService } from '../../../services/class-code.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireDatabase } from '@angular/fire/database';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-ngx-charts',
@@ -13,8 +14,6 @@ import { AngularFireDatabase } from '@angular/fire/database';
 
 export class NgxChartsComponent implements OnInit {
 
-  studentUIDs: string[] = [];
-  studentEmails: string[] = [];
   studentsInfo;
   classCodes: string[] = [];
 
@@ -29,12 +28,22 @@ export class NgxChartsComponent implements OnInit {
   attemptCollect;
   timeSpentBuild;
   timeSpentCollect = [];
-  data = [];
+
+  data = {
+    earth: [],
+    jupiter: [],
+    mars: [],
+    mercury: [],
+    neptune: [],
+    saturn: [],
+    sun: [],
+    uranus: [],
+    venus: [],
+  };
 
   // ============ ngcx-charts ============== //
-  single: any[];
-  single2: any[];
-  multi: any[];
+  multiBar: any[];
+  multiLine: any[];
   view: any[] = [700, 400];
 
   showXAxis = true;
@@ -56,11 +65,10 @@ export class NgxChartsComponent implements OnInit {
   constructor(public afAuth: AngularFireAuth, public db: AngularFireDatabase, public students: StudentsService,
     codes: ClassCodesService) {
 
-    this.studentUIDs = students.studentUIDs;
     this.studentsInfo = students.studentsInfo;
     this.classCodes = codes.classCodes;
 
-    Object.assign(this, { single, single2, multi });
+    Object.assign(this, { multiBar, multiLine });
   }
 
   getAttempts(uid, email) {
@@ -68,11 +76,11 @@ export class NgxChartsComponent implements OnInit {
 
     this.solarSystem = this.db.database.ref('answers/' + uid + '/astronomy/modules/solar system/').orderByKey();
 
-    this.single2 = []; // reset drawing graph
+    this.multiBar = []; // reset drawing graph
     this.solarSystem.once('value')
       .then((snapshot) => {
         snapshot.forEach((childSnapshot) => {
-          this.key = childSnapshot.key; // each key is a planet
+          this.key = childSnapshot.key; // key - planet
 
           if (childSnapshot.child('collect/totalAttempts').exists()) {
             this.attemptCollect = childSnapshot.child('collect/totalAttempts').val();
@@ -83,7 +91,7 @@ export class NgxChartsComponent implements OnInit {
           } else { this.attemptBuild = 0; }
 
           // double bar graph
-          const entry2 = {
+          const entry = {
             name: this.key.toString(),
             series: [
               {
@@ -96,99 +104,116 @@ export class NgxChartsComponent implements OnInit {
               }
             ]
           };
-          this.single2 = [...this.single2, entry2];
+          this.multiBar = [...this.multiBar, entry];
         });
       });
 
-      this.getTimeSpent(uid);
+      // this.getTimeSpent(uid, email);
   }
 
-  getTimeSpent(uid) {
+  getTimeSpent(uid, email) {
 
     const planets = ['earth', 'jupiter', 'mars', 'mercury', 'neptune', 'saturn', 'sun', 'uranus', 'venus'];
-    let pathExist = true;
 
-    this.multi = [];
-    this.timeSpentCollect = [];
-    this.key2 = [];
+    this.multiLine = [];
     for (let planet of planets) {
+      // this.solarSystem2 = this.db.list('answers/' + uid + '/astronomy/modules/solar system/' + planet + '/collect/attempts/',
+      //   ref => ref.orderByKey());
+
+      // this.solarSystem2.snapshotChanges().subscribe(data => {
+      //   this.key2 = data.key;
+      //   console.log(data);
+      // });
+
       this.solarSystem2 = this.db.database.ref('answers/' + uid + '/astronomy/modules/solar system/' + planet + '/collect/attempts/')
         .orderByKey();
 
-      if (this.solarSystem2 === null) {
-        pathExist = false;
-      }
-
-      let sum = 0;
-      let counter = 0;
       this.solarSystem2.once('value')
-      .then((snapshot) => {
-        snapshot.forEach((childSnapshot) => {
-          this.key2 = childSnapshot.key; // each key is attempt key 1, 2, 3...
-          console.log('bottom key:' + this.key2);
+        .then((snapshot) => {
+          snapshot.forEach((childSnapshot) => {
+            this.key2 = childSnapshot.key; // each key is attempt key 1, 2, 3...
+            // console.log('bottom key:' + this.key2);
 
-          sum += childSnapshot.child('/time spent').val();
-          let te: number = childSnapshot.child('/time spent').val();
-          this.timeSpentCollect.push({user: uid, planet: planet, attempt: this.key2.toString(), value: te});
-          counter++;
+            this.timeSpentCollect = [{
+              attempt: this.key2.toString(),
+              value: childSnapshot.child('time spent').val()
+            }];
+
+            this.data[planet] = this.timeSpentCollect;
+          });
         });
-      });
-      console.log(this.timeSpentCollect);
-      console.log(sum);
-
-      let average: number;
-
-      if (counter > 1) {
-        average = (sum / counter);
-      }
-
-      console.log(average);
-      this.data.push({name: planet, value: average});
-      console.log(this.data);
     }
 
-    const entry3 = {
+    console.log(this.data);
+    console.log(this.data.earth);
+
+    const entry2 = {
       'name': uid,
       'series': [
         {
           'name': 'earth2',
-          'value': 0,
+          'value': this.getValue(this.data.earth),
         },
         {
           'name': 'jupiter',
-          'value': 10,
+          'value': this.getValue(this.data.jupiter),
         },
         {
           'name': 'mars',
-          'value': 5,
+          'value': this.getValue(this.data.mars),
         },
         {
           'name': 'mercury',
-          'value': 7,
+          'value': this.getValue(this.data.mercury),
         },
         {
           'name': 'neptune',
-          'value': 20,
+          'value': this.getValue(this.data.neptune),
         },
         {
           'name': 'saturn',
-          'value': 30,
+          'value': this.getValue(this.data.saturn),
         },
         {
           'name': 'sun',
-          'value': 0,
+          'value': this.getValue(this.data.sun),
         },
         {
           'name': 'uranus',
-          'value': 0,
+          'value': this.getValue(this.data.uranus),
         },
         {
           'name': 'venus',
-          'value': 10,
+          'value': this.getValue(this.data.venus),
         },
       ]
     };
-    this.multi = [...this.multi, entry3];
+    this.multiLine = [...this.multiLine, entry2];
+  }
+
+  getName(planet) {
+    if (planet === null) {
+      return 'none';
+    }
+
+    let name: string;
+    for (let p of planet) {
+      name = p.name;
+    }
+    return name;
+  }
+
+  getValue(planet) {
+
+    if (planet.length === 0) {
+      return 0;
+    }
+
+    let value: number;
+    for (let p of planet) {
+      value = p.value;
+    }
+    return value;
   }
 
   onSelect(event) {

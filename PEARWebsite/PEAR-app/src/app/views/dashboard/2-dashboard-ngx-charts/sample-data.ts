@@ -1,43 +1,4 @@
-export let single = [
-  {
-    'name': 'earth',
-    'value': 0,
-  },
-  {
-    'name': 'jupiter',
-    'value': 0,
-  },
-  {
-    'name': 'mars',
-    'value': 0,
-  },
-  {
-    'name': 'mercury',
-    'value': 0,
-  },
-  {
-    'name': 'neptune',
-    'value': 0,
-  },
-  {
-    'name': 'saturn',
-    'value': 0,
-  },
-  {
-    'name': 'sun',
-    'value': 0,
-  },
-  {
-    'name': 'uranus',
-    'value': 0,
-  },
-  {
-    'name': 'venus',
-    'value': 0,
-  },
-];
-
-export let single2 = [
+export let multiBar = [
   {
     'name': 'earth',
     'series': [
@@ -157,7 +118,7 @@ export let single2 = [
   },
 ];
 
-export let multi = [
+export let multiLine = [
   {
     'name': 'User',
     'series': [

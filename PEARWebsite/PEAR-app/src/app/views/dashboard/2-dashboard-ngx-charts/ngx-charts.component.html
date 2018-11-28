@@ -1,27 +1,14 @@
 <div class="container">
+
   <div class="row">
-    <!-- <div class="col-9">
-      <h3>Total Attempts: {{ currentStudent }} </h3>
-      <ngx-charts-bar-vertical
-        [scheme]="colorScheme"
-        [results]="single"
-        [gradient]="gradient"
-        [xAxis]="showXAxis"
-        [yAxis]="showYAxis"
-        [legend]="showLegend"
-        [showXAxisLabel]="showXAxisLabel"
-        [showYAxisLabel]="showYAxisLabel"
-        [xAxisLabel]="xAxisLabel"
-        [yAxisLabel]="yAxisLabel"
-        (select)="onSelect($event)">
-      </ngx-charts-bar-vertical>
-    </div> -->
     <div class="col">
       <div ngbDropdown class="d-inline-block">
         <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>{{ currentStudent }}</button>
         <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
           <div *ngFor="let student of studentsInfo">
-            <button (click)="getAttempts(student.uid, student.email)" class="dropdown-item">{{ student.email }}</button>
+            <button (click)="getAttempts(student.uid, student.email); getTimeSpent(student.uid, student.email)" 
+              class="dropdown-item">{{ student.email }}
+            </button>
           </div>
         </div>
       </div>
@@ -34,7 +21,7 @@
       <ngx-charts-bar-vertical-2d
       [view]="view"
       [scheme]="colorScheme"
-      [results]="single2"
+      [results]="multiBar"
       [gradient]="gradient"
       [xAxis]="showXAxis"
       [yAxis]="showYAxis"
@@ -55,7 +42,7 @@
       <ngx-charts-line-chart
         [view]="view"
         [scheme]="colorScheme"
-        [results]="multi"
+        [results]="multiLine"
         [gradient]="gradient"
         [xAxis]="showXAxis"
         [yAxis]="showYAxis"

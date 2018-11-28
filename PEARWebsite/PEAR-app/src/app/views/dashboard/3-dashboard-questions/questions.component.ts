@@ -70,13 +70,8 @@ export class QuestionsComponent implements OnInit {
         question: childSnapshot.child('/collect/question5/question').val(),
         answer: childSnapshot.child('/collect/question5/answers/A1').val()
       }
-      // childSnapshot.child('/collect/question1/question').val(),
-      // childSnapshot.child('/collect/question2/question').val(),
-      // childSnapshot.child('/collect/question3/question').val(),
-      // childSnapshot.child('/collect/question4/question').val(),
-      // childSnapshot.child('/collect/question5/question').val()
     ];
-    console.log(this.questions);
+    // console.log(this.questions);
   }
 
   ngOnInit() {
