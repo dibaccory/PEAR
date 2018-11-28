@@ -56,7 +56,7 @@ export class QuestionsComponent implements OnInit {
       childSnapshot.child('/collect/question4/question').val(),
       childSnapshot.child('/collect/question5/question').val()
     ];
-    // console.log(this.questions);
+    console.log(this.questions);
   }
 
   ngOnInit() {

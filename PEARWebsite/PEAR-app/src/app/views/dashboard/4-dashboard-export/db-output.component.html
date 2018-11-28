@@ -1,3 +1,9 @@
-<button>
-  <a href="json-csv.com/?u=https://pear-f60a2.firebaseio.com/.json">TESt</a>
-</button>
+<!-- <button>
+  <a href="json-csv.com/?u=https://pear-f60a2.firebaseio.com/answers/.json">TESt</a>
+</button> -->
+
+<div *ngFor="let student of allStudents">
+  <button (click)="getOutput(student.uid)" class="dropdown-item">{{ student.email }}</button>
+</div>
+
+result: {{ result }}

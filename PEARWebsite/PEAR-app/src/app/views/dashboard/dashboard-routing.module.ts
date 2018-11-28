@@ -15,6 +15,7 @@ const routes: Routes = [
       { path: 'default', component: DefaultComponent },
       { path: 'questions', component: QuestionsComponent },
       { path: 'stats', component: NgxChartsComponent },
+      { path: 'export', component: DbOutputComponent },
     ]
   },
 ];

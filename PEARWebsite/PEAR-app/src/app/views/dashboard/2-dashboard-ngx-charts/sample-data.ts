@@ -159,7 +159,7 @@ export let single2 = [
 
 export let multi = [
   {
-    'name': '1',
+    'name': 'User',
     'series': [
       {
         'name': 'earth',
@@ -167,23 +167,23 @@ export let multi = [
       },
       {
         'name': 'jupiter',
-        'value': 0,
+        'value': 10,
       },
       {
         'name': 'mars',
-        'value': 0,
+        'value': 5,
       },
       {
         'name': 'mercury',
-        'value': 0,
+        'value': 7,
       },
       {
         'name': 'neptune',
-        'value': 0,
+        'value': 20,
       },
       {
         'name': 'saturn',
-        'value': 0,
+        'value': 30,
       },
       {
         'name': 'sun',
@@ -195,8 +195,8 @@ export let multi = [
       },
       {
         'name': 'venus',
-        'value': 0,
+        'value': 10,
       },
-    ]
+    ],
   },
 ];
