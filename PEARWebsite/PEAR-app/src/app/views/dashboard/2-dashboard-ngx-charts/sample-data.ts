@@ -128,23 +128,23 @@ export let multiLine = [
       },
       {
         'name': 'jupiter',
-        'value': 10,
+        'value': 0,
       },
       {
         'name': 'mars',
-        'value': 5,
+        'value': 0,
       },
       {
         'name': 'mercury',
-        'value': 7,
+        'value': 0,
       },
       {
         'name': 'neptune',
-        'value': 20,
+        'value': 0,
       },
       {
         'name': 'saturn',
-        'value': 30,
+        'value': 0,
       },
       {
         'name': 'sun',
@@ -156,7 +156,7 @@ export let multiLine = [
       },
       {
         'name': 'venus',
-        'value': 10,
+        'value': 0,
       },
     ],
   },

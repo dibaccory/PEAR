@@ -4,7 +4,6 @@ import { StudentsService } from '../../../services/students.service';
 import { ClassCodesService } from '../../../services/class-code.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireDatabase } from '@angular/fire/database';
-import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-ngx-charts',
@@ -29,6 +28,7 @@ export class NgxChartsComponent implements OnInit {
   timeSpentBuild;
   timeSpentCollect = [];
 
+  planets;
   data = {
     earth: [],
     jupiter: [],
@@ -108,31 +108,22 @@ export class NgxChartsComponent implements OnInit {
         });
       });
 
-      // this.getTimeSpent(uid, email);
+      this.getTimeSpent(uid);
   }
 
-  getTimeSpent(uid, email) {
+  getTimeSpent(uid) {
 
-    const planets = ['earth', 'jupiter', 'mars', 'mercury', 'neptune', 'saturn', 'sun', 'uranus', 'venus'];
+    this.planets = ['earth', 'jupiter', 'mars', 'mercury', 'neptune', 'saturn', 'sun', 'uranus', 'venus'];
 
-    this.multiLine = [];
-    for (let planet of planets) {
-      // this.solarSystem2 = this.db.list('answers/' + uid + '/astronomy/modules/solar system/' + planet + '/collect/attempts/',
-      //   ref => ref.orderByKey());
-
-      // this.solarSystem2.snapshotChanges().subscribe(data => {
-      //   this.key2 = data.key;
-      //   console.log(data);
-      // });
-
+    this.multiLine = []; // reset drawing graph
+    for (let planet of this.planets) {
       this.solarSystem2 = this.db.database.ref('answers/' + uid + '/astronomy/modules/solar system/' + planet + '/collect/attempts/')
         .orderByKey();
 
       this.solarSystem2.once('value')
         .then((snapshot) => {
           snapshot.forEach((childSnapshot) => {
-            this.key2 = childSnapshot.key; // each key is attempt key 1, 2, 3...
-            // console.log('bottom key:' + this.key2);
+            this.key2 = childSnapshot.key; // ekey is attempt - key 1, 2, 3...
 
             this.timeSpentCollect = [{
               attempt: this.key2.toString(),
@@ -148,7 +139,7 @@ export class NgxChartsComponent implements OnInit {
     console.log(this.data.earth);
 
     const entry2 = {
-      'name': uid,
+      'name': 'collect mode',
       'series': [
         {
           'name': 'earth2',
@@ -189,18 +180,6 @@ export class NgxChartsComponent implements OnInit {
       ]
     };
     this.multiLine = [...this.multiLine, entry2];
-  }
-
-  getName(planet) {
-    if (planet === null) {
-      return 'none';
-    }
-
-    let name: string;
-    for (let p of planet) {
-      name = p.name;
-    }
-    return name;
   }
 
   getValue(planet) {
